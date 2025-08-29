@@ -60,6 +60,9 @@ if (BUILD_EXAMPLES)
     add_subdirectory(example)
 endif ()
 
+# Custom examples
+add_subdirectory(custom_examples)
+
 ## Install the library
 install(DIRECTORY include/
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
