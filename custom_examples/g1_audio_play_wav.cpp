@@ -212,6 +212,66 @@ struct Player {
   }
 };
 
+// Simple TCP speaker bridge: receive raw 16k mono 16-bit PCM bytes and stream to robot
+struct SpeakerBridge {
+  std::thread server;
+  std::atomic<bool> running{false};
+  unitree::robot::g1::AudioClient *client{nullptr};
+
+  void start(uint16_t port = 5002) {
+    if (running.load() || client == nullptr) return;
+    running.store(true);
+    server = std::thread([this, port]() {
+      int srv = ::socket(AF_INET, SOCK_STREAM, 0);
+      if (srv < 0) { std::cerr << "[bridge] socket() failed" << std::endl; running.store(false); return; }
+      int opt = 1; setsockopt(srv, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+      sockaddr_in addr{}; addr.sin_family = AF_INET; addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK); addr.sin_port = htons(port);
+      if (bind(srv, (sockaddr*)&addr, sizeof(addr)) < 0) { std::cerr << "[bridge] bind() failed" << std::endl; close(srv); running.store(false); return; }
+      if (listen(srv, 1) < 0) { std::cerr << "[bridge] listen() failed" << std::endl; close(srv); running.store(false); return; }
+      std::cout << "[bridge] Listening on 127.0.0.1:" << port << " for PCM (16k mono 16-bit)" << std::endl;
+      const size_t CHUNK = 32000; // 1s of 16kHz mono s16le
+      while (running.load()) {
+        sockaddr_in cli{}; socklen_t cl = sizeof(cli);
+        int fd = accept(srv, (sockaddr*)&cli, &cl);
+        if (fd < 0) { if (!running.load()) break; continue; }
+        std::string stream_id = std::to_string(unitree::common::GetCurrentTimeMillisecond());
+        std::vector<uint8_t> buf; buf.reserve(CHUNK);
+        std::cout << "[bridge] Client connected" << std::endl;
+        while (running.load()) {
+          uint8_t tmp[4096]; ssize_t n = recv(fd, tmp, sizeof(tmp), 0);
+          if (n <= 0) break;
+          buf.insert(buf.end(), tmp, tmp + n);
+          while (buf.size() >= CHUNK) {
+            std::vector<uint8_t> out(buf.begin(), buf.begin() + CHUNK);
+            client->PlayStream("bridge", stream_id, out);
+            buf.erase(buf.begin(), buf.begin() + CHUNK);
+            // pace approximately 1s per chunk
+            unitree::common::Sleep(1);
+          }
+        }
+        // flush remainder
+        if (!buf.empty()) {
+          client->PlayStream("bridge", stream_id, buf);
+          buf.clear();
+        }
+        client->PlayStop(stream_id);
+        close(fd);
+        std::cout << "[bridge] Client disconnected" << std::endl;
+      }
+      close(srv);
+    });
+  }
+
+  void stop() {
+    if (!running.load()) return;
+    running.store(false);
+    // connect to self to unblock accept
+    int fd = ::socket(AF_INET, SOCK_STREAM, 0);
+    if (fd >= 0) { sockaddr_in a{}; a.sin_family = AF_INET; a.sin_addr.s_addr = htonl(INADDR_LOOPBACK); a.sin_port = htons(5002); connect(fd, (sockaddr*)&a, sizeof(a)); close(fd); }
+    if (server.joinable()) server.join();
+  }
+};
+
 int main(int argc, char const *argv[]) {
   if (argc < 2) {
     std::cout << "Usage: g1_audio_play_wav <network_interface> [wav_path]\n";
@@ -237,6 +297,7 @@ int main(int argc, char const *argv[]) {
   recorder.localIp = localIp;
   Player player;
   player.client = &client;
+  SpeakerBridge bridge; bridge.client = &client; bridge.start(5002);
   int ttsVoiceId = 1; // 0: Chinese, 1: English (per SDK example)
 
   std::cout << "Controls: r=start/stop record, p=start/stop play, t=tts, c=CN voice, e=EN voice, 0/1=voice id, +=/= vol up, -=vol down, v=set vol, g=get vol, q=quit\n";
@@ -331,6 +392,7 @@ int main(int argc, char const *argv[]) {
   // ensure threads finish
   recorder.stop();
   player.stop();
+  bridge.stop();
   return 0;
 }
 

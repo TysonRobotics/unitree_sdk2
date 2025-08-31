@@ -4,3 +4,4 @@ target_link_libraries(g1_audio_play_wav unitree_sdk2)
 target_include_directories(g1_audio_play_wav PRIVATE ${CMAKE_SOURCE_DIR}/example/g1/audio)
 
 
+

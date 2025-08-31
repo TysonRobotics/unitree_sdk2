@@ -1,0 +1,4 @@
+Owner: Pim
+Location: Lab Antwerp
+Robot: Unitree G1 with Jetson Orin
+Preferred language: English
