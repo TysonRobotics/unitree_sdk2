@@ -11,6 +11,8 @@ import numpy as np
 import sounddevice as sd
 import json
 import webrtcvad
+import base64
+from websocket import create_connection
 
 try:
     from openai import OpenAI
@@ -246,6 +248,30 @@ def stream_pcm_to_bridge(pcm_int16: np.ndarray, host='127.0.0.1', port=5002):
     s.close()
 
 
+class PCMStreamSender:
+    def __init__(self, host='127.0.0.1', port=5002):
+        self.host = host
+        self.port = port
+        self.sock = None
+
+    def __enter__(self):
+        self.sock = socket.socket()
+        self.sock.connect((self.host, self.port))
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        try:
+            if self.sock:
+                self.sock.close()
+        finally:
+            self.sock = None
+
+    def send(self, b: bytes):
+        if not b or not self.sock:
+            return
+        self.sock.sendall(b)
+
+
 def ensure_pcm16k_from_audio_bytes(b: bytes) -> np.ndarray:
     # If WAV, parse directly
     if len(b) >= 4 and b[:4] == b'RIFF':
@@ -279,10 +305,13 @@ def main():
     parser.add_argument('--model-chat', default='gpt-4o-mini')
     parser.add_argument('--model-asr', default='whisper-1')
     parser.add_argument('--model-tts', default='gpt-4o-mini-tts')
+    parser.add_argument('--model-realtime', default='gpt-4o-realtime-preview-2024-12-17')
     parser.add_argument('--tts-voice', default='alloy')
     parser.add_argument('--persona', help='Path to a text file describing personality', default=None)
     parser.add_argument('--facts', help='Path to a text file with one fact per line', default=None)
-    parser.add_argument('--continuous', action='store_true', help='Enable continuous VAD mode')
+    parser.add_argument('--continuous', action='store_true', help='Enable continuous VAD mode (Whisper)')
+    parser.add_argument('--continuous-realtime', action='store_true', help='Enable continuous mode via Agents SDK/WebRTC (ASR+LLM). TTS remains local.')
+    parser.add_argument('--agents-token-url', default='http://127.0.0.1:3456/token', help='Token endpoint from agents_service')
     parser.add_argument('--vad-aggr', type=int, default=2, help='VAD aggressiveness 0-3')
     parser.add_argument('--robot-mic-iface', default=None, help='Local NIC to join robot mic multicast. Accepts IPv4 (e.g., 192.168.123.51) or interface name (e.g., enp62s0). If unset, auto-detect 192.168.123.x; otherwise uses laptop mic.')
     args = parser.parse_args()
@@ -294,8 +323,8 @@ def main():
     client = OpenAI()
 
     system_msg, tools_msg = load_persona_and_facts(args.persona, args.facts)
-    print("Ready. Modes: PTT (Enter/Enter) or --continuous VAD.")
-    if not args.continuous:
+    print("Ready. Modes: PTT (Enter/Enter), --continuous (Whisper), or --continuous-realtime (Realtime).")
+    if not (args.continuous or args.continuous_realtime):
         print("Press Enter to start; Enter to stop recording; Ctrl+C to exit")
 
     history = [{"role":"system","content":system_msg + ("\n\n" + tools_msg if tools_msg else "")}]
@@ -346,9 +375,59 @@ def main():
             robot_src = RobotMicSource(ip_for_mcast)
     else:
         vad_listener = VADListener(samplerate=args.mic_rate, aggressiveness=args.vad_aggr)
+    def agents_webrtc_loop(gen_bytes_iterable, on_text_complete):
+        # This Python client will not directly run WebRTC; we rely on the browser Agents SDK for media I/O.
+        # Here we simply print a hint and keep the bridge active. Optional: serve a minimal page later.
+        print("[agents] Use the browser client with the token server at --agents-token-url for continuous mode.")
+        print(f"[agents] Token endpoint: {args.agents_token_url}")
+        print("[agents] Keep this bridge running to play audio.")
+
+    # Fallback to avoid NameError when --continuous-realtime is used.
+    def realtime_stream_loop(gen_bytes_iterable, on_text_complete):
+        return agents_webrtc_loop(gen_bytes_iterable, on_text_complete)
+
     while True:
         try:
-            if args.continuous:
+            if args.continuous_realtime:
+                # Realtime continuous: stream audio continuously; server VAD & responses
+                def gen_bytes():
+                    # Prefer robot mic if available; else laptop mic stream
+                    if isinstance(vad_listener, RobotVADListener):
+                        # pull from UDP mic socket in small chunks
+                        while True:
+                            try:
+                                data = vad_listener.src.sock.recv(2048)
+                                yield data
+                            except socket.timeout:
+                                yield b""
+                    else:
+                        with sd.InputStream(samplerate=args.mic_rate, channels=1, dtype='int16') as st:
+                            while True:
+                                data, _ = st.read(int(0.02 * args.mic_rate))  # ~20ms
+                                yield data.tobytes()
+
+                def on_text(reply_text: str):
+                    print(f"Bot: {reply_text}")
+                    # TTS locally
+                    speech = client.audio.speech.create(
+                        model=args.model_tts,
+                        voice=args.tts_voice,
+                        input=reply_text
+                    )
+                    if hasattr(speech, 'content') and isinstance(speech.content, (bytes, bytearray)):
+                        audio_bytes = speech.content
+                    elif isinstance(speech, (bytes, bytearray)):
+                        audio_bytes = speech
+                    elif hasattr(speech, 'to_bytes'):
+                        audio_bytes = speech.to_bytes()
+                    else:
+                        audio_bytes = bytes(speech)
+                    pcm16k = ensure_pcm16k_from_audio_bytes(audio_bytes)
+                    stream_pcm_to_bridge(pcm16k, host=args.bridge_host, port=args.bridge_port)
+
+                realtime_stream_loop(gen_bytes, on_text)
+                continue
+            elif args.continuous:
                 audio = vad_listener.record_utterance()
                 if audio.size == 0:
                     continue

@@ -51,3 +51,61 @@ Notes
 - For Realtime/WebRTC integrations, feed microphone upstream and stream returned TTS audio down to the TCP bridge.
 
 
+
+## Wi‑Fi setup on NX (saved steps)
+
+- Unblock and enable Wi‑Fi
+```bash
+sudo rfkill unblock wifi
+sudo nmcli radio wifi on
+sudo ip link set wlan0 up
+```
+
+- Create an explicit WPA2 profile for iPhone hotspot (handles curly apostrophe in SSID)
+```bash
+sudo nmcli con add type wifi ifname wlan0 con-name iphone2 ssid "Pim’s iPhone"
+sudo nmcli con modify iphone2 \
+  802-11-wireless-security.key-mgmt wpa-psk \
+  802-11-wireless-security.psk 'komdandreirie'
+sudo nmcli con up iphone2
+```
+
+- Verify
+```bash
+ip a show wlan0
+ping -c 3 8.8.8.8
+```
+
+- Notes
+  - Joining an external Wi‑Fi may temporarily disable the robot’s own AP; reboot restores it.
+  - If a stale connection exists, remove it: `nmcli connection show | grep -i "pim"` then `sudo nmcli connection delete "<name>"`.
+
+## Apt mirrors fix on NX (saved steps)
+
+- Reason: Image shipped with China mirrors (Tsinghua/USTC) and ROS apt lists; in EU these can fail GPG or be slow. We switch to official Ubuntu ports and disable ROS lists (we don’t need ROS here). Backup is kept.
+
+- Commands
+```bash
+# Backup existing sources
+sudo mkdir -p /etc/apt/backup && sudo cp -a /etc/apt/sources.list /etc/apt/sources.list.d /etc/apt/backup/
+
+# Replace with official Ubuntu ports (ARM) for focal
+sudo bash -c 'cat >/etc/apt/sources.list <<EOF
+deb http://ports.ubuntu.com/ubuntu-ports focal main restricted universe multiverse
+deb http://ports.ubuntu.com/ubuntu-ports focal-updates main restricted universe multiverse
+deb http://ports.ubuntu.com/ubuntu-ports focal-backports main restricted universe multiverse
+deb http://ports.ubuntu.com/ubuntu-ports focal-security main restricted universe multiverse
+EOF'
+
+# Remove ROS repo entries (optional for this project)
+sudo rm -f /etc/apt/sources.list.d/ros*.list /etc/apt/sources.list.d/ros2*.list
+
+# Update and install audio deps
+sudo apt-get update
+sudo apt-get install -y libportaudio2 portaudio19-dev libportaudiocpp0 ffmpeg
+```
+
+- Backup location
+  - `/etc/apt/backup/sources.list`
+  - `/etc/apt/backup/sources.list.d/`
+
