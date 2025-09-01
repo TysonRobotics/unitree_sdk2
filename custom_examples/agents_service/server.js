@@ -156,13 +156,19 @@ if (process.env.ENABLE_SERVER_REALTIME === '1') {
     let wsReady = false;
     let responseActive = false;
     openai.on('open', () => {
-      // Configure session: 16k PCM input, VAD, auto-responses
+      // Configure session per docs: nest audio config and rely on server VAD (no manual commits)
       try {
         openai.send(JSON.stringify({
           type: 'session.update',
           session: {
-            input_audio_format: 'pcm16',
-            turn_detection: { type: 'semantic_vad', create_response: true, interrupt_response: true }
+            type: 'realtime',
+            model: REALTIME_MODEL,
+            audio: {
+              input: {
+                format: 'pcm16',
+                turn_detection: { type: 'semantic_vad', create_response: true }
+              }
+            }
           }
         }));
         wsReady = true;
@@ -208,14 +214,14 @@ if (process.env.ENABLE_SERVER_REALTIME === '1') {
       }
     });
 
-    // Simple silence-based commit: measure energy over recent UDP frames
+    // Stream UDP PCM to Realtime; rely on server VAD to auto-respond
     let lastChunkTs = Date.now();
     let lastVoiceTs = 0;
     let hadSpeechThisTurn = false;
-    let lastCommitTs = 0;
     let bufferOpen = false;
-    let bytesSinceLastCommit = 0;
-    const MIN_COMMIT_BYTES = 16000 * 2 * 0.2; // 200ms of 16kHz s16 mono = 6400 bytes
+    const MIN_APPEND_BYTES = 16000 * 2 * 0.2; // batch ~200ms before append
+    let batch = [];
+    let batchBytes = 0;
     function appendAndMaybeCommit(buf) {
       if (!wsReady) return; // wait until WS is open
       if (buf && buf.length) {
@@ -234,55 +240,29 @@ if (process.env.ENABLE_SERVER_REALTIME === '1') {
           hadSpeechThisTurn = true;
         }
 
-        try {
-          // Only append; Realtime no longer supports 'input_audio_buffer.start'
-          bufferOpen = true;
-          openai.send(JSON.stringify({ type: 'input_audio_buffer.append', audio: pcmToBase64(buf) }));
-        } catch (e) {
-          console.error('[server-realtime] append send error', e);
-          return;
+        // batch small UDP frames into ~200ms chunks before append
+        batch.push(buf);
+        batchBytes += buf.length;
+        if (batchBytes >= MIN_APPEND_BYTES) {
+          const b = Buffer.concat(batch, batchBytes);
+          batch = [];
+          batchBytes = 0;
+          try {
+            bufferOpen = true;
+            openai.send(JSON.stringify({ type: 'input_audio_buffer.append', audio: pcmToBase64(b) }));
+          } catch (e) {
+            console.error('[server-realtime] append send error', e);
+            batch = [];
+            batchBytes = 0;
+            return;
+          }
         }
         lastChunkTs = Date.now();
-        bytesSinceLastCommit += buf.length;
-        // console.debug('[server-realtime] appended', buf.length, 'bytes, total since last commit', bytesSinceLastCommit);
       }
       const now = Date.now();
       const idle = now - lastChunkTs;
       const silence = now - lastVoiceTs;
-
-      // Commit if we had speech and then ~500ms of silence
-      if (hadSpeechThisTurn && silence > 500 && now - lastCommitTs > 700 && bytesSinceLastCommit >= MIN_COMMIT_BYTES) {
-        try {
-          openai.send(JSON.stringify({ type: 'input_audio_buffer.commit' }));
-          // Optional: force response in case VAD doesn't auto-create
-          if (!responseActive) {
-            openai.send(JSON.stringify({ type: 'response.create' }));
-            responseActive = true;
-          }
-        } catch (e) {
-          console.error('[server-realtime] commit/send error', e);
-        }
-        hadSpeechThisTurn = false;
-        lastCommitTs = now;
-        bytesSinceLastCommit = 0;
-        bufferOpen = false;
-      }
-
-      // Fallback: periodic commit every 3000ms if audio flowed
-      if (bytesSinceLastCommit >= MIN_COMMIT_BYTES && now - lastCommitTs > 3000 && now - lastChunkTs < 1500) {
-        try {
-          openai.send(JSON.stringify({ type: 'input_audio_buffer.commit' }));
-          if (!responseActive) {
-            openai.send(JSON.stringify({ type: 'response.create' }));
-            responseActive = true;
-          }
-        } catch (e) {
-          console.error('[server-realtime] periodic commit error', e);
-        }
-        lastCommitTs = now;
-        bytesSinceLastCommit = 0;
-        bufferOpen = false;
-      }
+      // No manual commit/response.create when VAD is enabled; server will auto-respond
     }
 
     udp.on('message', (msg) => {
