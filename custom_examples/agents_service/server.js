@@ -162,7 +162,6 @@ if (process.env.ENABLE_SERVER_REALTIME === '1') {
           type: 'session.update',
           session: {
             input_audio_format: 'pcm16',
-            input_audio_sample_rate: 16000,
             turn_detection: { type: 'semantic_vad', create_response: true, interrupt_response: true }
           }
         }));
@@ -236,10 +235,8 @@ if (process.env.ENABLE_SERVER_REALTIME === '1') {
         }
 
         try {
-          if (!bufferOpen) {
-            openai.send(JSON.stringify({ type: 'input_audio_buffer.start' }));
-            bufferOpen = true;
-          }
+          // Only append; Realtime no longer supports 'input_audio_buffer.start'
+          bufferOpen = true;
           openai.send(JSON.stringify({ type: 'input_audio_buffer.append', audio: pcmToBase64(buf) }));
         } catch (e) {
           console.error('[server-realtime] append send error', e);
