@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>G1 Agents SDK</title>
+    <style>
+      body { font-family: sans-serif; margin: 20px; }
+      #log { white-space: pre-wrap; border: 1px solid #ccc; padding: 8px; height: 200px; overflow:auto; }
+    </style>
+  </head>
+  <body>
+    <h3>G1 Realtime (Agents SDK)</h3>
+    <button id="connect">Connect</button>
+    <div id="log"></div>
+    <script type="module">
+      import { RealtimeAgent, RealtimeSession } from "https://cdn.jsdelivr.net/npm/@openai/agents-realtime/+esm";
+      const logEl = document.getElementById('log');
+      const log = (...args) => { logEl.textContent += args.join(' ') + '\n'; logEl.scrollTop = logEl.scrollHeight; };
+
+      async function connect() {
+        try {
+          const tok = await fetch('/token').then(r=>r.json());
+          const key = (tok && tok.client_secret && tok.client_secret.value) ? tok.client_secret.value : tok.value;
+          if (!key) { log('Token error:', JSON.stringify(tok)); return; }
+          const persona = `You are the voice of a Unitree G1 robot. Be concise and friendly.`;
+          const agent = new RealtimeAgent({ name: 'G1', instructions: persona });
+          const session = new RealtimeSession(agent, { model: 'gpt-realtime' });
+          session.on('text', t => log('Bot:', t));
+          await session.connect({ apiKey: key });
+          log('Connected. Speak to the agent.');
+        } catch(e) { log('Connect error:', e.message||e); }
+      }
+      document.getElementById('connect').onclick = connect;
+    </script>
+  </body>
+ </html>
+
+
