@@ -1,0 +1,543 @@
+import asyncio
+import base64
+import json
+import os
+import signal
+import sys
+from contextlib import asynccontextmanager
+from typing import Optional, List
+
+import numpy as np
+import threading
+import time
+
+try:
+	import sounddevice as sd
+except Exception as exc:  # pragma: no cover
+	sd = None
+	print("sounddevice import failed. Install system PortAudio (sudo apt install libportaudio2) and reinstall sounddevice.", file=sys.stderr)
+	print(str(exc), file=sys.stderr)
+
+import websockets
+
+
+OPENAI_REALTIME_URL = os.environ.get(
+	"OPENAI_REALTIME_URL",
+	"wss://api.openai.com/v1/realtime?model=gpt-realtime",
+)
+DEBUG = os.environ.get("DEBUG", "0") == "1"
+SERVER_SAMPLE_RATE_HZ = int(os.environ.get("SERVER_SAMPLE_RATE_HZ", "24000"))
+METER_EVERY = int(os.environ.get("METER_EVERY", "500"))  # debug prints every N callbacks
+
+
+class AudioDevices:
+	"""Helpers to locate input/output devices by name substrings."""
+
+	def __init__(self) -> None:
+		if sd is None:
+			raise RuntimeError("sounddevice not available")
+		self.devices = sd.query_devices()
+
+	def _find_by_name_substring(self, substrings: List[str], require_input: bool = False, require_output: bool = False) -> Optional[int]:
+		for idx, dev in enumerate(self.devices):
+			if require_input and dev.get("max_input_channels", 0) <= 0:
+				continue
+			if require_output and dev.get("max_output_channels", 0) <= 0:
+				continue
+			name = (dev.get("name") or "").lower()
+			for s in substrings:
+				if s and s.lower() in name:
+					return idx
+		return None
+
+	def find_input_device_index(self, preferred_names: List[str]) -> Optional[int]:
+		# Env override first (e.g., ec_source or pulse)
+		override = os.environ.get("PREFERRED_INPUT", "").strip()
+		idx = None
+		if override:
+			idx = self._find_by_name_substring([override], require_input=True)
+			if idx is not None:
+				return idx
+		# Pulse echo-cancel source if present
+		idx = self._find_by_name_substring(["ec_source", "echo-cancel", "pulse"], require_input=True)
+		if idx is not None:
+			return idx
+		for idx, dev in enumerate(self.devices):
+			if dev.get("max_input_channels", 0) <= 0:
+				continue
+			name = (dev.get("name") or "").lower()
+			for p in preferred_names:
+				if p in name:
+					return idx
+		return sd.default.device[0]
+
+	def find_output_device_index(self, preferred_names: List[str]) -> Optional[int]:
+		# Env override first (e.g., ec_sink or pulse)
+		override = os.environ.get("PREFERRED_OUTPUT", "").strip()
+		idx = None
+		if override:
+			idx = self._find_by_name_substring([override], require_output=True)
+			if idx is not None:
+				return idx
+		# Pulse echo-cancel sink if present
+		idx = self._find_by_name_substring(["ec_sink", "echo-cancel", "pulse"], require_output=True)
+		if idx is not None:
+			return idx
+		for idx, dev in enumerate(self.devices):
+			if dev.get("max_output_channels", 0) <= 0:
+				continue
+			name = (dev.get("name") or "").lower()
+			for p in preferred_names:
+				if p in name:
+					return idx
+		return sd.default.device[1]
+
+
+@asynccontextmanager
+async def connect_realtime(api_key: str):
+	headers = {
+		"Authorization": f"Bearer {api_key}",
+		"OpenAI-Beta": "realtime=v1",
+	}
+	if DEBUG:
+		print(f"[DEBUG] Connecting to {OPENAI_REALTIME_URL}")
+	async with websockets.connect(OPENAI_REALTIME_URL, extra_headers=headers, max_size=None) as ws:
+		if DEBUG:
+			print("[DEBUG] WebSocket connected")
+		yield ws
+
+
+def pcm_int16_bytes_from_float(audio_block: np.ndarray) -> bytes:
+	audio_block = np.clip(audio_block, -1.0, 1.0)
+	int16 = (audio_block * 32767.0).astype(np.int16)
+	return int16.tobytes()
+
+
+def float_from_pcm_int16_bytes(pcm_bytes: bytes) -> np.ndarray:
+	int16 = np.frombuffer(pcm_bytes, dtype=np.int16)
+	return (int16.astype(np.float32) / 32767.0).reshape(-1, 1)
+
+
+def resample_mono_float(audio: np.ndarray, src_rate: int, dst_rate: int) -> np.ndarray:
+	if src_rate == dst_rate or len(audio) == 0:
+		return audio
+	ratio = float(dst_rate) / float(src_rate)
+	src_indices = np.arange(audio.shape[0], dtype=np.float32)
+	dst_length = int(round(audio.shape[0] * ratio))
+	dst_indices = np.linspace(0, max(len(audio) - 1, 1), dst_length, dtype=np.float32)
+	resampled = np.interp(dst_indices, src_indices, audio[:, 0]).astype(np.float32)
+	return resampled.reshape(-1, 1)
+
+
+def resample_int16_bytes(pcm_bytes: bytes, src_rate: int, dst_rate: int) -> bytes:
+	floats = float_from_pcm_int16_bytes(pcm_bytes)
+	resampled = resample_mono_float(floats, src_rate, dst_rate)
+	return pcm_int16_bytes_from_float(resampled)
+
+
+class RealtimeVoiceClient:
+	def __init__(
+		self,
+		api_key: str,
+		input_device_index: Optional[int],
+		output_device_index: Optional[int],
+		sample_rate_hz: int = 24000,
+		block_size: int = 1024,
+		voice: str = "marin",
+	) -> None:
+		self.api_key = api_key
+		self.input_device_index = input_device_index
+		self.output_device_index = output_device_index
+		self.sample_rate_hz = sample_rate_hz
+		self.block_size = block_size
+		self.voice = voice
+
+		self._ws = None
+		self._in_queue: Optional[asyncio.Queue] = None
+		self._stop: Optional[asyncio.Event] = None
+		self._loop: Optional[asyncio.AbstractEventLoop] = None
+		self._output_channels: int = 1
+		self._play_buffer = bytearray()
+		self._play_lock = threading.Lock()
+		self._assistant_active: bool = False
+		self._playback_tail_until_ms: float = 0.0
+		self._rms_gate: float = float(os.environ.get("INPUT_RMS_GATE", "0.010"))
+		self._hangover_ms: float = float(os.environ.get("HANGOVER_MS", "400"))
+		self._vad_speaking: bool = False
+		self._vad_silence_ms: float = float(os.environ.get("VAD_SILENCE_MS", "400"))
+		self._silence_accum_ms: float = 0.0
+		self._awaiting_response: bool = False
+		# Hysteresis and minimum speech duration
+		self._rms_start_gate: float = float(os.environ.get("VAD_START_GATE", str(self._rms_gate * 1.3)))
+		self._rms_stop_gate: float = float(os.environ.get("VAD_STOP_GATE", str(self._rms_gate)))
+		self._min_speech_ms: float = float(os.environ.get("VAD_MIN_SPEECH_MS", "300"))
+		self._speech_accum_ms: float = 0.0
+		# Barge-in (interruptible) control
+		self._barge_in: bool = os.environ.get("BARGE_IN", "0") == "1"
+		self._last_cancel_ms: float = 0.0
+		self._cancel_cooldown_ms: float = float(os.environ.get("BARGE_CANCEL_COOLDOWN_MS", "250"))
+
+	async def run(self) -> None:
+		if sd is None:
+			raise RuntimeError("sounddevice not available")
+
+		# Capture loop and create per-loop primitives
+		self._loop = asyncio.get_running_loop()
+		self._in_queue = asyncio.Queue(maxsize=4096)
+		self._stop = asyncio.Event()
+		try:
+			self._loop.add_signal_handler(signal.SIGINT, self._stop.set)
+			self._loop.add_signal_handler(signal.SIGTERM, self._stop.set)
+		except NotImplementedError:
+			pass
+		print("Press 'q' then Enter to quit.")
+
+		# Negotiate a working sample rate for both output and input
+		negotiated_rate = self._negotiate_sample_rate()
+		if negotiated_rate and negotiated_rate != self.sample_rate_hz:
+			self.sample_rate_hz = negotiated_rate
+
+		# Determine output channels; prefer 2 if available
+		try:
+			devs = sd.query_devices()
+			dev = devs[self.output_device_index] if self.output_device_index is not None else None
+			max_out = int(dev.get("max_output_channels", 1)) if dev else 1
+			self._output_channels = 2 if max_out >= 2 else 1
+		except Exception:
+			self._output_channels = 1
+
+		if DEBUG:
+			print(f"[DEBUG] Using device sample rate: {self.sample_rate_hz} Hz (server {SERVER_SAMPLE_RATE_HZ} Hz)")
+			print(f"[DEBUG] Output channels: {self._output_channels}")
+
+		# Log devices
+		if DEBUG:
+			devices = sd.query_devices()
+			inp = devices[self.input_device_index] if self.input_device_index is not None else None
+			outp = devices[self.output_device_index] if self.output_device_index is not None else None
+			print(f"[DEBUG] Input device idx={self.input_device_index} name={inp['name'] if inp else None}")
+			print(f"[DEBUG] Output device idx={self.output_device_index} name={outp['name'] if outp else None}")
+
+		# Open raw output stream with callback-driven ring buffer playback
+		bytes_per_sample = 2  # int16
+		bytes_per_frame = bytes_per_sample * self._output_channels
+
+		def on_audio_out(outdata, frames, time_info, status):  # type: ignore[unused-argument]
+			needed = frames * bytes_per_frame
+			with self._play_lock:
+				if len(self._play_buffer) >= needed:
+					chunk = self._play_buffer[:needed]
+					del self._play_buffer[:needed]
+				else:
+					chunk = bytes(len(self._play_buffer)) + bytes(needed - len(self._play_buffer))
+					self._play_buffer.clear()
+			# Fill output bytes
+			outdata[:] = chunk
+
+		output_stream = sd.RawOutputStream(
+			samplerate=self.sample_rate_hz,
+			channels=self._output_channels,
+			dtype="int16",
+			blocksize=self.block_size,
+			device=self.output_device_index,
+			callback=on_audio_out,
+		)
+		output_stream.start()
+
+		# Input stream callback enqueues PCM bytes
+		def _try_put(data_bytes: bytes) -> None:
+			try:
+				assert self._in_queue is not None
+				self._in_queue.put_nowait(data_bytes)
+			except asyncio.QueueFull:
+				pass
+
+		def _schedule_json(obj: dict) -> None:
+			if self._loop is not None:
+				self._loop.call_soon_threadsafe(asyncio.create_task, self._send_json(obj))
+
+		_meter_samples = 0
+		def on_audio_in(data: np.ndarray, frames: int, time_info, status) -> None:  # type: ignore[override]
+			if status and DEBUG:
+				print(f"[DEBUG] Input status: {status}")
+			try:
+				# Gate mic while assistant is speaking or shortly after playback unless barge-in enabled
+				now_ms = time.monotonic() * 1000.0
+				if not self._barge_in:
+					if self._assistant_active or now_ms < self._playback_tail_until_ms:
+						return
+					# Compute RMS on device-rate audio
+					lvl_dev = float(np.sqrt(np.mean(np.square(data)))) if data.size else 0.0
+					frame_ms = 1000.0 * frames / float(self.sample_rate_hz)
+					# Hysteresis: start/continue speaking on higher threshold; stop on lower
+					if lvl_dev >= self._rms_start_gate:
+						if not self._vad_speaking:
+							self._speech_accum_ms = 0.0
+						self._vad_speaking = True
+						self._silence_accum_ms = 0.0
+						self._speech_accum_ms += frame_ms
+					elif lvl_dev <= self._rms_stop_gate:
+						self._silence_accum_ms += frame_ms
+						if self._vad_speaking and self._silence_accum_ms >= self._vad_silence_ms and not self._assistant_active and not self._awaiting_response:
+							# Only end turn if we had enough speech
+							if self._speech_accum_ms >= self._min_speech_ms:
+								self._vad_speaking = False
+								_schedule_json({"type": "input_audio_buffer.commit"})
+								_schedule_json({"type": "response.create"})
+								self._awaiting_response = True
+								self._speech_accum_ms = 0.0
+								return
+						else:
+							# not enough speech; keep waiting or drop
+							pass
+					else:
+						# Between thresholds: hold state; if speaking, accumulate speech
+						if self._vad_speaking:
+							self._speech_accum_ms += frame_ms
+						self._silence_accum_ms = 0.0
+					# Forward audio only if considered speaking
+					if not self._vad_speaking:
+						return
+				else:
+					# Barge-in path: if user starts speaking while assistant active, cancel and clear playback
+					lvl_dev = float(np.sqrt(np.mean(np.square(data)))) if data.size else 0.0
+					if self._assistant_active and lvl_dev >= self._rms_start_gate and (now_ms - self._last_cancel_ms) >= self._cancel_cooldown_ms:
+						# Send cancel to interrupt current response
+						if self._loop is not None:
+							self._loop.call_soon_threadsafe(asyncio.create_task, self._send_json({"type": "response.cancel"}))
+						with self._play_lock:
+							self._play_buffer.clear()
+						self._assistant_active = False
+						self._awaiting_response = False
+						self._last_cancel_ms = now_ms
+					# In barge mode, treat as speaking immediately when above start gate
+					if lvl_dev >= self._rms_start_gate:
+						self._vad_speaking = True
+					else:
+						self._vad_speaking = False
+					if not self._vad_speaking:
+						return
+				if self.sample_rate_hz != SERVER_SAMPLE_RATE_HZ:
+					data_rs = resample_mono_float(data, self.sample_rate_hz, SERVER_SAMPLE_RATE_HZ)
+				else:
+					data_rs = data
+				pcm_bytes = pcm_int16_bytes_from_float(data_rs)
+				if self._loop is not None:
+					self._loop.call_soon_threadsafe(_try_put, pcm_bytes)
+				if DEBUG:
+					nonlocal _meter_samples
+					_meter_samples += 1
+					if _meter_samples % max(1, METER_EVERY) == 0:
+						print(f"[DEBUG] Mic level ~ {lvl_dev:.3f}")
+			except Exception as exc:
+				if DEBUG:
+					print(f"[DEBUG] Input callback error: {exc}")
+
+		input_stream = sd.InputStream(
+			samplerate=self.sample_rate_hz,
+			channels=1,
+			dtype="float32",
+			blocksize=self.block_size,
+			callback=on_audio_in,
+			device=self.input_device_index,
+		)
+		input_stream.start()
+
+		sender_task = None
+		receiver_task = None
+		stop_task = None
+		stdin_task = None
+		try:
+			async with connect_realtime(self.api_key) as ws:
+				self._ws = ws
+				# Configure session: audio formats, voice, server VAD
+				await self._send_json({
+					"type": "session.update",
+					"session": {
+						"input_audio_format": "pcm16",
+						"output_audio_format": "pcm16",
+						"voice": self.voice,
+						"turn_detection": {"type": "server_vad"},
+					}
+				})
+				if DEBUG:
+					print("[DEBUG] Sent session.update; starting continuous streaming")
+
+				# Optional: prime an initial response (intro)
+				if os.environ.get("SKIP_INTRO", "0") != "1":
+					await self._send_json({"type": "response.create"})
+					if DEBUG:
+						print("[DEBUG] Sent response.create")
+
+				# Start tasks and wait for stop
+				sender_task = asyncio.create_task(self._audio_sender())
+				receiver_task = asyncio.create_task(self._receiver_loop(output_stream))
+				stop_task = asyncio.create_task(self._stop.wait())
+				stdin_task = asyncio.create_task(self._stdin_quit())
+				await asyncio.wait([sender_task, receiver_task, stop_task, stdin_task], return_when=asyncio.FIRST_COMPLETED)
+		finally:
+			# Cancel tasks if alive
+			for t in (sender_task, receiver_task, stop_task, stdin_task):
+				if t and not t.done():
+					t.cancel()
+					try:
+						await t
+					except Exception:
+						pass
+			# Close WS
+			try:
+				if self._ws is not None:
+					await self._ws.close()
+			except Exception:
+				pass
+			# Close audio
+			input_stream.stop()
+			input_stream.close()
+			output_stream.stop()
+			output_stream.close()
+
+	async def _stdin_quit(self) -> None:
+		"""Allow quitting by typing 'q' then Enter in the terminal."""
+		loop = asyncio.get_running_loop()
+		line = await loop.run_in_executor(None, sys.stdin.readline)
+		if line is None:
+			return
+		if line.strip().lower() == 'q' and self._stop is not None:
+			self._stop.set()
+
+	async def _send_json(self, obj: dict) -> None:
+		if DEBUG:
+			etype = obj.get("type")
+			if etype != "input_audio_buffer.append":
+				print(f"[DEBUG] -> {etype}")
+		msg = json.dumps(obj)
+		assert self._ws is not None
+		# Avoid sending on closed socket
+		if hasattr(self._ws, "closed") and self._ws.closed:
+			return
+		await self._ws.send(msg)
+
+	async def _audio_sender(self) -> None:
+		"""Continuously send input audio with server-side VAD enabled."""
+		assert self._in_queue is not None
+		count = 0
+		while self._stop is not None and not self._stop.is_set():
+			chunk = await self._in_queue.get()
+			b64 = base64.b64encode(chunk).decode("ascii")
+			try:
+				await self._send_json({
+					"type": "input_audio_buffer.append",
+					"audio": b64,
+				})
+			except Exception:
+				# Likely websocket closed; stop loop
+				break
+			count += 1
+			if DEBUG and count % 200 == 0:
+				print(f"[DEBUG] Sent {count} audio chunks")
+
+	async def _receiver_loop(self, output_stream: sd.RawOutputStream) -> None:
+		assert self._ws is not None
+		async for message in self._ws:
+			try:
+				obj = json.loads(message)
+			except Exception:
+				continue
+
+			event_type = obj.get("type")
+			if DEBUG:
+				print(f"[DEBUG] <- {event_type}")
+			if event_type == "response.output_text.delta":
+				delta = obj.get("delta", "")
+				if delta:
+					print(delta, end="", flush=True)
+			elif event_type == "response.output_text.done":
+				print()
+			elif event_type == "response.created":
+				self._assistant_active = True
+				self._awaiting_response = False
+			elif event_type in ("response.audio.delta", "response.output_audio.delta"):
+				audio_b64 = obj.get("delta") or obj.get("audio")
+				if not audio_b64:
+					continue
+				pcm_bytes = base64.b64decode(audio_b64)
+				if self.sample_rate_hz != SERVER_SAMPLE_RATE_HZ:
+					pcm_bytes = resample_int16_bytes(pcm_bytes, SERVER_SAMPLE_RATE_HZ, self.sample_rate_hz)
+				# Expand to stereo if needed
+				if self._output_channels == 2:
+					# Duplicate mono int16 samples to L/R
+					mono = np.frombuffer(pcm_bytes, dtype=np.int16)
+					stereo = np.repeat(mono, 2)
+					pcm_bytes = stereo.tobytes()
+				# Push into ring buffer for playback
+				with self._play_lock:
+					self._play_buffer.extend(pcm_bytes)
+			elif event_type == "input_audio_buffer.committed":
+				# Owned by local VAD; do not send response.create here
+				pass
+			elif event_type == "error":
+				print(f"Realtime API error: {obj}")
+			elif event_type == "response.done":
+				self._assistant_active = False
+				# Apply hangover before re-opening mic to avoid capturing tail audio
+				self._playback_tail_until_ms = time.monotonic() * 1000.0 + self._hangover_ms
+
+	def _negotiate_sample_rate(self) -> int:
+		"""Try common sample rates that both in/out devices accept. Returns chosen rate or existing."""
+		common_rates = [48000, 44100, 32000, 24000, 22050, 16000]
+		for rate in common_rates:
+			out_ok = False
+			in_ok = False
+			try:
+				s = sd.OutputStream(samplerate=rate, channels=1, dtype="float32", device=self.output_device_index)
+				s.close()
+				out_ok = True
+			except Exception:
+				out_ok = False
+			try:
+				s = sd.InputStream(samplerate=rate, channels=1, dtype="float32", device=self.input_device_index)
+				s.close()
+				in_ok = True
+			except Exception:
+				in_ok = False
+			if in_ok and out_ok:
+				return rate
+		try:
+			return int(sd.default.samplerate) if sd.default.samplerate else self.sample_rate_hz
+		except Exception:
+			return self.sample_rate_hz
+
+
+def main() -> int:
+	api_key = os.environ.get("OPENAI_API_KEY")
+	if not api_key:
+		print("Please export OPENAI_API_KEY with your OpenAI API key.", file=sys.stderr)
+		return 2
+
+	if sd is None:
+		return 3
+
+	devices = AudioDevices()
+	input_idx = devices.find_input_device_index(["gvaudio", "usb audio"])  # type: ignore[arg-type]
+	output_idx = devices.find_output_device_index(["jbl", "go 4"])  # type: ignore[arg-type]
+
+	client = RealtimeVoiceClient(
+		api_key=api_key,
+		input_device_index=input_idx,
+		output_device_index=output_idx,
+		sample_rate_hz=int(os.environ.get("AUDIO_SAMPLE_RATE", "24000")),
+		block_size=int(os.environ.get("AUDIO_BLOCK_SIZE", "1024")),
+		voice=os.environ.get("VOICE", "marin"),
+	)
+
+	try:
+		asyncio.run(client.run())
+	except (KeyboardInterrupt, asyncio.CancelledError):
+		pass
+	return 0
+
+
+if __name__ == "__main__":
+	raise SystemExit(main())
+
+
