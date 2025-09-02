@@ -176,6 +176,55 @@ class RealtimeVoiceClient:
 		self._barge_in: bool = os.environ.get("BARGE_IN", "0") == "1"
 		self._last_cancel_ms: float = 0.0
 		self._cancel_cooldown_ms: float = float(os.environ.get("BARGE_CANCEL_COOLDOWN_MS", "250"))
+		# Interactive mic mute toggle
+		self._muted: bool = False
+		# Config paths for persona and facts
+		self._persona_path: str = os.environ.get(
+			"PERSONA_PATH",
+			os.path.join(os.path.dirname(__file__), "config", "persona.json"),
+		)
+		self._facts_path: str = os.environ.get(
+			"FACTS_PATH",
+			os.path.join(os.path.dirname(__file__), "config", "facts.json"),
+		)
+
+	def _load_persona(self) -> dict:
+		try:
+			with open(self._persona_path, "r", encoding="utf-8") as f:
+				return json.load(f) or {}
+		except Exception:
+			return {}
+
+	def _load_facts(self) -> list:
+		try:
+			with open(self._facts_path, "r", encoding="utf-8") as f:
+				data = json.load(f)
+				if isinstance(data, list):
+					return [str(x) for x in data]
+				return []
+		except Exception:
+			return []
+
+	def _build_instructions(self) -> str:
+		persona = self._load_persona()
+		facts = self._load_facts()
+		intro = persona.get("intro", "") if isinstance(persona, dict) else ""
+		style = persona.get("style", "") if isinstance(persona, dict) else ""
+		behaviors = persona.get("behaviors", []) if isinstance(persona, dict) else []
+		lines = []
+		if intro:
+			lines.append(f"Introduction: {intro}")
+		if style:
+			lines.append(f"Speaking style: {style}")
+		if behaviors:
+			lines.append("Behavior guidelines:")
+			for b in behaviors:
+				lines.append(f"- {b}")
+		if facts:
+			lines.append("Facts you should know and can rely on when asked:")
+			for fact in facts:
+				lines.append(f"- {fact}")
+		return "\n".join(lines).strip()
 
 	async def run(self) -> None:
 		if sd is None:
@@ -190,7 +239,7 @@ class RealtimeVoiceClient:
 			self._loop.add_signal_handler(signal.SIGTERM, self._stop.set)
 		except NotImplementedError:
 			pass
-		print("Press 'q' then Enter to quit.")
+		print("Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload persona/facts and re-introduce.")
 
 		# Negotiate a working sample rate for both output and input
 		negotiated_rate = self._negotiate_sample_rate()
@@ -261,6 +310,9 @@ class RealtimeVoiceClient:
 			if status and DEBUG:
 				print(f"[DEBUG] Input status: {status}")
 			try:
+				# Mic mute toggle
+				if self._muted:
+					return
 				# Gate mic while assistant is speaking or shortly after playback unless barge-in enabled
 				now_ms = time.monotonic() * 1000.0
 				if not self._barge_in:
@@ -358,6 +410,7 @@ class RealtimeVoiceClient:
 						"output_audio_format": "pcm16",
 						"voice": self.voice,
 						"turn_detection": {"type": "server_vad"},
+						"instructions": self._build_instructions(),
 					}
 				})
 				if DEBUG:
@@ -397,13 +450,49 @@ class RealtimeVoiceClient:
 			output_stream.close()
 
 	async def _stdin_quit(self) -> None:
-		"""Allow quitting by typing 'q' then Enter in the terminal."""
+		"""Interactive stdin: 'q' quit, 'm' toggle mic mute."""
 		loop = asyncio.get_running_loop()
-		line = await loop.run_in_executor(None, sys.stdin.readline)
-		if line is None:
-			return
-		if line.strip().lower() == 'q' and self._stop is not None:
-			self._stop.set()
+		while self._stop is not None and not self._stop.is_set():
+			line = await loop.run_in_executor(None, sys.stdin.readline)
+			if not line:
+				continue
+			cmd = line.strip().lower()
+			if cmd == 'q':
+				self._stop.set()
+				break
+			if cmd in ('m', 'mute', 'unmute'):
+				self._muted = (not self._muted) if cmd == 'm' else (cmd == 'mute')
+				state = 'MUTED' if self._muted else 'UNMUTED'
+				print(f"[INFO] Mic is now {state}")
+			if cmd == 'r':
+				print('[INFO] Reloading persona/facts and resetting conversation (full restart)...')
+				try:
+					# Stop any current speech
+					try:
+						await self._send_json({"type": "response.cancel"})
+					except Exception:
+						pass
+					# Clear playback and flags
+					with self._play_lock:
+						self._play_buffer.clear()
+					self._assistant_active = False
+					self._awaiting_response = False
+					# Exec a fresh process so server conversation/session is brand-new
+					os.execv(sys.executable, [sys.executable, __file__])
+				except Exception as exc:
+					print(f"[WARN] Hard reset failed: {exc}. Please restart the program.")
+			if cmd == 's':
+				# Stop current assistant speech immediately
+				try:
+					await self._send_json({"type": "response.cancel"})
+				except Exception:
+					pass
+				with self._play_lock:
+					self._play_buffer.clear()
+				self._assistant_active = False
+				self._awaiting_response = False
+				self._playback_tail_until_ms = time.monotonic() * 1000.0 + self._hangover_ms
+				print('[INFO] Stopped speaking.')
 
 	async def _send_json(self, obj: dict) -> None:
 		if DEBUG:

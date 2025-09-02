@@ -99,9 +99,43 @@ Setup
 Run
    python realtime_client.py
 
+Config
+- Persona file: realtime_voice/config/persona.json
+  - JSON format example:
+    {
+      "intro": "Hi, I'm Nova, your helpful workspace assistant.",
+      "style": "Friendly, concise, with a touch of humor",
+      "behaviors": [
+        "Always confirm safety before executing commands",
+        "Ask clarifying questions when context is missing"
+      ]
+    }
+- Facts file: realtime_voice/config/facts.json
+  - JSON array of strings, example:
+    [
+      "This robot runs on Jetson hardware.",
+      "Primary mic is GVAUDIO; speaker is JBL Go 4.",
+      "Network is WPA2 with limited bandwidth in lab."
+    ]
+- Optional env overrides:
+  - PERSONA_PATH=/abs/path/to/persona.json
+  - FACTS_PATH=/abs/path/to/facts.json
+
 Usage
 - The program will auto-select input device by names containing "gvaudio" or "usb audio" and output device containing "jbl" or "go 4".
-- Press ENTER to toggle push-to-talk recording. Press ENTER again to stop and send. Ctrl+C to exit.
+- Interactive controls:
+  - m + Enter: toggle microphone mute/unmute
+  - s + Enter: stop/interrupt current assistant speech immediately
+  - r + Enter: reload persona/facts configs, update LLM instructions, and request a fresh intro
+  - q + Enter: quit
+
+Quick test commands
+- Run with defaults (auto device selection, 24 kHz):
+  OPENAI_API_KEY=... ./run.sh
+- With DEBUG and barge-in enabled at 48 kHz for AEC setups:
+  DEBUG=1 BARGE_IN=1 AUDIO_SAMPLE_RATE=48000 AUDIO_BLOCK_SIZE=2048 OPENAI_API_KEY=... ./run.sh
+- Target echo-cancel devices explicitly:
+  PREFERRED_INPUT=ec_source PREFERRED_OUTPUT=ec_sink OPENAI_API_KEY=... ./run.sh
 
 Notes
 - If sounddevice import fails, install PortAudio: sudo apt install libportaudio2 then reinstall sounddevice in the venv.
