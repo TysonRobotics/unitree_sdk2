@@ -128,12 +128,17 @@ Usage
   - s + Enter: stop/interrupt current assistant speech immediately
   - r + Enter: reload persona/facts configs, update LLM instructions, and request a fresh intro
   - q + Enter: quit
+  - + / - + Enter: increase / decrease output volume (0–100%, in steps of 10)
 
 Quick test commands
 - Run with defaults (auto device selection, 24 kHz):
   OPENAI_API_KEY=... ./run.sh
 - With DEBUG and barge-in enabled at 48 kHz for AEC setups:
   DEBUG=1 BARGE_IN=1 AUDIO_SAMPLE_RATE=48000 AUDIO_BLOCK_SIZE=2048 OPENAI_API_KEY=... ./run.sh
+- Recommended VAD tuning (often better results):
+  INPUT_RMS_GATE=0.012 VAD_START_GATE=0.017 VAD_STOP_GATE=0.010 \
+  VAD_MIN_SPEECH_MS=2000 VAD_SILENCE_MS=1000 HANGOVER_MS=1200 \
+  AUDIO_SAMPLE_RATE=48000 AUDIO_BLOCK_SIZE=2048 ./run.sh
 - Target echo-cancel devices explicitly:
   PREFERRED_INPUT=ec_source PREFERRED_OUTPUT=ec_sink OPENAI_API_KEY=... ./run.sh
 

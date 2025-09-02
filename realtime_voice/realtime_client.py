@@ -11,6 +11,9 @@ import numpy as np
 import threading
 import time
 
+import termios
+import tty
+
 try:
 	import sounddevice as sd
 except Exception as exc:  # pragma: no cover
@@ -187,6 +190,16 @@ class RealtimeVoiceClient:
 			"FACTS_PATH",
 			os.path.join(os.path.dirname(__file__), "config", "facts.json"),
 		)
+		# Output volume percent (0-100). Default 100. Supports OUTPUT_VOLUME_PCT; fallback to OUTPUT_VOLUME (0.0-2.0 scale).
+		try:
+			if "OUTPUT_VOLUME_PCT" in os.environ:
+				self._volume_pct: int = int(float(os.environ.get("OUTPUT_VOLUME_PCT", "100")))
+				self._volume_pct = max(0, min(100, self._volume_pct))
+			else:
+				legacy = float(os.environ.get("OUTPUT_VOLUME", "1.0"))
+				self._volume_pct = int(max(0.0, min(2.0, legacy)) * 100)
+		except Exception:
+			self._volume_pct = 100
 
 	def _load_persona(self) -> dict:
 		try:
@@ -239,7 +252,7 @@ class RealtimeVoiceClient:
 			self._loop.add_signal_handler(signal.SIGTERM, self._stop.set)
 		except NotImplementedError:
 			pass
-		print("Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload persona/facts and re-introduce.")
+		print("Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).")
 
 		# Negotiate a working sample rate for both output and input
 		negotiated_rate = self._negotiate_sample_rate()
@@ -280,6 +293,12 @@ class RealtimeVoiceClient:
 				else:
 					chunk = bytes(len(self._play_buffer)) + bytes(needed - len(self._play_buffer))
 					self._play_buffer.clear()
+			# Apply output volume scaling using percent
+			if self._volume_pct != 100 and len(chunk) > 0:
+				scale = float(self._volume_pct) / 100.0
+				arr = np.frombuffer(chunk, dtype=np.int16).astype(np.int32)
+				arr = np.clip((arr * scale), -32768, 32767).astype(np.int16)
+				chunk = arr.tobytes()
 			# Fill output bytes
 			outdata[:] = chunk
 
@@ -450,7 +469,7 @@ class RealtimeVoiceClient:
 			output_stream.close()
 
 	async def _stdin_quit(self) -> None:
-		"""Interactive stdin: 'q' quit, 'm' toggle mic mute."""
+		"""Interactive stdin: 'm' mute, 's' stop, 'r' reload, 'q' quit, '+'/'-' volume (0-100, step 10)."""
 		loop = asyncio.get_running_loop()
 		while self._stop is not None and not self._stop.is_set():
 			line = await loop.run_in_executor(None, sys.stdin.readline)
@@ -493,6 +512,12 @@ class RealtimeVoiceClient:
 				self._awaiting_response = False
 				self._playback_tail_until_ms = time.monotonic() * 1000.0 + self._hangover_ms
 				print('[INFO] Stopped speaking.')
+			if cmd in ('+', 'up', 'louder'):
+				self._volume_pct = max(0, min(100, self._volume_pct + 10))
+				print(f"[INFO] Volume: {self._volume_pct}%")
+			if cmd in ('-', 'down', 'softer'):
+				self._volume_pct = max(0, min(100, self._volume_pct - 10))
+				print(f"[INFO] Volume: {self._volume_pct}%")
 
 	async def _send_json(self, obj: dict) -> None:
 		if DEBUG:
