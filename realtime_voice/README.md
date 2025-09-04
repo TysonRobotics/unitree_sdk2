@@ -14,6 +14,28 @@ Quick start
 4) Run (basic non-AEC, non-barge)
    AUDIO_SAMPLE_RATE=48000 AUDIO_BLOCK_SIZE=2048 ./run.sh
 
+Web control UI (Flask on port 9000)
+1) Start the voice client (creates FIFO at realtime_voice/control.fifo):
+   ./run.sh
+2) In another terminal, start the web app:
+   export VOICE_WEB_PORT=9000
+   python3 realtime_voice/web/app.py
+3) From your browser (same network):
+   http://<robot-ip>:9000/
+
+Controls:
+- Mute/Unmute/Toggle mic
+- Stop speaking
+- Reload (hard reset; reload persona/facts and start a fresh session)
+- Set volume 0–100 or +/-10%
+- Enable/Disable barge-in
+
+Notes:
+- The Unitree vendor upgrade server uses port 80; this app uses 9000.
+- Configure via env:
+   export VOICE_CONTROL_FIFO=/home/unitree/unitree_sdk2/realtime_voice/control.fifo
+   export VOICE_WEB_PORT=9000
+
 Echo cancellation (PulseAudio WebRTC AEC)
 1) Find devices
    pactl list short sources

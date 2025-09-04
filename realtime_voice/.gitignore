@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+.realtime_voice_cache/
+.control.fifo
+web/__pycache__/
+web/*.log

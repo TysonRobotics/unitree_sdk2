@@ -6,6 +6,7 @@ import signal
 import sys
 from contextlib import asynccontextmanager
 from typing import Optional, List
+import errno
 
 import numpy as np
 import threading
@@ -170,6 +171,14 @@ class RealtimeVoiceClient:
 		self._vad_silence_ms: float = float(os.environ.get("VAD_SILENCE_MS", "400"))
 		self._silence_accum_ms: float = 0.0
 		self._awaiting_response: bool = False
+		# FIFO-based control channel (for external web UI)
+		self._control_fifo_path: str = os.environ.get(
+			"VOICE_CONTROL_FIFO",
+			os.path.join(os.path.dirname(__file__), "control.fifo"),
+		)
+		self._fifo_fd: Optional[int] = None
+		self._fifo_wfd: Optional[int] = None  # keep a writer open to avoid EOF when no external writers
+		self._fifo_buf: bytes = b""
 		# Hysteresis and minimum speech duration
 		self._rms_start_gate: float = float(os.environ.get("VAD_START_GATE", str(self._rms_gate * 1.3)))
 		self._rms_stop_gate: float = float(os.environ.get("VAD_STOP_GATE", str(self._rms_gate)))
@@ -258,6 +267,9 @@ class RealtimeVoiceClient:
 		negotiated_rate = self._negotiate_sample_rate()
 		if negotiated_rate and negotiated_rate != self.sample_rate_hz:
 			self.sample_rate_hz = negotiated_rate
+
+		# Install FIFO control reader (for web UI commands)
+		self._install_fifo_reader()
 
 		# Determine output channels; prefer 2 if available
 		try:
@@ -448,6 +460,22 @@ class RealtimeVoiceClient:
 				stdin_task = asyncio.create_task(self._stdin_quit())
 				await asyncio.wait([sender_task, receiver_task, stop_task, stdin_task], return_when=asyncio.FIRST_COMPLETED)
 		finally:
+			# Remove FIFO reader and close descriptors
+			try:
+				if self._loop is not None and self._fifo_fd is not None:
+					self._loop.remove_reader(self._fifo_fd)
+			except Exception:
+				pass
+			try:
+				if self._fifo_fd is not None:
+					os.close(self._fifo_fd)
+			except Exception:
+				pass
+			try:
+				if self._fifo_wfd is not None:
+					os.close(self._fifo_wfd)
+			except Exception:
+				pass
 			# Cancel tasks if alive
 			for t in (sender_task, receiver_task, stop_task, stdin_task):
 				if t and not t.done():
@@ -467,6 +495,110 @@ class RealtimeVoiceClient:
 			input_stream.close()
 			output_stream.stop()
 			output_stream.close()
+
+	def _install_fifo_reader(self) -> None:
+		"""Create and register a non-blocking FIFO reader for external commands."""
+		try:
+			if not os.path.exists(self._control_fifo_path):
+				os.mkfifo(self._control_fifo_path)
+			# Open read end non-blocking
+			self._fifo_fd = os.open(self._control_fifo_path, os.O_RDONLY | os.O_NONBLOCK)
+			# Open a dummy write end to keep FIFO from hitting EOF when no writers
+			try:
+				self._fifo_wfd = os.open(self._control_fifo_path, os.O_WRONLY | os.O_NONBLOCK)
+			except Exception:
+				self._fifo_wfd = None
+			if self._loop is None:
+				self._loop = asyncio.get_running_loop()
+			self._loop.add_reader(self._fifo_fd, self._on_fifo_ready)
+		except Exception as exc:
+			if DEBUG:
+				print(f"[DEBUG] FIFO setup failed: {exc}")
+
+	def _on_fifo_ready(self) -> None:
+		"""Handle readable FIFO: read complete newline-delimited JSON commands."""
+		while True:
+			try:
+				chunk = os.read(self._fifo_fd, 4096) if self._fifo_fd is not None else b""
+			except BlockingIOError:
+				# No more data to read right now
+				return
+			except OSError as exc:
+				if exc.errno in (errno.EAGAIN, errno.EWOULDBLOCK):
+					return
+				if DEBUG:
+					print(f"[DEBUG] FIFO read error: {exc}")
+				return
+			if not chunk:
+				# EOF or no data; stop for now
+				return
+			self._fifo_buf += chunk
+			while b"\n" in self._fifo_buf:
+				line, self._fifo_buf = self._fifo_buf.split(b"\n", 1)
+				line_str = line.decode("utf-8", errors="ignore").strip()
+				if not line_str:
+					continue
+				try:
+					obj = json.loads(line_str)
+					self._handle_control_command(obj)
+				except Exception as exc:
+					if DEBUG:
+						print(f"[DEBUG] Bad control command: {line_str} ({exc})")
+
+	def _handle_control_command(self, obj: dict) -> None:
+		"""Apply control commands coming from web UI via FIFO."""
+		cmd = str(obj.get("cmd", "")).lower()
+		if not cmd:
+			return
+		if cmd == "mute":
+			val = obj.get("value")
+			if isinstance(val, bool):
+				self._muted = val
+				print(f"[INFO] Mic is now {'MUTED' if self._muted else 'UNMUTED'}")
+		elif cmd == "toggle_mute":
+			self._muted = not self._muted
+			print(f"[INFO] Mic is now {'MUTED' if self._muted else 'UNMUTED'}")
+		elif cmd == "stop":
+			# Cancel assistant speech and clear buffer
+			asyncio.create_task(self._send_json({"type": "response.cancel"}))
+			with self._play_lock:
+				self._play_buffer.clear()
+			self._assistant_active = False
+			self._awaiting_response = False
+			self._playback_tail_until_ms = time.monotonic() * 1000.0 + self._hangover_ms
+			print("[INFO] Stopped speaking.")
+		elif cmd == "reload":
+			print('[INFO] Reloading persona/facts and resetting conversation (full restart via web)...')
+			try:
+				asyncio.create_task(self._send_json({"type": "response.cancel"}))
+			except Exception:
+				pass
+			with self._play_lock:
+				self._play_buffer.clear()
+			self._assistant_active = False
+			self._awaiting_response = False
+			try:
+				os.execv(sys.executable, [sys.executable, __file__])
+			except Exception as exc:
+				print(f"[WARN] Hard reset failed: {exc}. Please restart the program.")
+		elif cmd == "volume":
+			try:
+				val = int(obj.get("value"))
+				self._volume_pct = max(0, min(100, val))
+				print(f"[INFO] Volume: {self._volume_pct}%")
+			except Exception:
+				pass
+		elif cmd == "volume_up":
+			self._volume_pct = max(0, min(100, self._volume_pct + 10))
+			print(f"[INFO] Volume: {self._volume_pct}%")
+		elif cmd == "volume_down":
+			self._volume_pct = max(0, min(100, self._volume_pct - 10))
+			print(f"[INFO] Volume: {self._volume_pct}%")
+		elif cmd == "barge_in":
+			val = obj.get("value")
+			if isinstance(val, bool):
+				self._barge_in = val
+				print(f"[INFO] Barge-in is now {'ENABLED' if self._barge_in else 'DISABLED'}")
 
 	async def _stdin_quit(self) -> None:
 		"""Interactive stdin: 'm' mute, 's' stop, 'r' reload, 'q' quit, '+'/'-' volume (0-100, step 10)."""
