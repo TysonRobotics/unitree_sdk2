@@ -5,16 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Robot Voice Control</title>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 20px; line-height: 1.4; }
-    h1 { margin-top: 0; }
+    html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 16px; line-height: 1.4; }
+    h1 { margin-top: 0; font-size: clamp(18px, 3vw, 28px); }
     .row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-    button { padding: 10px 14px; font-size: 16px; cursor: pointer; }
+    button { padding: 10px 14px; font-size: clamp(14px, 2vw, 18px); cursor: pointer; }
     .toggle { background: #eee; }
     .danger { background: #f8d7da; }
     .ok { background: #d1e7dd; }
-    .card { border: 1px solid #ddd; padding: 12px; border-radius: 8px; max-width: 680px; }
-    input[type="range"] { width: 240px; }
+    .card { border: 1px solid #ddd; padding: 12px; border-radius: 8px; max-width: 100%; width: 100%; box-sizing: border-box; }
+    input[type="range"] { width: 240px; max-width: 100%; }
+    input, select { max-width: 100%; }
     label { display: inline-block; width: 120px; }
+    .sb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; width: 100%; }
+    .sb-cell button { width: 100%; min-height: clamp(48px, 8vw, 72px); }
+
+    /* Responsive improvements */
+    @media (max-width: 900px) {
+      .card { max-width: 100%; }
+      input[type="range"] { width: 100%; }
+    }
+    @media (max-width: 600px) {
+      .row { flex-direction: column; align-items: stretch; gap: 6px; }
+      label { width: auto; }
+      button { width: 100%; }
+      .sb-cell button { min-height: 48px; }
+    }
   </style>
   <script>
     async function post(url, body) {
@@ -73,6 +89,7 @@
       await refreshRecordings();
     }
     window.addEventListener('load', refreshRecordings);
+    window.addEventListener('load', sbLoad);
 
     async function uploadWav() {
       const fi = document.getElementById('uploadFile');
@@ -87,10 +104,89 @@
     }
 
     
+    async function sbLoad(desiredProfile) {
+      const res = await fetch('/api/soundboard');
+      const data = await res.json();
+      const sel = document.getElementById('sbProfile');
+      const grid = document.getElementById('sbGrid');
+      const files = data.recordings || [];
+      const cfg = data.config || { profiles: { Default: [] }, slot_count: 16 };
+      // Fill profile select
+      const prev = desiredProfile || (sel ? sel.value : '') || localStorage.getItem('sbProfile') || '';
+      sel.innerHTML = '';
+      const profNames = Object.keys(cfg.profiles || {});
+      for (const p of profNames) {
+        const opt = document.createElement('option');
+        opt.value = p; opt.textContent = p; sel.appendChild(opt);
+      }
+      // Choose selection: desired -> prev -> first
+      if (prev && profNames.includes(prev)) {
+        sel.value = prev;
+      } else if (!sel.value && sel.options && sel.options.length) {
+        sel.value = sel.options[0].value;
+      }
+
+      // If no profiles at all, create Default then reload
+      if ((!profNames || profNames.length === 0)) {
+        await fetch('/api/soundboard/profile', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ profile: 'Default' })
+        });
+        return sbLoad('Default');
+      }
+      // Render grid
+      grid.innerHTML = '';
+      const slots = cfg.profiles[sel.value] || [];
+      const count = cfg.slot_count || 16;
+      for (let i = 0; i < count; i++) {
+        const slotFile = slots[i] || '';
+        const cell = document.createElement('div');
+        cell.className = 'sb-cell';
+        const btn = document.createElement('button');
+        btn.textContent = slotFile || `Slot ${i+1}`;
+        btn.onclick = async () => { await post('/api/soundboard/play', { profile: sel.value, index: i }); };
+        cell.appendChild(btn);
+        // edit controls
+        const row = document.createElement('div');
+        row.className = 'row';
+        const pick = document.createElement('select');
+        const empty = document.createElement('option'); empty.value=''; empty.textContent='(empty)'; pick.appendChild(empty);
+        for (const f of files) { const o=document.createElement('option'); o.value=f; o.textContent=f; pick.appendChild(o);} 
+        pick.value = slotFile;
+        pick.onchange = () => { btn.textContent = pick.value || `Slot ${i+1}`; btn.dataset.file = pick.value; };
+        row.appendChild(pick);
+        cell.appendChild(row);
+        grid.appendChild(cell);
+      }
+      localStorage.setItem('sbProfile', sel.value);
+    }
+
+    async function sbSave() {
+      const sel = document.getElementById('sbProfile');
+      const grid = document.getElementById('sbGrid');
+      const picks = grid.querySelectorAll('select');
+      const slots = Array.from(picks).map(s => s.value || null);
+      await post('/api/soundboard/save', { profile: sel.value, slots });
+    }
+
+    function sbAddProfile() {
+      const sel = document.getElementById('sbProfile');
+      const name = prompt('New profile name');
+      if (!name) return;
+      fetch('/api/soundboard/profile', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ profile: name })
+      }).then(r=>r.json()).then(_ => sbLoad(name));
+    }
   </script>
   </head>
   <body>
     <h1>Robot Voice Control</h1>
+    <div class="row">
+      <button onclick="document.getElementById('tabMain').style.display='block';document.getElementById('tabSB').style.display='none'">Main</button>
+      <button onclick="document.getElementById('tabMain').style.display='none';document.getElementById('tabSB').style.display='block'; sbLoad()">Soundboard</button>
+    </div>
+    <div id="tabMain" class="tab" style="display:block">
     <div class="card">
       <h3>Microphone</h3>
       <div class="row">
@@ -151,6 +247,20 @@
       <div class="row">
         <input id="uploadFile" type="file" accept="audio/wav" />
         <button class="ok" onclick="uploadWav()">Upload</button>
+      </div>
+    </div>
+    </div>
+    </div>
+    <div id="tabSB" class="tab" style="display:none">
+      <div class="card">
+        <h3>Soundboard</h3>
+        <div class="row">
+          <label>Profile</label>
+          <select id="sbProfile" onchange="sbLoad()"></select>
+          <button onclick="sbAddProfile()">Add Profile</button>
+          <button class="ok" onclick="sbSave()">Save</button>
+        </div>
+        <div id="sbGrid" class="sb-grid"></div>
       </div>
     </div>
   </body>

@@ -1,0 +1,59 @@
+{
+  "slot_count": 16,
+  "profiles": {
+    "Default": [
+      "hello-there-meme-voice-jam-fx-1-00-01.wav",
+      "that-is-the-correct-answer-gameshow-voice-movie-guy-1-00-02.wav",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "kids": [
+      "hello-there-meme-voice-jam-fx-1-00-01.wav",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "b2b": [
+      "hello-there-meme-voice-jam-fx-1-00-01.wav",
+      "that-is-the-correct-answer-gameshow-voice-movie-guy-1-00-02.wav",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  }
+}

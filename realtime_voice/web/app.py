@@ -48,6 +48,35 @@ def is_wav_filename(name: str) -> bool:
     return name.lower().endswith('.wav') and len(name) > 4
 
 
+# Soundboard config helpers
+def soundboard_path() -> str:
+    return os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, "soundboard.json"))
+
+
+def load_soundboard() -> dict:
+    try:
+        path = soundboard_path()
+        if os.path.exists(path):
+            with open(path, 'r', encoding='utf-8') as f:
+                cfg = json.load(f)
+                if isinstance(cfg, dict) and 'profiles' in cfg:
+                    return cfg
+        # default config
+        return {"slot_count": 16, "profiles": {"Default": []}}
+    except Exception:
+        return {"slot_count": 16, "profiles": {"Default": []}}
+
+
+def save_soundboard(cfg: dict) -> bool:
+    try:
+        path = soundboard_path()
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump(cfg, f, indent=2, ensure_ascii=False)
+        return True
+    except Exception:
+        return False
+
+
 @app.route("/api/mute", methods=["POST"])
 def api_mute():
     body = request.get_json(silent=True) or {}
@@ -153,6 +182,78 @@ def api_upload():
         return jsonify({"ok": True, "file": filename})
     except Exception as exc:
         return jsonify({"ok": False, "error": str(exc)}), 500
+
+
+@app.route("/api/soundboard", methods=["GET"])
+def api_soundboard_get():
+    cfg = load_soundboard()
+    return jsonify({"ok": True, "config": cfg, "recordings": list_recordings()})
+
+
+@app.route("/api/soundboard/profile", methods=["POST"])
+def api_soundboard_profile_create():
+    body = request.get_json(silent=True) or {}
+    profile = str(body.get("profile") or "").strip()
+    try:
+        slot_count = int(body.get("slot_count") or 16)
+    except Exception:
+        slot_count = 16
+    if not profile:
+        return jsonify({"ok": False, "error": "missing profile"}), 400
+    cfg = load_soundboard()
+    if "profiles" not in cfg or not isinstance(cfg.get("profiles"), dict):
+        cfg["profiles"] = {}
+    cfg.setdefault("slot_count", slot_count)
+    # Initialize with empty slots
+    cfg["profiles"][profile] = [None] * cfg["slot_count"]
+    if not save_soundboard(cfg):
+        return jsonify({"ok": False, "error": "failed to save"}), 500
+    return jsonify({"ok": True, "config": cfg})
+
+
+@app.route("/api/soundboard/save", methods=["POST"])
+def api_soundboard_save():
+    body = request.get_json(silent=True) or {}
+    profile = str(body.get("profile") or "").strip() or "Default"
+    slots = body.get("slots") or []
+    if not isinstance(slots, list):
+        return jsonify({"ok": False, "error": "slots must be a list"}), 400
+    # sanitize filenames to basenames
+    clean_slots = []
+    for x in slots:
+        if not x:
+            clean_slots.append(None)
+        else:
+            name = os.path.basename(str(x))
+            clean_slots.append(name)
+    cfg = load_soundboard()
+    cfg.setdefault("slot_count", 16)
+    cfg.setdefault("profiles", {})
+    cfg["profiles"][profile] = clean_slots
+    if not save_soundboard(cfg):
+        return jsonify({"ok": False, "error": "failed to save"}), 500
+    return jsonify({"ok": True})
+
+
+@app.route("/api/soundboard/play", methods=["POST"])
+def api_soundboard_play():
+    body = request.get_json(silent=True) or {}
+    profile = str(body.get("profile") or "").strip() or "Default"
+    try:
+        index = int(body.get("index", 0))
+    except Exception:
+        index = 0
+    cfg = load_soundboard()
+    profiles = cfg.get("profiles", {})
+    slots = profiles.get(profile, [])
+    if index < 0 or index >= len(slots):
+        return jsonify({"ok": False, "error": "index out of range"}), 400
+    file_name = slots[index]
+    if not file_name:
+        return jsonify({"ok": False, "error": "empty slot"}), 400
+    # Play via FIFO command
+    ok = send_cmd({"cmd": "play", "file": file_name})
+    return jsonify({"ok": ok})
 
 
 

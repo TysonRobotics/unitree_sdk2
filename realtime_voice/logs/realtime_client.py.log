@@ -1,0 +1,902 @@
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnbAx1ensEPATPKSbVTU', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnbA1d61bqDp6n947aVR', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCnb9wBGWsAgAX2hHtx1Q. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnbKMBNk5fg7Vv1uR337', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnbKs3xMzApehFnOqNdX', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCnbJB1T9Zd5hzhu0mmxZ. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnbwUW2CXszCeqFx3ROQ', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnbwosLowO5QOAercqzY', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCnbvXtTvouCGfW5q3h9c. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnccZjAMKZO2ED86p0JA', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCncwmT6gsFNlqqXwGYjb', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCncwKIQGyR8WOE9eH5Ex', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCncuMU1I0eWMFaUW8ng6. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCncyUR0S1g4PEA51YheB', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCncyDOd5CLfhpgpu7z5U', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCncxFBrOeg2OTLSRlo27. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCndBSyOttpCnyIpSjTsq', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCndC5DitUoKoqK3GisyU', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCndCuZXDUqwQyDlamrol', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCndC2DdhJNdQ5Sjfs1TY', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCndCliGscE8DRiMr8nO4', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCndCvi7dlbhXdiAkhTbK', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCndDkdVWWNoi6qd9jM65', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCndDeh5SLuNoTqmaIEzf', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCndDtZi3D4eG3DErW1TU', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCndDyubIDLPwzGp5GHRq', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Mic is now MUTED
+[INFO] Mic is now UNMUTED
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkcD2paD5b2p1bMrL5l', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+[INFO] Mic is now UNMUTED
+[INFO] Mic is now UNMUTED
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkkSH2v4LdHLfNbh75t', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkkiWIFJJpINmUptfkg', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCnkiziYcwuv6AULVGCHZ. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+[INFO] Mic is now MUTED
+[INFO] Mic is now UNMUTED
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvGvfkPNXvWnsGwPdq', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvjC40KAUX88PYwZgU', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvz5s58kUFeGyReaAp', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvWtUnWp7O5XyPkmkt', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvA3Ogq9CGB11ZvAfq', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvKTVZ9DQ7xfT4HaPd', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvTMIdITBReoEPfewI', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvi8loVWmmEa3iCjTf', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvpIPJ1YarXuEjBLbE', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvjjw0fn2Yn9eTYr2k', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvnWOqzWSVH09BV47u', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvYKVAV2wVAeiRo5gC', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnkvJZBmpXxPC9dAoy4q', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Mic is now MUTED
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnl3U5QBJzPVYxS2oG7a', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Mic is now UNMUTED
+[INFO] Mic is now MUTED
+[INFO] Mic is now UNMUTED
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnlHO5MVSqLBWkHHqGuz', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnlJrPFVyHWvaMF5iRdG', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnlJrL7ZZcyFdXlTLAIH', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnlJbIwlCR2rMo4C82q6', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+[INFO] Mic is now MUTED
+Realtime API error: {'type': 'error', 'event_id': 'event_CCnlK3oolOBsJmvLSa71I', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Mic is now MUTED
+[INFO] Mic is now MUTED
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0cDIiOMAfG8mz6itJZ', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0cufGz5DeVaUZeSYCE', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0cZLsMM9ejPM2uVLsu', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0cOKtsDc3leAPRNI1s', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0cpoyDDFATtLQpxERS', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0dzUeT2LsatSFu8Ago', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0dyOyOmgEImrUMH0Bn', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Mic is now MUTED
+[INFO] Playing: you-re-welcome-male-dan-barracuda-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0iDwcQnf9dGxYNOr1A', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: wow-silly-voice-male-dan-barracuda-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0jqZ8x7VKlGVrOguQT', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: warning-ai-male-joshua-chivers-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0mT1HoC3ZBbpBzyusL', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: umm-huh-confused-man-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0pqCH3gci1j6Za8JpB', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: uh-oh-cute-voice-dan-barracuda-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0sxN8oMnNPIuWqQUJb', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: talking-gibberish-silly-character-gamemaster-audio-2-2-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0vIpwT8M2BlmhVpvbz', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: shut-up-take-my-money-male-tomas-herudek-2-2-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0xDUmHTplbJ6zQ7d5o', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: omg-shocked-female-dan-barracuda-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo0zwRuCHJyTYFhMCLFJ', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: it-s-just-a-prank-bro-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo130JJPYbxIAkqbjOPV', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hey-hey-hey-hey-hey-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo16WCLvWVkDxPmzFUGi', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: have-you-ever-been-robo-slapped-cartoon-voice-epic-stock-media-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo19WjWAya5f60RxF6sk', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: f2e6fc_bender_bite_my_shiny_metal_ass_sound_effect.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo1D31jA68QmjMoCPkpx', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: connection-terminated-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo1GBXU6qb9wsRA6hHnV', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: bitemyshinymetalassfinal.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo1K7pbVhMkSES0UF5Qz', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: access-denied-robot-male-epic-stock-media-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo1NdDE9pjkdtIDXw965', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: Dial Up Internet - Sound Effect (HD).wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo1QXXToe0R6hBG1uWtO', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: Dial Up Internet - Sound Effect (HD).wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo1mrnOpYFErDLxAOK32', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: Computer Thinking SOUND Effect.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCo1y6nSkmY03igeK1oEy', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: 10-9-8-ai-male-joshua-chivers-1-00-10.wav
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7e11d7c0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff8a7cc6d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Task exception was never retrieved
+future: <Task finished name='Task-2' coro=<RealtimeVoiceClient._send_json() done, defined at realtime_client.py:743> exception=AssertionError()>
+Traceback (most recent call last):
+  File "realtime_client.py", line 749, in _send_json
+    assert self._ws is not None
+AssertionError
+Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<RealtimeVoiceClient._send_json() done, defined at realtime_client.py:743> exception=AssertionError()>
+Traceback (most recent call last):
+  File "realtime_client.py", line 749, in _send_json
+    assert self._ws is not None
+AssertionError
+Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<RealtimeVoiceClient._send_json() done, defined at realtime_client.py:743> exception=AssertionError()>
+Traceback (most recent call last):
+  File "realtime_client.py", line 749, in _send_json
+    assert self._ws is not None
+AssertionError
+Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<RealtimeVoiceClient._send_json() done, defined at realtime_client.py:743> exception=AssertionError()>
+Traceback (most recent call last):
+  File "realtime_client.py", line 749, in _send_json
+    assert self._ws is not None
+AssertionError
+Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<RealtimeVoiceClient._send_json() done, defined at realtime_client.py:743> exception=AssertionError()>
+Traceback (most recent call last):
+  File "realtime_client.py", line 749, in _send_json
+    assert self._ws is not None
+AssertionError
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff9ce7e6d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+[INFO] Playing: system-failure-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCp5CJtsWGt8bTMnDEFuD', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCp5CcQaMjwebBlri3gwm', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCp5BRn4YprEsaVGvavPi. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+[INFO] Mic is now MUTED
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCp5HsF1Yi3gD0CfxX9Y9', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCp5IfmNeS2jdSOg7MeAF', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: crazy-silly-voice-male-tomas-herudek-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCp5MIjezoI3lR3ECtwNX', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: connection-terminated-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCp5O4bTCfzGcqnY7czuu', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: bitemyshinymetalassfinal.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCp5S93CxtfCVls0WmBd3', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: Dial Up Internet - Sound Effect (HD).wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCp5U14J5lx0gSNkDsMhG', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: engaging-ai-male-joshua-chivers-1-00-00.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpBuLMfbvsjfRnCBuOsB', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: Computer Thinking SOUND Effect.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpC1sBJdGn38MAcL9p1a', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: Dial Up Internet - Sound Effect (HD).wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpC2W0MU6BYkQSuLdPwG', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: Dial Up Internet - Sound Effect (HD).wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpDSNW1XF06oCUBLZPdF', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: self-destruct-sequence-activated-robot-male-epic-stock-media-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpDkY3KPvyNpHfyCdhCI', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: target-acquired-male-soldier-movie-guy-modern-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpEFYKidi58LbRtd4F69', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: woooooaaaaah-male-dan-barracuda-1-00-06.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpFAMq4mnecYsIzgiiSa', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: target-acquired-male-soldier-movie-guy-modern-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpFjc7LXW9OmEP0f4hf1', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: system-failure-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpGLRIwyFT6Zc4jBrNq7', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: self-destruct-sequence-activated-robot-male-epic-stock-media-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpHkh0DammVcOhTmdgWe', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: initializing-scan-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpK3f4XlGRDbVVKjYcgR', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: initializing-scan-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpK3Jmj4JVeCYmsCP02H', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: initializing-scan-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpK6EZykcjiDi97VpbQG', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: initializing-scan-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpK7kXvol8XGU0kgUgpR', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: incorrect-answer-gameshow-voice-retro-movie-guy-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpKA9z5VUkTI9C50BRnz', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: incorrect-answer-gameshow-voice-retro-movie-guy-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpKAGl5sx4D0aU18p2EI', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hey-hey-hey-hey-hey-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpKD1v6zwm9kcrZUOr28', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hey-hey-hey-hey-hey-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpKEDZj5iMhCNn71VTmt', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: have-you-ever-been-robo-slapped-cartoon-voice-epic-stock-media-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpL4x0TUStMnEMcyiRPy', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: goodbye-ai-male-joshua-chivers-1-00-00.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpLD7GUPT14UPqLiQv2k', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: ha-ha-laugh-cartoon-bully-locran-4-4-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpMDWAzFxtuAeTaTqaxM', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: initializing-scan-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpMSiBYiGjVmyd7JQoqe', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: mischievous-laugh-cute-little-creature-gamemaster-audio-1-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpMhyrSxaTJqAymmpANz', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: target-acquired-male-soldier-movie-guy-modern-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpMtbqP1wJNGGJwoqe3q', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: warning-ai-male-joshua-chivers-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpQKNebLjChTBe5MJprJ', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: wa-hoo-silly-character-gamemaster-audio-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpYMciY5hnvqwU61ya80', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: uh-oh-cute-voice-dan-barracuda-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpYTM3yQ7s0xcHxbHkEo', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: omg-shocked-female-dan-barracuda-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpYayxBIOb2IssJQSu4R', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpYloc90QCusHHlqpfAK', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: bye-bye-male-smartsound-fx-3-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpYwV00SwsTEuISRhufR', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: bye-bye-male-smartsound-fx-3-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpYw2rFWxsptcqKHJcWv', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: evil-laugh-male-voice-tomas-herudek-1-00-06.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpZDcur6KiNMhiFcwU4x', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: wow-silly-voice-male-dan-barracuda-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpZo1r10umJqPqpG7VGm', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: target-acquired-male-soldier-movie-guy-modern-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpa8i44nmOkrQqsIP4GL', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: shut-up-take-my-money-male-tomas-herudek-2-2-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpaunBsmmW2lJ91GG5mL', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: it-s-just-a-prank-bro-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpb7XMxrYEAwXE6Ix2Ag', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hey-hey-hey-hey-hey-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpbDBm4eKn0mouhenoSa', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: initializing-scan-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpc7WEbx5giyMjD0yrzI', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hey-hey-hey-hey-hey-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpcCwZkIOIo9vlk3O5SP', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: bye-bye-male-smartsound-fx-3-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpdXr5ykn8urt9uET96j', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpdg9ra1Z2DBsojwp3cB', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: like-subscribe-female-gfx-sounds-3-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpeD7PVk6EbiOcpesvY3', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hey-hey-hey-hey-hey-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpeeOJouupI8MV39Whds', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: crazy-silly-voice-male-tomas-herudek-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpel267vRvgUUHT9syxZ', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: self-destruct-sequence-activated-robot-male-epic-stock-media-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpf16ofpm7b1sGClgDGQ', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: wa-hoo-silly-character-gamemaster-audio-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpfMDzEUl022RKJ72evC', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: umm-huh-confused-man-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCphS0PFADyCNLN6NgMrn', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: you-re-welcome-male-dan-barracuda-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCphZjxebLDb8WFIx0BaD', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: wow-silly-voice-male-dan-barracuda-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCphdUABtHSEpi1nFNzOm', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: ok-small-child-fascinatedsound-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCphhK0NSjAaice1pR0IK', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCphxn2fF1VSl6XZ60bQq', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpiSAzA9tt70eNjh9KCU', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCppalCussbKPJPHp1RDm', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: goodbye-ai-male-joshua-chivers-1-00-00.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCppvSveFpx4cKX6xY9W7', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: initializing-scan-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpq4rmjFRfjAApvE3zQA', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: target-acquired-male-soldier-movie-guy-modern-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpqFOgmOVF1hrXxGqWPQ', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hey-hey-hey-hey-hey-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpqMxoDv5Zu19j2qYMbk', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: like-subscribe-female-gfx-sounds-3-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpqbimQ2e1EwfLca1GpA', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpqkMyad7JPjNpWtqoy1', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: goodbye-ai-male-joshua-chivers-1-00-00.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpqtDEB9TmJCegaCvdeR', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: evil-laugh-male-voice-tomas-herudek-1-00-06.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpzNaC2Kb893zdeoyZ3O', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: ha-ha-laugh-cartoon-bully-locran-4-4-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpzWv8ZtLFfzgDiuAStC', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: huh-goofy-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpzaaePiSx62Nw5RmAti', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: ok-small-child-fascinatedsound-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpzhiSTLxaiVGjNUvkoy', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: wa-hoo-silly-character-gamemaster-audio-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpzntIDUp19kxGUi1RAY', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: wow-silly-voice-male-dan-barracuda-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCpzsGbtAPi9mrsUnIb8C', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hey-hey-hey-hey-hey-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq04qnK2iKlFx9HzjIvT', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq0AiXvj4ruDPE87hNCE', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq0F2AITc3Rx4uH2pzbR', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hey-hey-hey-hey-hey-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq0IdvWBGqq4A5oqMQAN', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hey-hey-hey-hey-hey-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq0K64FpzGsVsNaTBoYt', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: i-need-a-medic-stat-radio-female-epic-stock-media-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq0N2HygSlqnXce6rGCI', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: mischievous-laugh-cute-little-creature-gamemaster-audio-1-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq0Q5uU6oGjCLMzI39MJ', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: nooo-exaggerated-male-tomas-herudek-short-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq0V6xxbdGtL6FIyb1jM', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: it-s-just-a-prank-bro-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq0cavser8b9C7h6SeiN', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: uh-oh-cute-voice-dan-barracuda-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq0tRVCr8z4UkntFAo4e', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: evil-laugh-male-voice-tomas-herudek-1-00-06.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq0yC7Tln6hsrPdIIoxO', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: crazy-silly-voice-male-tomas-herudek-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq16hk07L7Bd0gcNixf5', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq1CKZs2p1SmnTfq3gN9', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCq1DTCx9xStqGve5rHR2', 'error': {'type': 'invalid_request_error', 'code': 'session_expired', 'message': 'Your session hit the maximum duration of 60 minutes.', 'param': None, 'event_id': None}}
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7f013370>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/pip/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7f013670>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/pip/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7f0138e0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/pip/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7f013a90>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/pip/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7f013c40>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/pip/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7efd2a30>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/setuptools/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7efd2c70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/setuptools/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7efd2e20>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/setuptools/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7efd2fd0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/setuptools/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7f013940>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/setuptools/
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7efdf8b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/wheel/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7efdfaf0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/wheel/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7efdfcd0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/wheel/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7efdfee0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/wheel/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffff7efeb1f0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/wheel/
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Task exception was never retrieved
+future: <Task finished name='Task-2' coro=<RealtimeVoiceClient._send_json() done, defined at realtime_client.py:743> exception=AssertionError()>
+Traceback (most recent call last):
+  File "realtime_client.py", line 749, in _send_json
+    assert self._ws is not None
+AssertionError
+Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<RealtimeVoiceClient._send_json() done, defined at realtime_client.py:743> exception=AssertionError()>
+Traceback (most recent call last):
+  File "realtime_client.py", line 749, in _send_json
+    assert self._ws is not None
+AssertionError
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+Traceback (most recent call last):
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/client.py", line 654, in __await_impl__
+    _transport, protocol = await self._create_connection()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 986, in create_connection
+    infos = await self._ensure_resolved(
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1365, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 825, in getaddrinfo
+    return await self.run_in_executor(
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "realtime_client.py", line 925, in <module>
+    raise SystemExit(main())
+  File "realtime_client.py", line 918, in main
+    asyncio.run(client.run())
+  File "/usr/lib/python3.8/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "realtime_client.py", line 464, in run
+    async with connect_realtime(self.api_key) as ws:
+  File "/usr/lib/python3.8/contextlib.py", line 171, in __aenter__
+    return await self.gen.__anext__()
+  File "realtime_client.py", line 116, in connect_realtime
+    async with websockets.connect(OPENAI_REALTIME_URL, extra_headers=headers, max_size=None) as ws:
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/client.py", line 635, in __aenter__
+    return await self
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/client.py", line 676, in __await_impl__
+    raise SecurityError("too many redirects")
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/asyncio/async_timeout.py", line 181, in __aexit__
+    self._do_exit(exc_type)
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/asyncio/async_timeout.py", line 268, in _do_exit
+    raise asyncio.TimeoutError
+asyncio.exceptions.TimeoutError
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0xffffb4379430>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/pip/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid (_ssl.c:1145)'))': /simple/setuptools/
+/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/pip/_vendor/urllib3/connection.py:387: SystemTimeWarning: System time is way off (before 2024-01-01). This will probably lead to SSL verification errors
+  warnings.warn(
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+Realtime API error: {'type': 'error', 'event_id': 'event_CCubOdJeabYmkyb0JZUQc', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCubUo7s0YnWrjh0rm8AK', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCubUmzBO8FTPFAZoFvLz', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCubUFpIlipT0i7cshSEN. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCubc5bv0MGWNJ7epMshi', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCubcucFLVjexmZQWIlP6', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCubbtWaLdgo4l4kgLAiD. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCubl3JCvgXZk4PjW9C1v', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCublrswVWFGIXmt9ZeJj', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCubkgWU2bf0fy0HAtI1X. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCubqdycIEzAmCrsUF4jv', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCubqXiOINpNNAejwlcN3', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCubpic3rvFz3B5KAbpRw. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCubtSf8dA7IiGBltq0Oe', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCubtFbtolZPIqi0d2l0D', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCubtsWTpbwfWzd1035G4. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuc6oZWS731VD6neHMaZ', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuc65avTL3m2o7vUzK5h', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCuc5ja1u44R6SYbRj3QV. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+[INFO] Mic is now MUTED
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuc9OsNqe5VUTqZiIXeZ', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuc9zX2gr9Gl5rzgDxRk', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuc99MJZjYL8L6QCof0p', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucA0dUTum16Zz0i9VhO', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucADdimnKDvfAKxDqvH', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucA9B8fz4uwGvpOqLHC', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucAzjGTQFO3aQTyMvFY', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucBKGovZaFNfTzL4yFn', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: wow-silly-voice-male-dan-barracuda-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucEZHJJyUm2qTEYPSpd', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: umm-huh-confused-man-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucHlLvNzfQOY7dgnk11', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: victory-throaty-male-voice-gamemaster-audio-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucIWNnvsOcAIPW65694', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: uhh-what-male-joshua-chivers-1-00-01.wav
+[INFO] Playing: uh-oh-cute-voice-dan-barracuda-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucKygJ6yuSJoUYrfm4d', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucL9DeuJ0WTyCUcgzL1', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: that-is-the-correct-answer-gameshow-voice-movie-guy-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucMirquBtfXop1oca1u', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: test.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucNZAyzLIN0VPURwOwa', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: target-acquired-male-soldier-movie-guy-modern-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucOz6CcCx6qbsxu7sz3', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: talking-gibberish-silly-character-gamemaster-audio-2-2-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucPopiJBd3zVv2Ry6Px', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: system-failure-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucRkeIvIMv1Db4hegmd', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: shut-up-take-my-money-male-tomas-herudek-2-2-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucTXTszD3HMcv3Nj0tw', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: self-destruct-sequence-activated-robot-male-epic-stock-media-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucUznptiKpIq5Ngola4', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: omg-shocked-female-dan-barracuda-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucW3VfqldIg86BO7pN7', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: ok-small-child-fascinatedsound-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucXpxKrjq5O27aCwEd7', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: nope-attitude-male-dan-barracuda-2-2-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucZ6nThYFtQWmagtWsJ', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: nooo-exaggerated-male-tomas-herudek-short-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucaHEFURxaGelsUmJeO', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: mischievous-laugh-cute-little-creature-gamemaster-audio-1-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucbyiDc4MyO6Aped6t2', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: like-subscribe-female-gfx-sounds-3-3-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucc6u5CfD6BLDEyaP5d', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: just-do-it-aggressive-male-tomas-herudek-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucemVYq7uLFb1Pk5dQ9', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: it-s-just-a-prank-bro-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucgVdgptZTairW0ynar', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: initializing-scan-ai-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuchyAnmWfmyT4V5y94m', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: i-need-a-medic-stat-radio-female-epic-stock-media-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCucytuJ1Q5mD9XgjdYwI', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: incorrect-answer-gameshow-voice-retro-movie-guy-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuczXsKgBOaHF6FNK2xA', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: huh-goofy-male-joshua-chivers-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCud1DC3aXtc5VHCobWMG', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hey-hey-hey-hey-hey-male-dan-barracuda-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCud3Gceu52BLpIfT6Iz4', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCud4MFScIbRsYRligheY', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCud74W1gUEPJLnxjqtDh', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCud7cK9uHNuhNBbG27tv', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCud8Iw7IP8gCEFCyanSP', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCud8gRSSSlJMe0WgllGp', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCud8GHUNnep9AVuiAWa5', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCud8d77pObb0tp7TxGTn', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: have-you-ever-been-robo-slapped-cartoon-voice-epic-stock-media-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCud9QNaxJEW1KinEgCSI', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCudBFfn79ILnxtUVKPpZ', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: ha-ha-laugh-cartoon-bully-locran-4-4-00-01.wav
+[INFO] Playing: goodbye-ai-male-joshua-chivers-1-00-00.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCudGzkWypmUDfLlCeddB', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCudGjxscEXBFpDo5BJjk', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: goodbye-ai-male-joshua-chivers-1-00-00.wav
+[INFO] Playing: goodbye-ai-male-joshua-chivers-1-00-00.wav
+[INFO] Playing: goodbye-ai-male-joshua-chivers-1-00-00.wav
+[INFO] Playing: goodbye-ai-male-joshua-chivers-1-00-00.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCudIRBiGNeHtVnpmi50k', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCudIYADArZ2whGr5Bx2H', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCudI36oIinRf3IH1sTj4', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCudIIpf3tMPby8ZbML1n', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: gasp-shocked-female-tomas-herudek-4-4-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCudJfP5Pk7DShgPjAxfp', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: friendship-over-angry-female-tomas-herudek-1-00-05.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCudKhIzWsdMGoKtbYaiT', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: wow-silly-voice-male-dan-barracuda-1-00-03.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuj3SUWieZzSNUUXoFBc', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Mic is now UNMUTED
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujAipHaBRARAG9KFkDQ', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujBZl6T0vyRQhMcU8cM', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujBPeYMED7Yp2Ptf5NF', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujB4GQiW0pfgo9moF2u', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujBLCxQ04MSr435GEz0', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujB4y1KghT5MuvSU8CA', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujBwo2TmbK6jjJUJqpk', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujCTuRoAM22ILHMFqn0', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujC1KtG6EFnw290bNw7', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujCVJIb1KuFcAfSouY3', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Mic is now MUTED
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujDYy7rO4SJeNnpNpBU', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCujFtB6aJUjtZj5IwqTd', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Mic is now UNMUTED
+[INFO] Mic is now MUTED
+[INFO] Stopped speaking.
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->capture, alsaApi, inParams, StreamDirection_In, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2171
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->capture, inParams, self->primeBuffers, hwParamsCapture, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2718
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuqiHG8nliXa2sDTM9gz', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuqjHIniE5OMuxCaFH0O', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Stopped speaking.
+[INFO] Mic is now MUTED
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuqpP1hZ0mjxodtnAeIi', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCuqpKRVo0TfKxBD9AxxV', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCuqoYruPaVrRlc0ZCsHm. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+[INFO] Mic is now UNMUTED
+[INFO] Mic is now MUTED
+Realtime API error: {'type': 'error', 'event_id': 'event_CCurAJOaKdK4lF2cyCmQT', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CCurAYkz5mB2dtyNpZumD', 'error': {'type': 'invalid_request_error', 'code': 'conversation_already_has_active_response', 'message': 'Conversation already has an active response in progress: resp_CCur9j2KZ9fnM2TYQeGk8. Wait until the response is finished before creating a new one.', 'param': None, 'event_id': None}}
+[INFO] Mic is now UNMUTED
+[INFO] Mic is now MUTED
+[INFO] Mic is now UNMUTED
+[INFO] Mic is now MUTED
+[INFO] Mic is now UNMUTED
+[INFO] Mic is now MUTED
