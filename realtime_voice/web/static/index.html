@@ -90,6 +90,7 @@
     }
     window.addEventListener('load', refreshRecordings);
     window.addEventListener('load', sbLoad);
+    window.addEventListener('load', voiceLoad);
 
     async function uploadWav() {
       const fi = document.getElementById('uploadFile');
@@ -178,13 +179,60 @@
         body: JSON.stringify({ profile: name })
       }).then(r=>r.json()).then(_ => sbLoad(name));
     }
+
+    // Voice tab logic
+    async function voiceLoad() {
+      try {
+        const res = await fetch('/api/voice');
+        const data = await res.json();
+        const presetSel = document.getElementById('voicePreset');
+        const personaEl = document.getElementById('voicePersona');
+        const factsEl = document.getElementById('voiceFacts');
+        // Fill textareas
+        personaEl.value = data.persona || '';
+        factsEl.value = data.facts || '';
+        // Fill preset dropdown
+        presetSel.innerHTML = '';
+        (data.presets || []).forEach(p => {
+          const o = document.createElement('option');
+          o.value = p; o.textContent = p; presetSel.appendChild(o);
+        });
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    async function voiceSave() {
+      const personaEl = document.getElementById('voicePersona');
+      const factsEl = document.getElementById('voiceFacts');
+      await fetch('/api/voice/save', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ persona: personaEl.value || '', facts: factsEl.value || '' })
+      });
+      // Reload the running client to pick up changes immediately
+      await fetch('/api/reload', { method: 'POST' });
+    }
+
+    async function voiceApplyPreset() {
+      const presetSel = document.getElementById('voicePreset');
+      const name = presetSel.value;
+      if (!name) return;
+      await fetch('/api/voice/preset', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name })
+      });
+      await voiceLoad();
+      // Reload the running client so preset takes effect immediately
+      await fetch('/api/reload', { method: 'POST' });
+    }
   </script>
   </head>
   <body>
     <h1>Robot Voice Control</h1>
     <div class="row">
-      <button onclick="document.getElementById('tabMain').style.display='block';document.getElementById('tabSB').style.display='none'">Main</button>
-      <button onclick="document.getElementById('tabMain').style.display='none';document.getElementById('tabSB').style.display='block'; sbLoad()">Soundboard</button>
+      <button onclick="document.getElementById('tabMain').style.display='block';document.getElementById('tabSB').style.display='none';document.getElementById('tabVoice').style.display='none'">Main</button>
+      <button onclick="document.getElementById('tabMain').style.display='none';document.getElementById('tabSB').style.display='block';document.getElementById('tabVoice').style.display='none'; sbLoad()">Soundboard</button>
+      <button onclick="document.getElementById('tabMain').style.display='none';document.getElementById('tabSB').style.display='none';document.getElementById('tabVoice').style.display='block'; voiceLoad()">Voice</button>
     </div>
     <div id="tabMain" class="tab" style="display:block">
     <div class="card">
@@ -261,6 +309,27 @@
           <button class="ok" onclick="sbSave()">Save</button>
         </div>
         <div id="sbGrid" class="sb-grid"></div>
+      </div>
+    </div>
+    <div id="tabVoice" class="tab" style="display:none">
+      <div class="card">
+        <h3>Voice Mode</h3>
+        <div class="row">
+          <label>Preset</label>
+          <select id="voicePreset"></select>
+          <button onclick="voiceApplyPreset()">Apply</button>
+        </div>
+        <div class="row">
+          <label>persona.json</label>
+          <textarea id="voicePersona" rows="12" style="width:100%; font-family:monospace"></textarea>
+        </div>
+        <div class="row">
+          <label>facts.json</label>
+          <textarea id="voiceFacts" rows="8" style="width:100%; font-family:monospace"></textarea>
+        </div>
+        <div class="row">
+          <button class="ok" onclick="voiceSave()">Save</button>
+        </div>
       </div>
     </div>
   </body>

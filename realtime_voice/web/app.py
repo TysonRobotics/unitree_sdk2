@@ -76,6 +76,55 @@ def save_soundboard(cfg: dict) -> bool:
     except Exception:
         return False
 
+# Voice config helpers
+def config_dir() -> str:
+    return os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, "config"))
+
+
+def voice_persona_path() -> str:
+    return os.path.join(config_dir(), "persona.json")
+
+
+def voice_facts_path() -> str:
+    return os.path.join(config_dir(), "facts.json")
+
+
+def presets_dir() -> str:
+    return os.path.join(config_dir(), "presets")
+
+
+def list_presets() -> List[str]:
+    try:
+        root = presets_dir()
+        os.makedirs(root, exist_ok=True)
+        names = []
+        for entry in os.listdir(root):
+            base, ext = os.path.splitext(entry)
+            if ext == ".json" and base.endswith("_persona"):
+                name = base[:-8]
+                names.append(name)
+        names.sort()
+        return names
+    except Exception:
+        return []
+
+
+def read_text(path: str) -> str:
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            return f.read()
+    except Exception:
+        return ""
+
+
+def write_text(path: str, content: str) -> bool:
+    try:
+        with open(path, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    except Exception:
+        return False
+
 
 @app.route("/api/mute", methods=["POST"])
 def api_mute():
@@ -254,6 +303,47 @@ def api_soundboard_play():
     # Play via FIFO command
     ok = send_cmd({"cmd": "play", "file": file_name})
     return jsonify({"ok": ok})
+
+
+# Voice config APIs
+@app.route("/api/voice", methods=["GET"])
+def api_voice_get():
+    persona = read_text(voice_persona_path())
+    facts = read_text(voice_facts_path())
+    return jsonify({
+        "ok": True,
+        "persona": persona,
+        "facts": facts,
+        "presets": list_presets(),
+    })
+
+
+@app.route("/api/voice/save", methods=["POST"])
+def api_voice_save():
+    body = request.get_json(silent=True) or {}
+    persona = body.get("persona", "")
+    facts = body.get("facts", "")
+    if not isinstance(persona, str) or not isinstance(facts, str):
+        return jsonify({"ok": False, "error": "persona and facts must be raw JSON strings"}), 400
+    ok1 = write_text(voice_persona_path(), persona)
+    ok2 = write_text(voice_facts_path(), facts)
+    return jsonify({"ok": bool(ok1 and ok2)})
+
+
+@app.route("/api/voice/preset", methods=["POST"])
+def api_voice_preset_apply():
+    body = request.get_json(silent=True) or {}
+    name = str(body.get("name") or "").strip()
+    if not name:
+        return jsonify({"ok": False, "error": "missing preset name"}), 400
+    pdir = presets_dir()
+    persona_p = os.path.join(pdir, f"{name}_persona.json")
+    facts_p = os.path.join(pdir, f"{name}_facts.json")
+    if not os.path.exists(persona_p) or not os.path.exists(facts_p):
+        return jsonify({"ok": False, "error": "preset not found"}), 404
+    ok1 = write_text(voice_persona_path(), read_text(persona_p))
+    ok2 = write_text(voice_facts_path(), read_text(facts_p))
+    return jsonify({"ok": bool(ok1 and ok2)})
 
 
 
