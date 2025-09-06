@@ -9,6 +9,7 @@ from typing import Optional, List
 import errno
 
 import numpy as np
+import datetime
 import threading
 import time
 
@@ -23,6 +24,13 @@ except Exception as exc:  # pragma: no cover
 	print(str(exc), file=sys.stderr)
 
 import websockets
+
+try:
+	import soundfile as sf
+except Exception as exc:  # pragma: no cover
+	sf = None
+if sf is None:
+	print("soundfile not available; recording/playback WAV disabled until installed (pip install soundfile).", file=sys.stderr)
 
 
 OPENAI_REALTIME_URL = os.environ.get(
@@ -190,6 +198,15 @@ class RealtimeVoiceClient:
 		self._cancel_cooldown_ms: float = float(os.environ.get("BARGE_CANCEL_COOLDOWN_MS", "250"))
 		# Interactive mic mute toggle
 		self._muted: bool = False
+		# Recording state
+		self._recording: bool = False
+		self._record_buffer: List[np.ndarray] = []
+		self._record_start_time_ms: float = 0.0
+		self._record_dir: str = os.environ.get(
+			"RECORDINGS_DIR",
+			os.path.join(os.path.dirname(__file__), "recordings"),
+		)
+		self._record_path: Optional[str] = None
 		# Config paths for persona and facts
 		self._persona_path: str = os.environ.get(
 			"PERSONA_PATH",
@@ -209,6 +226,12 @@ class RealtimeVoiceClient:
 				self._volume_pct = int(max(0.0, min(2.0, legacy)) * 100)
 		except Exception:
 			self._volume_pct = 100
+
+		# Ensure recordings directory exists
+		try:
+			os.makedirs(self._record_dir, exist_ok=True)
+		except Exception:
+			pass
 
 	def _load_persona(self) -> dict:
 		try:
@@ -341,6 +364,10 @@ class RealtimeVoiceClient:
 			if status and DEBUG:
 				print(f"[DEBUG] Input status: {status}")
 			try:
+				# Append raw device-rate mono float32 frames to recording buffer if active
+				if self._recording:
+					# Copy to avoid referencing the underlying buffer
+					self._record_buffer.append(np.array(data, dtype=np.float32))
 				# Mic mute toggle
 				if self._muted:
 					return
@@ -366,7 +393,10 @@ class RealtimeVoiceClient:
 							if self._speech_accum_ms >= self._min_speech_ms:
 								self._vad_speaking = False
 								_schedule_json({"type": "input_audio_buffer.commit"})
-								_schedule_json({"type": "response.create"})
+								_schedule_json({
+									"type": "response.create",
+									"response": {"voice": self.voice}
+								})
 								self._awaiting_response = True
 								self._speech_accum_ms = 0.0
 								return
@@ -449,7 +479,10 @@ class RealtimeVoiceClient:
 
 				# Optional: prime an initial response (intro)
 				if os.environ.get("SKIP_INTRO", "0") != "1":
-					await self._send_json({"type": "response.create"})
+					await self._send_json({
+						"type": "response.create",
+						"response": {"voice": self.voice}
+					})
 					if DEBUG:
 						print("[DEBUG] Sent response.create")
 
@@ -600,6 +633,62 @@ class RealtimeVoiceClient:
 				self._barge_in = val
 				print(f"[INFO] Barge-in is now {'ENABLED' if self._barge_in else 'DISABLED'}")
 
+		elif cmd == "record_start":
+			if sf is None:
+				print("[WARN] soundfile not installed; cannot start recording")
+				return
+			if self._recording:
+				print("[INFO] Already recording")
+				return
+			name = str(obj.get("name") or "").strip()
+			if not name:
+				ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+				name = f"rec_{ts}.wav"
+			if not name.lower().endswith(".wav"):
+				name += ".wav"
+			self._record_path = os.path.join(self._record_dir, os.path.basename(name))
+			self._record_buffer = []
+			self._record_start_time_ms = time.monotonic() * 1000.0
+			self._recording = True
+			print(f"[INFO] Recording started: {self._record_path}")
+		elif cmd == "record_stop":
+			if not self._recording:
+				print("[INFO] Not recording")
+				return
+			self._recording = False
+			try:
+				self._save_recording()
+			except Exception as exc:
+				print(f"[WARN] Failed to save recording: {exc}")
+			finally:
+				self._record_buffer = []
+				self._record_path = None
+		elif cmd == "play":
+			if sf is None:
+				print("[WARN] soundfile not installed; cannot play WAV")
+				return
+			file_arg = obj.get("file") or ""
+			if not file_arg:
+				print("[WARN] Missing 'file' for play command")
+				return
+			path = file_arg
+			if not os.path.isabs(path):
+				path = os.path.join(self._record_dir, os.path.basename(path))
+			if not os.path.exists(path):
+				print(f"[WARN] File not found: {path}")
+				return
+			# Stop current speech and clear buffer, then queue file audio
+			try:
+				asyncio.create_task(self._send_json({"type": "response.cancel"}))
+			except Exception:
+				pass
+			with self._play_lock:
+				self._play_buffer.clear()
+			self._assistant_active = False
+			self._awaiting_response = False
+			self._queue_wav_for_playback(path)
+			print(f"[INFO] Playing: {os.path.basename(path)}")
+
 	async def _stdin_quit(self) -> None:
 		"""Interactive stdin: 'm' mute, 's' stop, 'r' reload, 'q' quit, '+'/'-' volume (0-100, step 10)."""
 		loop = asyncio.get_running_loop()
@@ -693,7 +782,12 @@ class RealtimeVoiceClient:
 			event_type = obj.get("type")
 			if DEBUG:
 				print(f"[DEBUG] <- {event_type}")
-			if event_type == "response.output_text.delta":
+			if event_type == "session.updated" and DEBUG:
+				session = obj.get("session", {})
+				ack_voice = session.get("voice")
+				if ack_voice:
+					print(f"[DEBUG] Server acknowledged voice: {ack_voice}")
+			elif event_type == "response.output_text.delta":
 				delta = obj.get("delta", "")
 				if delta:
 					print(delta, end="", flush=True)
@@ -727,6 +821,50 @@ class RealtimeVoiceClient:
 				self._assistant_active = False
 				# Apply hangover before re-opening mic to avoid capturing tail audio
 				self._playback_tail_until_ms = time.monotonic() * 1000.0 + self._hangover_ms
+
+	def _save_recording(self) -> None:
+		"""Write buffered recording to WAV file."""
+		if sf is None:
+			return
+		if not self._record_path:
+			return
+		if not self._record_buffer:
+			print("[INFO] Recording empty; nothing saved")
+			return
+		try:
+			data = np.vstack(self._record_buffer).astype(np.float32)
+			sf.write(self._record_path, data, self.sample_rate_hz, subtype='PCM_16')
+			dur = data.shape[0] / float(self.sample_rate_hz)
+			print(f"[INFO] Recording saved: {self._record_path} ({dur:.2f}s)")
+		except Exception as exc:
+			print(f"[WARN] Recording save failed: {exc}")
+
+	def _queue_wav_for_playback(self, path: str) -> None:
+		"""Read WAV file, resample/channels adapt, and append to playback buffer."""
+		if sf is None:
+			return
+		try:
+			data, rate = sf.read(path, dtype='int16', always_2d=False)
+			# Ensure mono int16 ndarray
+			if isinstance(data, tuple):
+				# Some versions may return (data, samplerate); already handled
+				pass
+			arr = np.array(data, dtype=np.int16)
+			if arr.ndim > 1:
+				# Convert to mono by averaging channels
+				arr = arr.mean(axis=1).astype(np.int16)
+			pcm_bytes = arr.tobytes()
+			if rate != self.sample_rate_hz:
+				pcm_bytes = resample_int16_bytes(pcm_bytes, rate, self.sample_rate_hz)
+			# Expand to stereo if output stream is stereo
+			if self._output_channels == 2:
+				mono = np.frombuffer(pcm_bytes, dtype=np.int16)
+				stereo = np.repeat(mono, 2)
+				pcm_bytes = stereo.tobytes()
+			with self._play_lock:
+				self._play_buffer.extend(pcm_bytes)
+		except Exception as exc:
+			print(f"[WARN] Failed to queue WAV for playback: {exc}")
 
 	def _negotiate_sample_rate(self) -> int:
 		"""Try common sample rates that both in/out devices accept. Returns chosen rate or existing."""

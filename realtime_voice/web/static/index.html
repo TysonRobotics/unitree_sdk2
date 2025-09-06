@@ -44,6 +44,49 @@
     async function volumeUp() { await post('/api/volume_up'); }
     async function volumeDown() { await post('/api/volume_down'); }
     async function setBargeIn(val) { await post('/api/barge_in', { value: val }); }
+
+    async function refreshRecordings() {
+      const res = await fetch('/api/recordings');
+      const data = await res.json();
+      const list = document.getElementById('recList');
+      if (!list) return;
+      list.innerHTML = '';
+      if (data && data.files) {
+        for (const f of data.files) {
+          const li = document.createElement('li');
+          li.textContent = f + ' ';
+          const btn = document.createElement('button');
+          btn.textContent = 'Play';
+          btn.onclick = async () => { await post('/api/play', { file: f }); };
+          li.appendChild(btn);
+          list.appendChild(li);
+        }
+      }
+    }
+    async function recordStart() {
+      const el = document.getElementById('recName');
+      const name = el ? (el.value || '').trim() : '';
+      await post('/api/record_start', name ? { name } : {});
+    }
+    async function recordStop() {
+      await post('/api/record_stop');
+      await refreshRecordings();
+    }
+    window.addEventListener('load', refreshRecordings);
+
+    async function uploadWav() {
+      const fi = document.getElementById('uploadFile');
+      if (!fi || !fi.files || fi.files.length === 0) return;
+      const file = fi.files[0];
+      const fd = new FormData();
+      fd.append('file', file);
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      try { await res.json(); } catch (e) {}
+      await refreshRecordings();
+      fi.value = '';
+    }
+
+    
   </script>
   </head>
   <body>
@@ -84,6 +127,30 @@
         <label>Barge-in</label>
         <button onclick="setBargeIn(true)">Enable</button>
         <button onclick="setBargeIn(false)">Disable</button>
+      </div>
+      
+    </div>
+    <br />
+    <div class="card">
+      <h3>Recording</h3>
+      <div class="row">
+        <label>File name</label>
+        <input id="recName" placeholder="optional, e.g. test.wav" />
+        <button class="ok" onclick="recordStart()">Start</button>
+        <button class="danger" onclick="recordStop()">Stop & Save</button>
+      </div>
+      <div class="row">
+        <label>Saved files</label>
+        <button onclick="refreshRecordings()">Refresh</button>
+      </div>
+      <ul id="recList"></ul>
+    </div>
+    <br />
+    <div class="card">
+      <h3>Upload WAV</h3>
+      <div class="row">
+        <input id="uploadFile" type="file" accept="audio/wav" />
+        <button class="ok" onclick="uploadWav()">Upload</button>
       </div>
     </div>
   </body>

@@ -1,22 +1,14 @@
 [
-  "Host: Linux 5.10.104-tegra (Jetson platform)",
-  "Microphone: GVAUDIO (USB Audio)",
-  "Speaker: JBL Go 4",
-  "API: OpenAI Realtime API (gpt-realtime) over WebSocket",
-  "Audio I/O library: sounddevice (PortAudio)",
-  "Formats: PCM16 in/out; sample-rate negotiation among 48000, 44100, 32000, 24000, 22050, 16000",
-  "Local VAD tuning via env: INPUT_RMS_GATE, VAD_START_GATE, VAD_STOP_GATE, VAD_MIN_SPEECH_MS, VAD_SILENCE_MS, HANGOVER_MS",
-  "Barge-in: enable with BARGE_IN=1; cancel via response.cancel; cooldown BARGE_CANCEL_COOLDOWN_MS",
-  "Mic gating while assistant is speaking; hangover after playback to avoid tail capture",
-  "Echo cancellation: PulseAudio module-echo-cancel (webrtc); virtual devices ec_source/ec_sink",
-  "Playback: RawOutputStream ring buffer; mono duplicated to stereo when needed",
-  "Interactive controls: m=mic mute toggle, s=stop speaking, r=hard reload persona/facts & new session, q=quit",
-  "Reload (r) performs a process restart to ensure fresh server-side context",
-  "README documents setup, AEC, VAD/barge-in tuning, and quick test commands",
-  "Known past issues fixed: invalid sample rate, asyncio queue/loop mixups, echo/feedback loops",
-  "Optional env: SKIP_INTRO=1 to skip initial greeting; VOICE selects the TTS voice",
-  "Device overrides: PREFERRED_INPUT / PREFERRED_OUTPUT can target ec_source/ec_sink",
-  "Project path: /home/unitree/unitree_sdk2/realtime_voice"
+  "We are a clothing and accessories store.",
+  "Core categories: tops, bottoms, outerwear, dresses, shoes, accessories.",
+  "Common fits: slim, regular, relaxed; pants fits: skinny, straight, tapered.",
+  "Typical sizes: XS–XL (men), 0–14 (women); shoes US 6–12.",
+  "Care labels: machine wash cold for cotton blends; hang dry for delicates.",
+  "Popular occasions: office, casual weekend, date night, travel, activewear.",
+  "Seasonal fabrics: linen (summer), merino wool (winter), denim (all‑season).",
+  "Accessories: belts, hats, scarves, socks, minimal jewelry.",
+  "We can suggest outfit pairings and sizing guidance.",
+  "If an item is unavailable, we can recommend similar alternatives."
 ]
 
 
