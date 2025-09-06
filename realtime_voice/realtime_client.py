@@ -155,7 +155,7 @@ class RealtimeVoiceClient:
 		output_device_index: Optional[int],
 		sample_rate_hz: int = 24000,
 		block_size: int = 1024,
-		voice: str = "marin",
+		voice: str = "alloy",
 	) -> None:
 		self.api_key = api_key
 		self.input_device_index = input_device_index
@@ -173,10 +173,10 @@ class RealtimeVoiceClient:
 		self._play_lock = threading.Lock()
 		self._assistant_active: bool = False
 		self._playback_tail_until_ms: float = 0.0
-		self._rms_gate: float = float(os.environ.get("INPUT_RMS_GATE", "0.010"))
+		self._rms_gate: float = float(os.environ.get("INPUT_RMS_GATE", "0.012"))
 		self._hangover_ms: float = float(os.environ.get("HANGOVER_MS", "200"))
 		self._vad_speaking: bool = False
-		self._vad_silence_ms: float = float(os.environ.get("VAD_SILENCE_MS", "900"))
+		self._vad_silence_ms: float = float(os.environ.get("VAD_SILENCE_MS", "1200"))
 		self._silence_accum_ms: float = 0.0
 		self._awaiting_response: bool = False
 		# FIFO-based control channel (for external web UI)
@@ -188,7 +188,7 @@ class RealtimeVoiceClient:
 		self._fifo_wfd: Optional[int] = None  # keep a writer open to avoid EOF when no external writers
 		self._fifo_buf: bytes = b""
 		# Hysteresis and minimum speech duration
-		self._rms_start_gate: float = float(os.environ.get("VAD_START_GATE", str(max(self._rms_gate * 1.6, self._rms_gate + 0.004))))
+		self._rms_start_gate: float = float(os.environ.get("VAD_START_GATE", str(max(self._rms_gate * 1.8, self._rms_gate + 0.006))))
 		self._rms_stop_gate: float = float(os.environ.get("VAD_STOP_GATE", str(self._rms_gate)))
 		self._min_speech_ms: float = float(os.environ.get("VAD_MIN_SPEECH_MS", "1200"))
 		self._speech_accum_ms: float = 0.0
@@ -898,7 +898,7 @@ def main() -> int:
 		output_device_index=output_idx,
 		sample_rate_hz=int(os.environ.get("AUDIO_SAMPLE_RATE", "24000")),
 		block_size=int(os.environ.get("AUDIO_BLOCK_SIZE", "1024")),
-		voice=os.environ.get("VOICE", "marin"),
+		voice=os.environ.get("VOICE", "alloy"),
 	)
 
 	try:
