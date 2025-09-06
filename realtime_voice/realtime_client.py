@@ -174,9 +174,9 @@ class RealtimeVoiceClient:
 		self._assistant_active: bool = False
 		self._playback_tail_until_ms: float = 0.0
 		self._rms_gate: float = float(os.environ.get("INPUT_RMS_GATE", "0.010"))
-		self._hangover_ms: float = float(os.environ.get("HANGOVER_MS", "400"))
+		self._hangover_ms: float = float(os.environ.get("HANGOVER_MS", "200"))
 		self._vad_speaking: bool = False
-		self._vad_silence_ms: float = float(os.environ.get("VAD_SILENCE_MS", "400"))
+		self._vad_silence_ms: float = float(os.environ.get("VAD_SILENCE_MS", "900"))
 		self._silence_accum_ms: float = 0.0
 		self._awaiting_response: bool = False
 		# FIFO-based control channel (for external web UI)
@@ -188,9 +188,9 @@ class RealtimeVoiceClient:
 		self._fifo_wfd: Optional[int] = None  # keep a writer open to avoid EOF when no external writers
 		self._fifo_buf: bytes = b""
 		# Hysteresis and minimum speech duration
-		self._rms_start_gate: float = float(os.environ.get("VAD_START_GATE", str(self._rms_gate * 1.3)))
+		self._rms_start_gate: float = float(os.environ.get("VAD_START_GATE", str(max(self._rms_gate * 1.6, self._rms_gate + 0.004))))
 		self._rms_stop_gate: float = float(os.environ.get("VAD_STOP_GATE", str(self._rms_gate)))
-		self._min_speech_ms: float = float(os.environ.get("VAD_MIN_SPEECH_MS", "300"))
+		self._min_speech_ms: float = float(os.environ.get("VAD_MIN_SPEECH_MS", "1200"))
 		self._speech_accum_ms: float = 0.0
 		# Barge-in (interruptible) control
 		self._barge_in: bool = os.environ.get("BARGE_IN", "0") == "1"
@@ -321,13 +321,20 @@ class RealtimeVoiceClient:
 
 		def on_audio_out(outdata, frames, time_info, status):  # type: ignore[unused-argument]
 			needed = frames * bytes_per_frame
+			consumed = 0
 			with self._play_lock:
-				if len(self._play_buffer) >= needed:
+				buflen = len(self._play_buffer)
+				if buflen >= needed:
 					chunk = self._play_buffer[:needed]
 					del self._play_buffer[:needed]
+					consumed = needed
 				else:
-					chunk = bytes(len(self._play_buffer)) + bytes(needed - len(self._play_buffer))
+					chunk = bytes(buflen) + bytes(needed - buflen)
+					consumed = buflen
 					self._play_buffer.clear()
+			# If we played any buffered audio, extend hangover window
+			if consumed > 0:
+				self._playback_tail_until_ms = time.monotonic() * 1000.0 + self._hangover_ms
 			# Apply output volume scaling using percent
 			if self._volume_pct != 100 and len(chunk) > 0:
 				scale = float(self._volume_pct) / 100.0
@@ -368,68 +375,48 @@ class RealtimeVoiceClient:
 				if self._recording:
 					# Copy to avoid referencing the underlying buffer
 					self._record_buffer.append(np.array(data, dtype=np.float32))
+				# Hard block mic while assistant speaking or during tail (always; ignore barge-in)
+				now_ms = time.monotonic() * 1000.0
+				if self._assistant_active or now_ms < self._playback_tail_until_ms:
+					return
 				# Mic mute toggle
 				if self._muted:
 					return
-				# Gate mic while assistant is speaking or shortly after playback unless barge-in enabled
-				now_ms = time.monotonic() * 1000.0
-				if not self._barge_in:
-					if self._assistant_active or now_ms < self._playback_tail_until_ms:
-						return
-					# Compute RMS on device-rate audio
-					lvl_dev = float(np.sqrt(np.mean(np.square(data)))) if data.size else 0.0
-					frame_ms = 1000.0 * frames / float(self.sample_rate_hz)
-					# Hysteresis: start/continue speaking on higher threshold; stop on lower
-					if lvl_dev >= self._rms_start_gate:
-						if not self._vad_speaking:
+				# Compute RMS on device-rate audio
+				lvl_dev = float(np.sqrt(np.mean(np.square(data)))) if data.size else 0.0
+				frame_ms = 1000.0 * frames / float(self.sample_rate_hz)
+				# Hysteresis: start/continue speaking on higher threshold; stop on lower
+				if lvl_dev >= self._rms_start_gate:
+					if not self._vad_speaking:
+						self._speech_accum_ms = 0.0
+					self._vad_speaking = True
+					self._silence_accum_ms = 0.0
+					self._speech_accum_ms += frame_ms
+				elif lvl_dev <= self._rms_stop_gate:
+					self._silence_accum_ms += frame_ms
+					if self._vad_speaking and self._silence_accum_ms >= self._vad_silence_ms and not self._assistant_active and not self._awaiting_response:
+						# Only end turn if we had enough speech
+						if self._speech_accum_ms >= self._min_speech_ms:
+							self._vad_speaking = False
+							_schedule_json({"type": "input_audio_buffer.commit"})
+							_schedule_json({
+								"type": "response.create",
+								"response": {"voice": self.voice}
+							})
+							self._awaiting_response = True
 							self._speech_accum_ms = 0.0
-						self._vad_speaking = True
-						self._silence_accum_ms = 0.0
-						self._speech_accum_ms += frame_ms
-					elif lvl_dev <= self._rms_stop_gate:
-						self._silence_accum_ms += frame_ms
-						if self._vad_speaking and self._silence_accum_ms >= self._vad_silence_ms and not self._assistant_active and not self._awaiting_response:
-							# Only end turn if we had enough speech
-							if self._speech_accum_ms >= self._min_speech_ms:
-								self._vad_speaking = False
-								_schedule_json({"type": "input_audio_buffer.commit"})
-								_schedule_json({
-									"type": "response.create",
-									"response": {"voice": self.voice}
-								})
-								self._awaiting_response = True
-								self._speech_accum_ms = 0.0
-								return
-						else:
-							# not enough speech; keep waiting or drop
-							pass
+							return
 					else:
-						# Between thresholds: hold state; if speaking, accumulate speech
-						if self._vad_speaking:
-							self._speech_accum_ms += frame_ms
-						self._silence_accum_ms = 0.0
-					# Forward audio only if considered speaking
-					if not self._vad_speaking:
-						return
+						# not enough speech; keep waiting or drop
+						pass
 				else:
-					# Barge-in path: if user starts speaking while assistant active, cancel and clear playback
-					lvl_dev = float(np.sqrt(np.mean(np.square(data)))) if data.size else 0.0
-					if self._assistant_active and lvl_dev >= self._rms_start_gate and (now_ms - self._last_cancel_ms) >= self._cancel_cooldown_ms:
-						# Send cancel to interrupt current response
-						if self._loop is not None:
-							self._loop.call_soon_threadsafe(asyncio.create_task, self._send_json({"type": "response.cancel"}))
-						with self._play_lock:
-							self._play_buffer.clear()
-						self._assistant_active = False
-						self._awaiting_response = False
-						self._last_cancel_ms = now_ms
-					# In barge mode, treat as speaking immediately when above start gate
-					if lvl_dev >= self._rms_start_gate:
-						self._vad_speaking = True
-					else:
-						self._vad_speaking = False
-					if not self._vad_speaking:
-						return
+					# Between thresholds: hold state; if speaking, accumulate speech
+					if self._vad_speaking:
+						self._speech_accum_ms += frame_ms
+					self._silence_accum_ms = 0.0
+				# Forward audio only if considered speaking
+				if not self._vad_speaking:
+					return
 				if self.sample_rate_hz != SERVER_SAMPLE_RATE_HZ:
 					data_rs = resample_mono_float(data, self.sample_rate_hz, SERVER_SAMPLE_RATE_HZ)
 				else:
