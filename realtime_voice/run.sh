@@ -15,6 +15,9 @@ if [ -z "${OPENAI_API_KEY:-}" ]; then
   exit 2
 fi
 
+# Default male voice
+export VOICE="${VOICE:-alloy}"
+
 # Defaults for VAD if not provided
 export VAD_SILENCE_MS="${VAD_SILENCE_MS:-2000}"
 export VAD_START_GATE="${VAD_START_GATE:-0.010}"
