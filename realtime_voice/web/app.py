@@ -3,6 +3,8 @@ import os
 from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 from typing import List
+import logging
+from logging.handlers import RotatingFileHandler
 
 APP_PORT = int(os.environ.get("VOICE_WEB_PORT", "9000"))
 FIFO_PATH = os.environ.get(
@@ -11,6 +13,27 @@ FIFO_PATH = os.environ.get(
 )
 
 app = Flask(__name__, static_folder="static", template_folder="static")
+
+# Set up separate logging for HTTP requests
+if not app.debug:
+    # Create logs directory
+    log_dir = os.path.join(os.path.dirname(__file__), os.pardir, "logs")
+    os.makedirs(log_dir, exist_ok=True)
+    
+    # HTTP request log with rotation
+    http_handler = RotatingFileHandler(
+        os.path.join(log_dir, "web_requests.log"),
+        maxBytes=1024*1024,  # 1MB
+        backupCount=3
+    )
+    http_handler.setLevel(logging.INFO)
+    http_formatter = logging.Formatter('%(asctime)s - %(message)s')
+    http_handler.setFormatter(http_formatter)
+    
+    # Reduce Flask's built-in logging noise
+    werkzeug_logger = logging.getLogger('werkzeug')
+    werkzeug_logger.setLevel(logging.WARNING)
+    werkzeug_logger.addHandler(http_handler)
 
 
 def send_cmd(cmd: dict) -> bool:
@@ -76,6 +99,7 @@ def save_soundboard(cfg: dict) -> bool:
     except Exception:
         return False
 
+
 # Voice config helpers
 def config_dir() -> str:
     return os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, "config"))
@@ -121,6 +145,45 @@ def write_text(path: str, content: str) -> bool:
     try:
         with open(path, 'w', encoding='utf-8') as f:
             f.write(content)
+        return True
+    except Exception:
+        return False
+
+
+def load_persona_structured() -> dict:
+    """Load persona as structured data for form editing."""
+    try:
+        with open(voice_persona_path(), 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return {"intro": "", "style": "", "behaviors": []}
+
+
+def save_persona_structured(data: dict) -> bool:
+    """Save structured persona data."""
+    try:
+        with open(voice_persona_path(), 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        return True
+    except Exception:
+        return False
+
+
+def load_facts_structured() -> List[str]:
+    """Load facts as list for form editing."""
+    try:
+        with open(voice_facts_path(), 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data if isinstance(data, list) else []
+    except Exception:
+        return []
+
+
+def save_facts_structured(facts: List[str]) -> bool:
+    """Save facts list."""
+    try:
+        with open(voice_facts_path(), 'w', encoding='utf-8') as f:
+            json.dump(facts, f, indent=2, ensure_ascii=False)
         return True
     except Exception:
         return False
@@ -318,6 +381,19 @@ def api_voice_get():
     })
 
 
+@app.route("/api/voice/structured", methods=["GET"])
+def api_voice_get_structured():
+    """Get persona and facts as structured data for form editing."""
+    persona = load_persona_structured()
+    facts = load_facts_structured()
+    return jsonify({
+        "ok": True,
+        "persona": persona,
+        "facts": facts,
+        "presets": list_presets(),
+    })
+
+
 @app.route("/api/voice/save", methods=["POST"])
 def api_voice_save():
     body = request.get_json(silent=True) or {}
@@ -327,6 +403,26 @@ def api_voice_save():
         return jsonify({"ok": False, "error": "persona and facts must be raw JSON strings"}), 400
     ok1 = write_text(voice_persona_path(), persona)
     ok2 = write_text(voice_facts_path(), facts)
+    return jsonify({"ok": bool(ok1 and ok2)})
+
+
+@app.route("/api/voice/save_structured", methods=["POST"])
+def api_voice_save_structured():
+    """Save persona and facts from form data."""
+    body = request.get_json(silent=True) or {}
+    
+    # Parse persona
+    persona_data = {
+        "intro": str(body.get("intro", "")).strip(),
+        "style": str(body.get("style", "")).strip(),
+        "behaviors": [str(b).strip() for b in (body.get("behaviors") or []) if str(b).strip()]
+    }
+    
+    # Parse facts
+    facts_data = [str(f).strip() for f in (body.get("facts") or []) if str(f).strip()]
+    
+    ok1 = save_persona_structured(persona_data)
+    ok2 = save_facts_structured(facts_data)
     return jsonify({"ok": bool(ok1 and ok2)})
 
 
@@ -400,9 +496,6 @@ def api_audio_viz():
         return jsonify({"ok": True, "data": {"mic_level": 0.0, "mic_spectrum": [], "vad_speaking": False}})
 
 
-
-
-
 @app.route("/")
 def index():
     return send_from_directory(app.static_folder, "index.html")
@@ -420,6 +513,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-

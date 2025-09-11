@@ -42,8 +42,11 @@ export HANGOVER_MS="${HANGOVER_MS:-500}"
 # Default to server VAD (OpenAI handles speech detection)
 export VAD_MODE="${VAD_MODE:-server}"
 
-# Force 48kHz to avoid ALSA sample rate issues
-export AUDIO_SAMPLE_RATE="${AUDIO_SAMPLE_RATE:-48000}"
+# Use PulseAudio routing to avoid ALSA conflicts
+export PREFERRED_INPUT="${PREFERRED_INPUT:-pulse}"
+export PREFERRED_OUTPUT="${PREFERRED_OUTPUT:-pulse}"
+# Use PulseAudio's default sample rate
+export AUDIO_SAMPLE_RATE="${AUDIO_SAMPLE_RATE:-44100}"
 
 exec python3 realtime_client.py
 

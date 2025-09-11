@@ -190,23 +190,152 @@
     // Voice tab logic
     async function voiceLoad() {
       try {
-        const res = await fetch('/api/voice');
+        // Load structured data for form editing
+        const res = await fetch('/api/voice/structured');
         const data = await res.json();
+        
+        // Fill presets
         const presetSel = document.getElementById('voicePreset');
+        if (presetSel) {
+          presetSel.innerHTML = '';
+          (data.presets || []).forEach(p => {
+            const o = document.createElement('option');
+            o.value = p; o.textContent = p; presetSel.appendChild(o);
+          });
+        }
+        
+        // Fill form fields
+        const persona = data.persona || {};
+        const facts = data.facts || [];
+        
+        if (document.getElementById('voiceIntro')) {
+          document.getElementById('voiceIntro').value = persona.intro || '';
+          document.getElementById('voiceStyle').value = persona.style || '';
+          
+          currentBehaviors = persona.behaviors || [];
+          currentFacts = facts;
+          renderBehaviors(currentBehaviors);
+          renderFacts(currentFacts);
+        }
+        
+        // Also load JSON for raw editor
+        const rawRes = await fetch('/api/voice');
+        const rawData = await rawRes.json();
         const personaEl = document.getElementById('voicePersona');
         const factsEl = document.getElementById('voiceFacts');
-        // Fill textareas
-        personaEl.value = data.persona || '';
-        factsEl.value = data.facts || '';
-        // Fill preset dropdown
-        presetSel.innerHTML = '';
-        (data.presets || []).forEach(p => {
-          const o = document.createElement('option');
-          o.value = p; o.textContent = p; presetSel.appendChild(o);
-        });
+        if (personaEl) personaEl.value = rawData.persona || '';
+        if (factsEl) factsEl.value = rawData.facts || '';
       } catch (e) {
         // ignore
       }
+    }
+
+    function renderBehaviors(behaviors) {
+      const list = document.getElementById('behaviorList');
+      if (!list) return;
+      list.innerHTML = '';
+      behaviors.forEach((b, i) => {
+        const div = document.createElement('div');
+        div.style.marginBottom = '4px';
+        div.innerHTML = `
+          <input type="text" value="${b}" style="width:calc(100% - 60px)" onchange="updateBehavior(${i}, this.value)" />
+          <button onclick="removeBehavior(${i})" style="margin-left:4px">×</button>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function renderFacts(facts) {
+      const list = document.getElementById('factsList');
+      if (!list) return;
+      list.innerHTML = '';
+      facts.forEach((f, i) => {
+        const div = document.createElement('div');
+        div.style.marginBottom = '4px';
+        div.innerHTML = `
+          <input type="text" value="${f}" style="width:calc(100% - 60px)" onchange="updateFact(${i}, this.value)" />
+          <button onclick="removeFact(${i})" style="margin-left:4px">×</button>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    let currentBehaviors = [];
+    let currentFacts = [];
+
+    function updateBehavior(index, value) {
+      currentBehaviors[index] = value;
+    }
+
+    function updateFact(index, value) {
+      currentFacts[index] = value;
+    }
+
+    function addBehavior() {
+      currentBehaviors.push('');
+      renderBehaviors(currentBehaviors);
+      // Focus the new input
+      setTimeout(() => {
+        const inputs = document.querySelectorAll('#behaviorList input');
+        if (inputs.length > 0) inputs[inputs.length - 1].focus();
+      }, 50);
+    }
+
+    function removeBehavior(index) {
+      currentBehaviors.splice(index, 1);
+      renderBehaviors(currentBehaviors);
+    }
+
+    function addFact() {
+      currentFacts.push('');
+      renderFacts(currentFacts);
+      // Focus the new input
+      setTimeout(() => {
+        const inputs = document.querySelectorAll('#factsList input');
+        if (inputs.length > 0) inputs[inputs.length - 1].focus();
+      }, 50);
+    }
+
+    function removeFact(index) {
+      currentFacts.splice(index, 1);
+      renderFacts(currentFacts);
+    }
+
+    function toggleJsonMode() {
+      const formMode = document.getElementById('voiceFormMode');
+      const jsonMode = document.getElementById('voiceJsonMode');
+      const toggle = document.getElementById('jsonToggle');
+      
+      if (formMode.style.display === 'none') {
+        formMode.style.display = 'block';
+        jsonMode.style.display = 'none';
+        toggle.textContent = 'Show JSON';
+      } else {
+        formMode.style.display = 'none';
+        jsonMode.style.display = 'block';
+        toggle.textContent = 'Show Form';
+      }
+    }
+
+    async function voiceSaveStructured() {
+      // Collect form data
+      const intro = document.getElementById('voiceIntro').value;
+      const style = document.getElementById('voiceStyle').value;
+      
+      // Get current behaviors and facts from inputs
+      currentBehaviors = Array.from(document.querySelectorAll('#behaviorList input')).map(i => i.value);
+      currentFacts = Array.from(document.querySelectorAll('#factsList input')).map(i => i.value);
+      
+      await fetch('/api/voice/save_structured', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          intro, style, 
+          behaviors: currentBehaviors.filter(b => b.trim()),
+          facts: currentFacts.filter(f => f.trim())
+        })
+      });
+      // Reload the running client to pick up changes immediately
+      await fetch('/api/reload', { method: 'POST' });
     }
 
     async function voiceSave() {
@@ -576,7 +705,36 @@
           <label>Preset</label>
           <select id="voicePreset"></select>
           <button onclick="voiceApplyPreset()">Apply</button>
+          <button onclick="toggleJsonMode()" id="jsonToggle">Show JSON</button>
         </div>
+      </div>
+      <br />
+      <div id="voiceFormMode" class="card">
+        <h3>Personality Editor</h3>
+        <div class="row">
+          <label>Introduction</label>
+          <input id="voiceIntro" placeholder="e.g., Hi, I'm Tyson..." style="width:100%" />
+        </div>
+        <div class="row">
+          <label>Speaking Style</label>
+          <input id="voiceStyle" placeholder="e.g., Male voice; friendly and natural..." style="width:100%" />
+        </div>
+        <div class="row">
+          <label>Behaviors</label>
+          <div id="behaviorList"></div>
+          <button onclick="addBehavior()">Add Behavior</button>
+        </div>
+        <div class="row">
+          <label>Facts</label>
+          <div id="factsList"></div>
+          <button onclick="addFact()">Add Fact</button>
+        </div>
+        <div class="row">
+          <button class="ok" onclick="voiceSaveStructured()">Save</button>
+        </div>
+      </div>
+      <div id="voiceJsonMode" class="card" style="display:none">
+        <h3>Raw JSON Editor</h3>
         <div class="row">
           <label>persona.json</label>
           <textarea id="voicePersona" rows="12" style="width:100%; font-family:monospace"></textarea>
@@ -586,7 +744,7 @@
           <textarea id="voiceFacts" rows="8" style="width:100%; font-family:monospace"></textarea>
         </div>
         <div class="row">
-          <button class="ok" onclick="voiceSave()">Save</button>
+          <button class="ok" onclick="voiceSave()">Save JSON</button>
         </div>
       </div>
     </div>
