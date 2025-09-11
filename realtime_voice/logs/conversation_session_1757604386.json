@@ -1,0 +1,14 @@
+[
+  {
+    "timestamp": "2025-09-11 17:28:03",
+    "direction": "user",
+    "type": "speech_start",
+    "note": "User started speaking"
+  },
+  {
+    "timestamp": "2025-09-11 17:29:42",
+    "direction": "user",
+    "type": "speech_start",
+    "note": "User started speaking"
+  }
+]

@@ -1139,3 +1139,470 @@ Terminated
 172.20.10.1 - - [11/Sep/2025 15:48:54] "POST /api/soundboard/play HTTP/1.1" 200 -
 172.20.10.1 - - [11/Sep/2025 15:49:15] "POST /api/mute HTTP/1.1" 200 -
 172.20.10.1 - - [11/Sep/2025 15:49:56] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:02:11] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:02:32] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:05:45] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:05:59] "GET /api/soundboard HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [11/Sep/2025 16:23:00] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:23:02] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:23:02] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:23:02] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:23:02] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:23:02] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:23:04] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:23:13] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:23:15] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:23:55] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:24:03] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:24:04] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:28:22] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:28:23] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:44:47] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:44:48] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:44:57] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:44:58] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:45:07] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:45:15] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:45:23] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:45:27] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:45:28] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:45:33] "POST /api/voice/preset HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:45:33] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:45:33] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:49:02] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:49:28] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:49:32] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:49:51] "POST /api/record_start HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:49:59] "POST /api/record_stop HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:49:59] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:50:17] "POST /api/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:51:36] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:51:45] "POST /api/record_start HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:51:59] "POST /api/record_stop HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:52:00] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:52:09] "POST /api/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:53:26] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:55:31] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:55:31] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:55:31] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:55:31] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:55:41] "[33mPOST /api/audio_reset HTTP/1.1[0m" 404 -
+172.20.10.1 - - [11/Sep/2025 16:56:01] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:56:13] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:56:17] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:56:23] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:56:23] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:56:24] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:56:25] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:56:27] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 16:56:32] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:00:26] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:00:27] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:00:29] "POST /api/mute HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [11/Sep/2025 17:09:27] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:09:28] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:09:34] "POST /api/soundboard/play HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [11/Sep/2025 17:17:59] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:18:04] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:18:07] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:18:12] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:18:16] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:21:49] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:21:49] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:21:49] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:21:49] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:24:14] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:24:19] "POST /api/audio_reset HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:24:35] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:24:37] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:24:40] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:24:41] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:25:16] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:25:31] "GET /api/voice HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [11/Sep/2025 17:26:31] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:31] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:31] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:31] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:55] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:55] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:55] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:55] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:55] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:55] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:56] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:56] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:57] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:26:57] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:00] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:00] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:00] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:00] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:00] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:00] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:01] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:16] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:17] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:17] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:17] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:27:25] "POST /api/set_param HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:11] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:12] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:12] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:12] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:12] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:12] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:12] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:12] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:13] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:13] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:13] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:13] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:13] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:13] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:37:13] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:17] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:17] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:17] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:17] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:18] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:18] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:18] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:18] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:25] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:38:38] "POST /api/set_param HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [11/Sep/2025 17:41:03] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:41:03] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:41:03] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:41:03] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:41:03] "POST /api/set_param HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [11/Sep/2025 17:49:37] "POST /api/reload HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [11/Sep/2025 17:50:20] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:50:20] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:50:20] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:50:20] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:50:54] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:50:54] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:50:54] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:50:54] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:50:54] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:50:55] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:50:55] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:38] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:54:39] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:07] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:08] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:09] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:10] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:10] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:10] "POST /api/set_param HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 17:55:10] "POST /api/set_param HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [11/Sep/2025 18:04:38] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:04:38] "GET /api/recordings HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:04:38] "GET /api/soundboard HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:04:38] "GET /api/voice HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:04:46] "[31m[1mPOST /api/set_param HTTP/1.1[0m" 400 -
+127.0.0.1 - - [11/Sep/2025 18:04:52] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:08:16] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:08:16] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:08:16] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:08:16] "GET /api/voice HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:08:53] "[31m[1mPOST /api/set_param HTTP/1.1[0m" 400 -
+127.0.0.1 - - [11/Sep/2025 18:08:58] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:09:40] "[31m[1mPOST /api/set_param HTTP/1.1[0m" 400 -
+172.20.10.1 - - [11/Sep/2025 18:09:46] "POST /api/reload HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:09:57] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:09:57] "GET /api/recordings HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:09:57] "GET /api/voice HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:09:57] "GET /api/soundboard HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:09:59] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:10:55] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:10:56] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:10:59] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:11:01] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:11:36] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:11:36] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:11:36] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:11:36] "GET /api/voice HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [11/Sep/2025 18:11:52] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:11:52] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:11:52] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:11:52] "GET /api/voice HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:12:18] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Sep/2025 18:12:18] "GET /api/recordings HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:12:18] "GET /api/soundboard HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:12:18] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:12:39] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:12:39] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:12:39] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:12:39] "GET /api/voice HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:12:56] "[31m[1mPOST /api/set_param HTTP/1.1[0m" 400 -
+127.0.0.1 - - [11/Sep/2025 18:12:59] "GET /api/soundboard HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2025 18:13:02] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:18:43] "[31m[1mPOST /api/set_param HTTP/1.1[0m" 400 -
+172.20.10.1 - - [11/Sep/2025 18:21:13] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:21:21] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:21:30] "POST /api/toggle_mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:21:32] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:21:39] "POST /api/reload HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [11/Sep/2025 18:26:35] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:26:35] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:26:35] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:26:35] "GET /api/voice HTTP/1.1" 200 -
+Terminated
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://172.20.10.8:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [11/Sep/2025 18:29:56] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:29:56] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:29:56] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 18:29:56] "GET /api/voice HTTP/1.1" 200 -

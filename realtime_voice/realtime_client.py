@@ -24,6 +24,7 @@ except Exception as exc:  # pragma: no cover
 	print(str(exc), file=sys.stderr)
 
 import websockets
+import websockets.server
 
 try:
 	import soundfile as sf
@@ -70,10 +71,11 @@ class AudioDevices:
 			idx = self._find_by_name_substring([override], require_input=True)
 			if idx is not None:
 				return idx
-		# Pulse echo-cancel source if present
-		idx = self._find_by_name_substring(["ec_source", "echo-cancel", "pulse"], require_input=True)
-		if idx is not None:
-			return idx
+		# Prefer echo-cancel only if not disabled
+		if os.environ.get("DISABLE_AEC", "0") != "1":
+			idx = self._find_by_name_substring(["ec_source", "echo-cancel"], require_input=True)
+			if idx is not None:
+				return idx
 		for idx, dev in enumerate(self.devices):
 			if dev.get("max_input_channels", 0) <= 0:
 				continue
@@ -91,10 +93,11 @@ class AudioDevices:
 			idx = self._find_by_name_substring([override], require_output=True)
 			if idx is not None:
 				return idx
-		# Pulse echo-cancel sink if present
-		idx = self._find_by_name_substring(["ec_sink", "echo-cancel", "pulse"], require_output=True)
-		if idx is not None:
-			return idx
+		# Prefer echo-cancel only if not disabled
+		if os.environ.get("DISABLE_AEC", "0") != "1":
+			idx = self._find_by_name_substring(["ec_sink", "echo-cancel"], require_output=True)
+			if idx is not None:
+				return idx
 		for idx, dev in enumerate(self.devices):
 			if dev.get("max_output_channels", 0) <= 0:
 				continue
@@ -112,10 +115,10 @@ async def connect_realtime(api_key: str):
 		"OpenAI-Beta": "realtime=v1",
 	}
 	if DEBUG:
-		print(f"[DEBUG] Connecting to {OPENAI_REALTIME_URL}")
+		print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Connecting to {OPENAI_REALTIME_URL}")
 	async with websockets.connect(OPENAI_REALTIME_URL, extra_headers=headers, max_size=None) as ws:
 		if DEBUG:
-			print("[DEBUG] WebSocket connected")
+			print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} WebSocket connected")
 		yield ws
 
 
@@ -174,7 +177,7 @@ class RealtimeVoiceClient:
 		self._assistant_active: bool = False
 		self._playback_tail_until_ms: float = 0.0
 		self._rms_gate: float = float(os.environ.get("INPUT_RMS_GATE", "0.012"))
-		self._hangover_ms: float = float(os.environ.get("HANGOVER_MS", "200"))
+		self._hangover_ms: float = float(os.environ.get("HANGOVER_MS", "500"))
 		self._vad_speaking: bool = False
 		self._vad_silence_ms: float = float(os.environ.get("VAD_SILENCE_MS", "1200"))
 		self._silence_accum_ms: float = 0.0
@@ -196,8 +199,22 @@ class RealtimeVoiceClient:
 		self._barge_in: bool = os.environ.get("BARGE_IN", "0") == "1"
 		self._last_cancel_ms: float = 0.0
 		self._cancel_cooldown_ms: float = float(os.environ.get("BARGE_CANCEL_COOLDOWN_MS", "250"))
+		# VAD mode: "client" (manual control) or "server" (OpenAI handles ASR)
+		self._vad_mode: str = os.environ.get("VAD_MODE", "server")
+		# VAD timeout to prevent getting stuck
+		self._vad_last_activity_ms: float = 0.0
+		self._vad_timeout_ms: float = float(os.environ.get("VAD_TIMEOUT_MS", "10000"))
 		# Interactive mic mute toggle
 		self._muted: bool = False
+		# Conversation logging
+		self._log_conversation: bool = os.environ.get("LOG_CONVERSATION", "0") == "1"
+		self._conversation_log: List[dict] = []
+		self._conversation_session_id: str = f"session_{int(time.time())}"
+		self._log_dir: str = os.path.join(os.path.dirname(__file__), "logs")
+		# Audio visualization WebSocket
+		self._viz_clients: set = set()
+		self._viz_server = None
+		self._viz_port: int = int(os.environ.get("AUDIO_VIZ_PORT", "9001"))
 		# Recording state
 		self._recording: bool = False
 		self._record_buffer: List[np.ndarray] = []
@@ -293,6 +310,9 @@ class RealtimeVoiceClient:
 
 		# Install FIFO control reader (for web UI commands)
 		self._install_fifo_reader()
+		
+		# Start audio visualization WebSocket server
+		self._start_viz_server()
 
 		# Determine output channels; prefer 2 if available
 		try:
@@ -304,16 +324,16 @@ class RealtimeVoiceClient:
 			self._output_channels = 1
 
 		if DEBUG:
-			print(f"[DEBUG] Using device sample rate: {self.sample_rate_hz} Hz (server {SERVER_SAMPLE_RATE_HZ} Hz)")
-			print(f"[DEBUG] Output channels: {self._output_channels}")
+			print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Using device sample rate: {self.sample_rate_hz} Hz (server {SERVER_SAMPLE_RATE_HZ} Hz)")
+			print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Output channels: {self._output_channels}")
 
 		# Log devices
 		if DEBUG:
 			devices = sd.query_devices()
 			inp = devices[self.input_device_index] if self.input_device_index is not None else None
 			outp = devices[self.output_device_index] if self.output_device_index is not None else None
-			print(f"[DEBUG] Input device idx={self.input_device_index} name={inp['name'] if inp else None}")
-			print(f"[DEBUG] Output device idx={self.output_device_index} name={outp['name'] if outp else None}")
+			print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Input device idx={self.input_device_index} name={inp['name'] if inp else None}")
+			print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Output device idx={self.output_device_index} name={outp['name'] if outp else None}")
 
 		# Open raw output stream with callback-driven ring buffer playback
 		bytes_per_sample = 2  # int16
@@ -385,6 +405,25 @@ class RealtimeVoiceClient:
 				# Compute RMS on device-rate audio
 				lvl_dev = float(np.sqrt(np.mean(np.square(data)))) if data.size else 0.0
 				frame_ms = 1000.0 * frames / float(self.sample_rate_hz)
+				# Send mic level to visualization clients
+				self._send_viz_data("mic", lvl_dev, data)
+				
+				# Update activity timestamp
+				now_ms = time.monotonic() * 1000.0
+				if lvl_dev > 0.001:  # Any significant audio activity
+					self._vad_last_activity_ms = now_ms
+				
+				# Auto-reset if VAD gets stuck (no activity for timeout period)
+				if (self._vad_speaking and 
+					now_ms - self._vad_last_activity_ms > self._vad_timeout_ms and
+					not self._assistant_active):
+					if DEBUG:
+						print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} VAD timeout - auto-reset")
+					self._vad_speaking = False
+					self._speech_accum_ms = 0.0
+					self._silence_accum_ms = 0.0
+					self._awaiting_response = False
+					return
 				# Hysteresis: start/continue speaking on higher threshold; stop on lower
 				if lvl_dev >= self._rms_start_gate:
 					if not self._vad_speaking:
@@ -394,9 +433,33 @@ class RealtimeVoiceClient:
 					self._speech_accum_ms += frame_ms
 				elif lvl_dev <= self._rms_stop_gate:
 					self._silence_accum_ms += frame_ms
-					if self._vad_speaking and self._silence_accum_ms >= self._vad_silence_ms and not self._assistant_active and not self._awaiting_response:
-						# Only end turn if we had enough speech
-						if self._speech_accum_ms >= self._min_speech_ms:
+					# Check for commit conditions
+					should_commit = (self._vad_speaking and 
+									self._silence_accum_ms >= self._vad_silence_ms and 
+									not self._assistant_active and 
+									not self._awaiting_response and
+									self._speech_accum_ms >= self._min_speech_ms)
+					if should_commit:
+						self._vad_speaking = False
+						_schedule_json({"type": "input_audio_buffer.commit"})
+						_schedule_json({
+							"type": "response.create",
+							"response": {"voice": self.voice}
+						})
+						self._awaiting_response = True
+						self._speech_accum_ms = 0.0
+						return
+				else:
+					# Between thresholds: if we were speaking, accumulate speech time and some silence
+					if self._vad_speaking:
+						self._speech_accum_ms += frame_ms
+						self._silence_accum_ms += frame_ms  # Count as silence too
+						# Check for commit even in the middle range if enough silence
+						should_commit = (self._silence_accum_ms >= self._vad_silence_ms and 
+										not self._assistant_active and 
+										not self._awaiting_response and
+										self._speech_accum_ms >= self._min_speech_ms)
+						if should_commit:
 							self._vad_speaking = False
 							_schedule_json({"type": "input_audio_buffer.commit"})
 							_schedule_json({
@@ -407,13 +470,7 @@ class RealtimeVoiceClient:
 							self._speech_accum_ms = 0.0
 							return
 					else:
-						# not enough speech; keep waiting or drop
-						pass
-				else:
-					# Between thresholds: hold state; if speaking, accumulate speech
-					if self._vad_speaking:
-						self._speech_accum_ms += frame_ms
-					self._silence_accum_ms = 0.0
+						self._silence_accum_ms = 0.0
 				# Forward audio only if considered speaking
 				if not self._vad_speaking:
 					return
@@ -447,38 +504,48 @@ class RealtimeVoiceClient:
 		receiver_task = None
 		stop_task = None
 		stdin_task = None
+		backoff = 1.0
 		try:
-			async with connect_realtime(self.api_key) as ws:
-				self._ws = ws
-				# Configure session: audio formats, voice, server VAD
-				await self._send_json({
-					"type": "session.update",
-					"session": {
-						"input_audio_format": "pcm16",
-						"output_audio_format": "pcm16",
-						"voice": self.voice,
-						"turn_detection": {"type": "server_vad"},
-						"instructions": self._build_instructions(),
-					}
-				})
-				if DEBUG:
-					print("[DEBUG] Sent session.update; starting continuous streaming")
+			while self._stop is not None and not self._stop.is_set():
+				try:
+					async with connect_realtime(self.api_key) as ws:
+						self._ws = ws
+						# Configure session: audio formats, voice, VAD mode
+						turn_detection = {"type": "server_vad"} if self._vad_mode == "server" else None
+						await self._send_json({
+							"type": "session.update",
+							"session": {
+								"input_audio_format": "pcm16",
+								"output_audio_format": "pcm16",
+								"voice": self.voice,
+								"turn_detection": turn_detection,
+								"instructions": self._build_instructions(),
+							}
+						})
+						if DEBUG:
+							print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Sent session.update; starting streaming")
 
-				# Optional: prime an initial response (intro)
-				if os.environ.get("SKIP_INTRO", "0") != "1":
-					await self._send_json({
-						"type": "response.create",
-						"response": {"voice": self.voice}
-					})
+						# Optional: prime an initial response (intro)
+						if os.environ.get("SKIP_INTRO", "0") != "1":
+							await self._send_json({
+								"type": "response.create",
+								"response": {"voice": self.voice}
+							})
+							if DEBUG:
+								print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Sent response.create")
+
+						# Start tasks and wait for stop
+						sender_task = asyncio.create_task(self._audio_sender())
+						receiver_task = asyncio.create_task(self._receiver_loop(output_stream))
+						stop_task = asyncio.create_task(self._stop.wait())
+						stdin_task = asyncio.create_task(self._stdin_quit())
+						await asyncio.wait([sender_task, receiver_task, stop_task, stdin_task], return_when=asyncio.FIRST_COMPLETED)
+						backoff = 1.0
+				except Exception as exc:
 					if DEBUG:
-						print("[DEBUG] Sent response.create")
-
-				# Start tasks and wait for stop
-				sender_task = asyncio.create_task(self._audio_sender())
-				receiver_task = asyncio.create_task(self._receiver_loop(output_stream))
-				stop_task = asyncio.create_task(self._stop.wait())
-				stdin_task = asyncio.create_task(self._stdin_quit())
-				await asyncio.wait([sender_task, receiver_task, stop_task, stdin_task], return_when=asyncio.FIRST_COMPLETED)
+						print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Realtime connection error: {exc}; retrying in {backoff:.1f}s")
+					await asyncio.sleep(backoff)
+					backoff = min(backoff * 2.0, 10.0)
 		finally:
 			# Remove FIFO reader and close descriptors
 			try:
@@ -619,6 +686,37 @@ class RealtimeVoiceClient:
 			if isinstance(val, bool):
 				self._barge_in = val
 				print(f"[INFO] Barge-in is now {'ENABLED' if self._barge_in else 'DISABLED'}")
+		elif cmd == "set_hangover":
+			try:
+				val = float(obj.get("value", 0))
+				if 0 <= val <= 2000:
+					self._hangover_ms = val
+					print(f"[INFO] Hangover set to {self._hangover_ms:.0f}ms")
+			except Exception:
+				pass
+		elif cmd == "set_vad_start_gate":
+			try:
+				val = float(obj.get("value", 0))
+				if 0.001 <= val <= 0.1:
+					self._rms_start_gate = val
+					print(f"[INFO] VAD start gate set to {self._rms_start_gate:.3f}")
+			except Exception:
+				pass
+		elif cmd == "set_vad_silence":
+			try:
+				val = float(obj.get("value", 0))
+				if 100 <= val <= 5000:
+					self._vad_silence_ms = val
+					print(f"[INFO] VAD silence set to {self._vad_silence_ms:.0f}ms")
+			except Exception:
+				pass
+		elif cmd == "set_vad_mode":
+			val = str(obj.get("value", "")).strip().lower()
+			if val in ("client", "server"):
+				self._vad_mode = val
+				print(f"[INFO] VAD mode set to {self._vad_mode} (restart required)")
+			else:
+				print(f"[WARN] Invalid VAD mode: {val}. Use 'client' or 'server'")
 
 		elif cmd == "record_start":
 			if sf is None:
@@ -731,7 +829,17 @@ class RealtimeVoiceClient:
 		if DEBUG:
 			etype = obj.get("type")
 			if etype != "input_audio_buffer.append":
-				print(f"[DEBUG] -> {etype}")
+				print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} -> {etype}")
+		# Log conversation events
+		if self._log_conversation:
+			etype = obj.get("type", "")
+			if etype == "input_audio_buffer.commit":
+				self._conversation_log.append({
+					"timestamp": time.strftime('%Y-%m-%d %H:%M:%S'),
+					"direction": "user",
+					"type": "speech_start",
+					"note": "User started speaking"
+				})
 		msg = json.dumps(obj)
 		assert self._ws is not None
 		# Avoid sending on closed socket
@@ -773,11 +881,22 @@ class RealtimeVoiceClient:
 				session = obj.get("session", {})
 				ack_voice = session.get("voice")
 				if ack_voice:
-					print(f"[DEBUG] Server acknowledged voice: {ack_voice}")
+					print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Server acknowledged voice: {ack_voice}")
 			elif event_type == "response.output_text.delta":
 				delta = obj.get("delta", "")
 				if delta:
 					print(delta, end="", flush=True)
+					# Log text deltas for conversation tracking
+					if self._log_conversation:
+						if not self._conversation_log or self._conversation_log[-1].get("type") != "assistant_text":
+							self._conversation_log.append({
+								"timestamp": time.strftime('%Y-%m-%d %H:%M:%S'),
+								"direction": "assistant",
+								"type": "assistant_text",
+								"text": delta
+							})
+						else:
+							self._conversation_log[-1]["text"] += delta
 			elif event_type == "response.output_text.done":
 				print()
 			elif event_type == "response.created":
@@ -808,6 +927,29 @@ class RealtimeVoiceClient:
 				self._assistant_active = False
 				# Apply hangover before re-opening mic to avoid capturing tail audio
 				self._playback_tail_until_ms = time.monotonic() * 1000.0 + self._hangover_ms
+				# Append to session conversation log if enabled (don't clear; accumulate)
+				if self._log_conversation and self._conversation_log:
+					try:
+						os.makedirs(self._log_dir, exist_ok=True)
+						log_path = os.path.join(self._log_dir, f"conversation_{self._conversation_session_id}.json")
+						# Load existing session log if present
+						existing = []
+						if os.path.exists(log_path):
+							try:
+								with open(log_path, 'r', encoding='utf-8') as f:
+									existing = json.load(f) or []
+							except Exception:
+								pass
+						# Append new entries and save
+						existing.extend(self._conversation_log)
+						with open(log_path, 'w', encoding='utf-8') as f:
+							json.dump(existing, f, indent=2, ensure_ascii=False)
+						if DEBUG:
+							print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Conversation appended to {os.path.basename(log_path)}")
+						self._conversation_log = []
+					except Exception as exc:
+						if DEBUG:
+							print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Failed to save conversation log: {exc}")
 
 	def _save_recording(self) -> None:
 		"""Write buffered recording to WAV file."""
@@ -877,6 +1019,97 @@ class RealtimeVoiceClient:
 			return int(sd.default.samplerate) if sd.default.samplerate else self.sample_rate_hz
 		except Exception:
 			return self.sample_rate_hz
+
+	def _start_viz_server(self) -> None:
+		"""Start WebSocket server for audio visualization data."""
+		try:
+			async def handle_viz_client(websocket, path):
+				self._viz_clients.add(websocket)
+				if DEBUG:
+					print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Viz client connected")
+				try:
+					await websocket.wait_closed()
+				finally:
+					self._viz_clients.discard(websocket)
+					if DEBUG:
+						print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Viz client disconnected")
+
+			# Start server in a separate thread
+			def run_viz_server():
+				try:
+					loop = asyncio.new_event_loop()
+					asyncio.set_event_loop(loop)
+					start_server = websockets.server.serve(handle_viz_client, "0.0.0.0", self._viz_port)
+					loop.run_until_complete(start_server)
+					loop.run_forever()
+				except Exception as exc:
+					if DEBUG:
+						print(f"[DEBUG] Viz server error: {exc}")
+
+			import threading
+			viz_thread = threading.Thread(target=run_viz_server, daemon=True)
+			viz_thread.start()
+			if DEBUG:
+				print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Audio viz server started on port {self._viz_port}")
+		except Exception as exc:
+			if DEBUG:
+				print(f"[DEBUG] Failed to start viz server: {exc}")
+
+	def _send_viz_data(self, source: str, level: float, audio_data: Optional[np.ndarray]) -> None:
+		"""Send audio level and detailed spectrum data to visualization clients."""
+		if not self._viz_clients:
+			return
+		try:
+			# Compute detailed frequency spectrum if audio data available
+			spectrum = []
+			if audio_data is not None and len(audio_data) > 0:
+				# Apply window and compute FFT
+				windowed = audio_data[:, 0] * np.hanning(len(audio_data))
+				fft = np.abs(np.fft.rfft(windowed))
+				# Convert to dB and normalize
+				fft_db = 20 * np.log10(np.maximum(fft, 1e-10))
+				fft_norm = np.maximum(0, (fft_db + 60) / 60)  # Normalize -60dB to 0dB range
+				# Create 32 frequency bins for better resolution
+				freq_bins = 32
+				if len(fft_norm) >= freq_bins:
+					bin_size = len(fft_norm) // freq_bins
+					spectrum = [float(np.max(fft_norm[i*bin_size:(i+1)*bin_size])) 
+							   for i in range(freq_bins)]
+				else:
+					spectrum = fft_norm.tolist()
+			
+			# Frequency labels (approximate for 48kHz sample rate)
+			sample_rate = self.sample_rate_hz
+			freq_labels = []
+			if len(spectrum) > 0:
+				for i in range(len(spectrum)):
+					freq = (i + 1) * (sample_rate / 2) / len(spectrum)
+					if freq < 1000:
+						freq_labels.append(f"{freq:.0f}Hz")
+					else:
+						freq_labels.append(f"{freq/1000:.1f}kHz")
+			
+			msg = {
+				"source": source,
+				"level": level,
+				"spectrum": spectrum,
+				"freq_labels": freq_labels,
+				"sample_rate": sample_rate,
+				"timestamp": time.time()
+			}
+			
+			# Send to all connected clients (non-blocking)
+			if self._loop:
+				for client in list(self._viz_clients):
+					try:
+						self._loop.call_soon_threadsafe(
+							asyncio.create_task,
+							client.send(json.dumps(msg))
+						)
+					except Exception:
+						self._viz_clients.discard(client)
+		except Exception:
+			pass
 
 
 def main() -> int:

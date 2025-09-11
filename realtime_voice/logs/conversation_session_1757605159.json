@@ -1,0 +1,38 @@
+[
+  {
+    "timestamp": "2025-09-11 17:39:43",
+    "direction": "user",
+    "type": "speech_start",
+    "note": "User started speaking"
+  },
+  {
+    "timestamp": "2025-09-11 17:40:23",
+    "direction": "user",
+    "type": "speech_start",
+    "note": "User started speaking"
+  },
+  {
+    "timestamp": "2025-09-11 17:40:54",
+    "direction": "user",
+    "type": "speech_start",
+    "note": "User started speaking"
+  },
+  {
+    "timestamp": "2025-09-11 17:41:23",
+    "direction": "user",
+    "type": "speech_start",
+    "note": "User started speaking"
+  },
+  {
+    "timestamp": "2025-09-11 17:41:58",
+    "direction": "user",
+    "type": "speech_start",
+    "note": "User started speaking"
+  },
+  {
+    "timestamp": "2025-09-11 17:43:01",
+    "direction": "user",
+    "type": "speech_start",
+    "note": "User started speaking"
+  }
+]

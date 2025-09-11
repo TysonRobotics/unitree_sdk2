@@ -2659,3 +2659,296 @@ Realtime API error: {'type': 'error', 'event_id': 'event_CEbxH6C9GXQVAbWK0APHU',
 [INFO] Playing: arnold-ill-be-back-8276.wav
 Realtime API error: {'type': 'error', 'event_id': 'event_CEbxKQjAnbYvfX1mKkerU', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
 [INFO] Playing: follow_me_on_instagram_at_tyson_robotics.wav
+Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<RealtimeVoiceClient._receiver_loop() done, defined at realtime_client.py:761> exception=ConnectionClosedError(None, None, None)>
+Traceback (most recent call last):
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 953, in transfer_data
+    message = await self.read_message()
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 1023, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 1098, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 1155, in read_frame
+    frame = await Frame.read(
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/framing.py", line 70, in read
+    data = await reader(2)
+  File "/usr/lib/python3.8/asyncio/streams.py", line 723, in readexactly
+    await self._wait_for_data('readexactly')
+  File "/usr/lib/python3.8/asyncio/streams.py", line 517, in _wait_for_data
+    await self._waiter
+  File "/usr/lib/python3.8/asyncio/selector_events.py", line 848, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "realtime_client.py", line 763, in _receiver_loop
+    async for message in self._ws:
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 492, in __aiter__
+    yield await self.recv()
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 562, in recv
+    await self.ensure_open()
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 929, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+nohup: ignoring input
+OPENAI_API_KEY is not set
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'ret' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1736
+Expression 'AlsaOpen( &alsaApi->baseHostApiRep, params, streamDir, &self->pcm )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 1904
+Expression 'PaAlsaStreamComponent_Initialize( &self->playback, alsaApi, outParams, StreamDirection_Out, NULL != callback )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2175
+Expression 'PaAlsaStream_Initialize( stream, alsaHostApi, inputParameters, outputParameters, sampleRate, framesPerBuffer, callback, streamFlags, userData )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2839
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Expression 'paInvalidSampleRate' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2048
+Expression 'PaAlsaStreamComponent_InitialConfigure( &self->playback, outParams, self->primeBuffers, hwParamsPlayback, &realSr )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2721
+Expression 'PaAlsaStream_Configure( stream, inputParameters, outputParameters, sampleRate, framesPerBuffer, &inputLatency, &outputLatency, &hostBufferSizeMode )' failed in 'src/hostapi/alsa/pa_linux_alsa.c', line: 2842
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+Realtime API error: {'type': 'error', 'event_id': 'event_CEd2GChpKOx01dSSsa72B', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CEd4ebIoBx3hUPTCAWpQM', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Mic is now UNMUTED
+Realtime API error: {'type': 'error', 'event_id': 'event_CEd4jVzAkZzCYuEoJsnlb', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CEd7HX5AaVEMJU4oaGQQI', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+[INFO] Conversation logged to conversation_20250911_170331.json
+Realtime API error: {'type': 'error', 'event_id': 'event_CEd97qtvCmHLy7zsHKTkA', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+[INFO] Conversation logged to conversation_20250911_170507.json
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+[INFO] Conversation logged to conversation_20250911_170738.json
+Realtime API error: {'type': 'error', 'event_id': 'event_CEdCkDaMIY7F8jLvxvOor', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+[INFO] Conversation logged to conversation_20250911_170853.json
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CEdDMP0KRgd3QCFJ7BoKe', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: that-is-the-correct-answer-gameshow-voice-movie-guy-1-00-02.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CEdDS7wM3fOBmyUqRM90m', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CEdEokZW8YXlD8F2UHWUf', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+[INFO] Conversation logged to conversation_20250911_171100.json
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<RealtimeVoiceClient._receiver_loop() done, defined at realtime_client.py:787> exception=ConnectionClosedError(Close(code=1011, reason='keepalive ping timeout'), Close(code=1011, reason='keepalive ping timeout'), True)>
+Traceback (most recent call last):
+  File "realtime_client.py", line 789, in _receiver_loop
+    async for message in self._ws:
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 492, in __aiter__
+    yield await self.recv()
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 562, in recv
+    await self.ensure_open()
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 929, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+Realtime API error: {'type': 'error', 'event_id': 'event_CEdTiz4ewUNgl0ttEIIpU', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+[INFO] VAD silence set to 2100ms
+[INFO] VAD silence set to 2200ms
+[INFO] VAD silence set to 2300ms
+[INFO] VAD silence set to 2400ms
+[INFO] VAD silence set to 2500ms
+[INFO] VAD silence set to 2600ms
+[INFO] VAD silence set to 2700ms
+[INFO] VAD silence set to 2800ms
+[INFO] VAD silence set to 2900ms
+[INFO] VAD silence set to 3000ms
+[INFO] VAD silence set to 2800ms
+[INFO] VAD silence set to 2700ms
+[INFO] VAD silence set to 2600ms
+[INFO] VAD silence set to 2500ms
+[INFO] VAD silence set to 2400ms
+[INFO] VAD silence set to 2500ms
+[INFO] VAD silence set to 2600ms
+[INFO] Hangover set to 450ms
+[INFO] Hangover set to 550ms
+[INFO] Hangover set to 600ms
+[INFO] Hangover set to 650ms
+[INFO] VAD silence set to 2700ms
+[INFO] VAD silence set to 2800ms
+[INFO] VAD silence set to 3000ms
+[INFO] VAD silence set to 3200ms
+[INFO] VAD silence set to 3400ms
+[INFO] VAD silence set to 3600ms
+[INFO] VAD silence set to 3700ms
+[INFO] VAD silence set to 3900ms
+[INFO] VAD silence set to 4100ms
+[INFO] VAD silence set to 4200ms
+[INFO] VAD silence set to 4300ms
+[INFO] VAD silence set to 4400ms
+[INFO] VAD silence set to 4500ms
+[INFO] VAD silence set to 4600ms
+[INFO] VAD silence set to 4700ms
+[INFO] VAD silence set to 4800ms
+[INFO] VAD silence set to 4900ms
+[INFO] VAD silence set to 5000ms
+Realtime API error: {'type': 'error', 'event_id': 'event_CEdVLyMMpXuaTfb6bG3hp', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CEdWwgQjtc7O9WPByX26n', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+  File "realtime_client.py", line 464
+    await self._send_json({
+    ^
+SyntaxError: invalid syntax
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+[INFO] VAD silence set to 4900ms
+[INFO] VAD silence set to 4800ms
+[INFO] VAD silence set to 4600ms
+[INFO] VAD silence set to 4400ms
+[INFO] VAD silence set to 4200ms
+[INFO] VAD silence set to 4000ms
+[INFO] VAD silence set to 3900ms
+[INFO] VAD silence set to 3700ms
+[INFO] VAD silence set to 3600ms
+[INFO] VAD silence set to 3500ms
+[INFO] VAD silence set to 3400ms
+[INFO] VAD silence set to 3300ms
+[INFO] VAD silence set to 3200ms
+[INFO] VAD silence set to 3100ms
+[INFO] VAD silence set to 3000ms
+[INFO] VAD silence set to 2900ms
+[INFO] VAD silence set to 2800ms
+[INFO] VAD silence set to 2700ms
+[INFO] VAD silence set to 2600ms
+[INFO] VAD silence set to 2500ms
+[INFO] VAD silence set to 2400ms
+[INFO] VAD silence set to 2300ms
+[INFO] VAD silence set to 2200ms
+[INFO] VAD silence set to 2100ms
+[INFO] VAD silence set to 2000ms
+[INFO] VAD silence set to 1900ms
+[INFO] VAD silence set to 1800ms
+[INFO] VAD silence set to 1700ms
+[INFO] VAD silence set to 1600ms
+[INFO] VAD silence set to 1500ms
+[INFO] VAD silence set to 1400ms
+[INFO] VAD silence set to 1500ms
+[INFO] VAD silence set to 1600ms
+[INFO] VAD silence set to 1700ms
+[INFO] VAD silence set to 1800ms
+[INFO] VAD silence set to 1700ms
+[INFO] VAD silence set to 1600ms
+[INFO] VAD silence set to 1500ms
+[INFO] VAD silence set to 1400ms
+[INFO] VAD silence set to 1300ms
+[INFO] VAD silence set to 1200ms
+[INFO] VAD silence set to 1300ms
+[INFO] VAD silence set to 1400ms
+[INFO] VAD silence set to 1500ms
+[INFO] VAD silence set to 1400ms
+[INFO] VAD silence set to 1300ms
+[INFO] VAD silence set to 1200ms
+[INFO] VAD silence set to 1100ms
+[INFO] VAD silence set to 1000ms
+[INFO] VAD silence set to 900ms
+[INFO] VAD silence set to 800ms
+[INFO] VAD silence set to 700ms
+[INFO] Hangover set to 600ms
+[INFO] Hangover set to 550ms
+[INFO] Hangover set to 500ms
+[INFO] Hangover set to 450ms
+[INFO] VAD silence set to 600ms
+[INFO] VAD silence set to 500ms
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+[INFO] VAD start gate set to 0.011
+[INFO] VAD start gate set to 0.012
+[INFO] VAD start gate set to 0.013
+[INFO] VAD start gate set to 0.014
+[INFO] VAD start gate set to 0.015
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+[INFO] VAD silence set to 1800ms
+[INFO] VAD silence set to 1700ms
+[INFO] VAD silence set to 1600ms
+[INFO] VAD silence set to 1500ms
+[INFO] VAD silence set to 1400ms
+[INFO] VAD silence set to 1300ms
+[INFO] VAD silence set to 1200ms
+[INFO] VAD silence set to 1300ms
+[INFO] VAD silence set to 1400ms
+[INFO] VAD silence set to 1600ms
+[INFO] VAD silence set to 1900ms
+[INFO] VAD silence set to 2100ms
+[INFO] VAD silence set to 2400ms
+[INFO] VAD silence set to 2600ms
+[INFO] VAD silence set to 2700ms
+[INFO] VAD silence set to 2800ms
+[INFO] VAD silence set to 2900ms
+[INFO] VAD silence set to 3000ms
+[INFO] VAD silence set to 3100ms
+[INFO] VAD silence set to 3200ms
+[INFO] VAD silence set to 3300ms
+[INFO] VAD silence set to 3500ms
+[INFO] VAD silence set to 3600ms
+[INFO] VAD silence set to 3700ms
+[INFO] VAD silence set to 3800ms
+[INFO] VAD silence set to 3900ms
+[INFO] VAD silence set to 4000ms
+[INFO] VAD silence set to 3800ms
+[INFO] VAD silence set to 3600ms
+[INFO] VAD silence set to 3500ms
+[INFO] VAD silence set to 3400ms
+[INFO] VAD silence set to 3300ms
+[INFO] VAD silence set to 3200ms
+[INFO] VAD silence set to 3100ms
+[INFO] VAD silence set to 3000ms
+[INFO] VAD silence set to 2900ms
+[INFO] VAD silence set to 2800ms
+[INFO] VAD silence set to 2700ms
+[INFO] VAD silence set to 2600ms
+[INFO] VAD silence set to 2500ms
+[INFO] VAD silence set to 2400ms
+[INFO] VAD silence set to 2300ms
+[INFO] VAD silence set to 2200ms
+[INFO] VAD silence set to 2100ms
+[INFO] VAD silence set to 2000ms
+[INFO] VAD silence set to 1900ms
+[INFO] VAD silence set to 1800ms
+[INFO] VAD silence set to 1700ms
+[INFO] VAD silence set to 1600ms
+[INFO] VAD silence set to 1500ms
+[INFO] VAD silence set to 1400ms
+[INFO] VAD silence set to 1300ms
+[INFO] VAD silence set to 1200ms
+[INFO] VAD silence set to 1100ms
+[INFO] VAD silence set to 1000ms
+[INFO] VAD silence set to 900ms
+[INFO] VAD silence set to 800ms
+[INFO] VAD silence set to 700ms
+[INFO] VAD silence set to 600ms
+[INFO] VAD silence set to 500ms
+Task exception was never retrieved
+future: <Task finished name='Task-795' coro=<WebSocketCommonProtocol.send() done, defined at /home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py:574> exception=ConnectionClosedOK(Close(code=1001, reason=''), Close(code=1001, reason=''), True)>
+Traceback (most recent call last):
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 628, in send
+    await self.ensure_open()
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 929, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+Task exception was never retrieved
+future: <Task finished name='Task-797' coro=<WebSocketCommonProtocol.send() done, defined at /home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py:574> exception=ConnectionClosedOK(Close(code=1001, reason=''), Close(code=1001, reason=''), True)>
+Traceback (most recent call last):
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 628, in send
+    await self.ensure_open()
+  File "/home/unitree/unitree_sdk2/realtime_voice/.venv/lib/python3.8/site-packages/websockets/legacy/protocol.py", line 929, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+[INFO] Playing: hello-there-meme-voice-jam-fx-1-00-01.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CEeArgwU6p2xSubJzC4Xx', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+[INFO] Playing: arnold-ill-be-back-8276.wav
+Realtime API error: {'type': 'error', 'event_id': 'event_CEeAvmbw6c9MsCv9WS2Bf', 'error': {'type': 'invalid_request_error', 'code': 'response_cancel_not_active', 'message': 'Cancellation failed: no active response found', 'param': None, 'event_id': None}}
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+Press 'q' then Enter to quit; 'm' then Enter to mute/unmute mic; 's' then Enter to stop speaking; 'r' then Enter to reload; '+'/'-' then Enter to change volume (0-100 in steps of 10).
+Realtime API error: {'type': 'error', 'event_id': 'event_CEePUCwLGV1sw2IgjjqlM', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}
+Realtime API error: {'type': 'error', 'event_id': 'event_CEeQqcnxjsDk7U112UlUh', 'error': {'type': 'invalid_request_error', 'code': 'input_audio_buffer_commit_empty', 'message': 'Error committing input audio buffer: buffer too small. Expected at least 100ms of audio, but buffer only has 0.00ms of audio.', 'param': None, 'event_id': None}}

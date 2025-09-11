@@ -346,6 +346,43 @@ def api_voice_preset_apply():
     return jsonify({"ok": bool(ok1 and ok2)})
 
 
+@app.route("/api/audio_reset", methods=["POST"])
+def api_audio_reset():
+    try:
+        import subprocess
+        script_path = os.path.join(os.path.dirname(__file__), os.pardir, "audio_reset.sh")
+        result = subprocess.run(["/bin/bash", script_path], capture_output=True, text=True, timeout=10)
+        return jsonify({"ok": result.returncode == 0, "output": result.stdout, "error": result.stderr})
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+
+
+@app.route("/api/set_param", methods=["POST"])
+def api_set_param():
+    body = request.get_json(silent=True) or {}
+    param = str(body.get("param") or "").strip()
+    try:
+        value = float(body.get("value", 0))
+    except Exception:
+        return jsonify({"ok": False, "error": "invalid value"}), 400
+    if not param:
+        return jsonify({"ok": False, "error": "missing param"}), 400
+    
+    param_map = {
+        "hangover": "set_hangover",
+        "vad_start_gate": "set_vad_start_gate", 
+        "vad_silence": "set_vad_silence",
+        "vad_mode": "set_vad_mode"
+    }
+    
+    cmd = param_map.get(param)
+    if not cmd:
+        return jsonify({"ok": False, "error": "unknown param"}), 400
+    
+    ok = send_cmd({"cmd": cmd, "value": value})
+    return jsonify({"ok": ok})
+
+
 
 
 

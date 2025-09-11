@@ -19,6 +19,13 @@
     label { display: inline-block; width: 120px; }
     .sb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; width: 100%; }
     .sb-cell button { width: 100%; min-height: clamp(48px, 8vw, 72px); }
+    .spectro-container { display: flex; gap: 12px; flex-wrap: wrap; }
+    .spectro-box { flex: 1; min-width: 280px; border: 1px solid #ccc; border-radius: 8px; padding: 8px; }
+    .spectro-canvas { width: 100%; height: 200px; background: #000; }
+    .param-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+    .param-box { border: 1px solid #ddd; padding: 8px; border-radius: 4px; }
+    .param-box label { display: block; margin-bottom: 4px; font-size: 14px; }
+    .param-box input[type="range"] { width: 100%; }
 
     /* Responsive improvements */
     @media (max-width: 900px) {
@@ -225,14 +232,187 @@
       // Reload the running client so preset takes effect immediately
       await fetch('/api/reload', { method: 'POST' });
     }
+
+    async function audioReset() {
+      try {
+        const res = await fetch('/api/audio_reset', { method: 'POST' });
+        const data = await res.json();
+        console.log('Audio reset:', data);
+      } catch (e) {
+        console.error('Audio reset failed:', e);
+      }
+    }
+
+    function showTab(tabId) {
+      ['tabMain', 'tabSB', 'tabVoice', 'tabControls'].forEach(id => {
+        document.getElementById(id).style.display = id === tabId ? 'block' : 'none';
+      });
+    }
+
+    async function setParam(param, value) {
+      await fetch('/api/set_param', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ param, value: parseFloat(value) })
+      });
+    }
+
+    let vizSocket = null;
+    let micData = { level: 0, spectrum: [], freq_labels: [] };
+    let spkData = { level: 0, spectrum: [], freq_labels: [] };
+    let micHistory = [];
+    let spkHistory = [];
+    const maxHistoryFrames = 100; // 5 seconds at 20 FPS
+
+    function controlsLoad() {
+      // Set default VAD mode UI (server is default)
+      setVadModeUI('server');
+      
+      // Initialize spectrogram canvases
+      const micCanvas = document.getElementById('micSpectro');
+      if (micCanvas) {
+        startVizConnection();
+        // Start animation loop
+        setInterval(() => {
+          drawSpectrogram(micCanvas, micData, 'Microphone', '#0f0');
+        }, 50); // 20 FPS
+      }
+    }
+
+    function startVizConnection() {
+      try {
+        const host = window.location.hostname;
+        const port = 9001; // AUDIO_VIZ_PORT
+        vizSocket = new WebSocket(`ws://${host}:${port}`);
+        
+        vizSocket.onmessage = (event) => {
+          try {
+            const data = JSON.parse(event.data);
+            if (data.source === 'mic') {
+              micData = data;
+              micHistory.push(data.spectrum || []);
+              if (micHistory.length > maxHistoryFrames) micHistory.shift();
+            } else if (data.source === 'speaker') {
+              spkData = data;
+              spkHistory.push(data.spectrum || []);
+              if (spkHistory.length > maxHistoryFrames) spkHistory.shift();
+            }
+          } catch (e) {}
+        };
+
+        vizSocket.onclose = () => {
+          // Reconnect after 2s
+          setTimeout(startVizConnection, 2000);
+        };
+      } catch (e) {
+        setTimeout(startVizConnection, 2000);
+      }
+    }
+
+    function drawSpectrogram(canvas, data, label, color) {
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+      
+      // Clear
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, w, h);
+      
+      const spectrum = data.spectrum || [];
+      const history = label.includes('Microphone') ? micHistory : spkHistory;
+      
+      if (spectrum.length > 0) {
+        // Draw waterfall spectrogram (time scrolling)
+        const spectroHeight = h - 60; // Leave space for labels and level
+        const spectroWidth = w - 80;   // Leave space for freq labels and level meter
+        
+        // Draw historical spectrum as waterfall
+        history.forEach((frame, timeIdx) => {
+          const x = 60 + (timeIdx / maxHistoryFrames) * spectroWidth;
+          frame.forEach((val, freqIdx) => {
+            if (val > 0.1) { // Only draw significant values
+              const y = spectroHeight - (freqIdx / frame.length) * spectroHeight;
+              const intensity = Math.min(255, val * 255);
+              ctx.fillStyle = `rgba(${color === '#0f0' ? intensity + ',255,0' : '255,' + intensity + ',0'}, 0.8)`;
+              ctx.fillRect(x, y, Math.max(1, spectroWidth / maxHistoryFrames), Math.max(1, spectroHeight / frame.length));
+            }
+          });
+        });
+        
+        // Draw current spectrum as bars on the right
+        const barX = w - 60;
+        spectrum.forEach((val, i) => {
+          const barY = spectroHeight - (i / spectrum.length) * spectroHeight;
+          const barHeight = Math.max(1, spectroHeight / spectrum.length);
+          const intensity = Math.min(255, val * 255);
+          ctx.fillStyle = `rgba(${color === '#0f0' ? intensity + ',255,0' : '255,' + intensity + ',0'}, 0.9)`;
+          ctx.fillRect(barX, barY, 50, barHeight);
+        });
+        
+        // Draw frequency labels
+        ctx.fillStyle = '#ccc';
+        ctx.font = '10px monospace';
+        const freqLabels = data.freq_labels || [];
+        const step = Math.max(1, Math.floor(freqLabels.length / 6)); // Show ~6 labels
+        for (let i = 0; i < freqLabels.length; i += step) {
+          const y = spectroHeight - (i / freqLabels.length) * spectroHeight;
+          ctx.fillText(freqLabels[i], 5, y + 5);
+        }
+      }
+      
+      // Draw level meter
+      ctx.fillStyle = color;
+      const levelHeight = Math.min(spectroHeight, (data.level || 0) * spectroHeight * 20);
+      ctx.fillRect(barX + 55, spectroHeight - levelHeight, 15, levelHeight);
+      
+      // Labels and info
+      ctx.fillStyle = '#fff';
+      ctx.font = '12px monospace';
+      ctx.fillText(label, 5, 15);
+      ctx.fillText(`RMS: ${(data.level || 0).toFixed(4)}`, 5, h - 25);
+      ctx.fillText(`Time →`, spectroWidth / 2, h - 5);
+      ctx.fillText('Freq', barX + 10, h - 5);
+    }
+
+    function setVadModeUI(mode) {
+      const clientBtn = document.getElementById('vadModeClient');
+      const serverBtn = document.getElementById('vadModeServer');
+      const clientParams = document.getElementById('clientVadParams');
+      const serverInfo = document.getElementById('serverVadInfo');
+      
+      if (mode === 'server') {
+        clientBtn.className = 'toggle';
+        serverBtn.className = 'toggle ok';
+        clientParams.style.display = 'none';
+        serverInfo.style.display = 'block';
+      } else {
+        clientBtn.className = 'toggle ok';
+        serverBtn.className = 'toggle';
+        clientParams.style.display = 'block';
+        serverInfo.style.display = 'none';
+      }
+    }
+
+    function setVadMode(mode) {
+      // Update UI
+      setVadModeUI(mode);
+      
+      // Send to backend
+      setParam('vad_mode', mode);
+      
+      // Show restart notice
+      setTimeout(() => {
+        alert('VAD mode changed. Click "Reload (Hard Reset)" in Main tab to apply.');
+      }, 100);
+    }
   </script>
   </head>
   <body>
     <h1>Robot Voice Control</h1>
     <div class="row">
-      <button onclick="document.getElementById('tabMain').style.display='block';document.getElementById('tabSB').style.display='none';document.getElementById('tabVoice').style.display='none'">Main</button>
-      <button onclick="document.getElementById('tabMain').style.display='none';document.getElementById('tabSB').style.display='block';document.getElementById('tabVoice').style.display='none'; sbLoad()">Soundboard</button>
-      <button onclick="document.getElementById('tabMain').style.display='none';document.getElementById('tabSB').style.display='none';document.getElementById('tabVoice').style.display='block'; voiceLoad()">Voice</button>
+      <button onclick="showTab('tabMain')">Main</button>
+      <button onclick="showTab('tabSB'); sbLoad()">Soundboard</button>
+      <button onclick="showTab('tabVoice'); voiceLoad()">Voice</button>
+      <button onclick="showTab('tabControls'); controlsLoad()">Controls</button>
     </div>
     <div id="tabMain" class="tab" style="display:block">
     <div class="card">
@@ -249,6 +429,7 @@
       <div class="row">
         <button onclick="stopSpeak()">Stop Speaking</button>
         <button class="danger" onclick="reloadAll()">Reload (Hard Reset)</button>
+        <button class="toggle" onclick="audioReset()">Reset Audio</button>
       </div>
     </div>
     <br />
@@ -330,6 +511,59 @@
         <div class="row">
           <button class="ok" onclick="voiceSave()">Save</button>
         </div>
+      </div>
+    </div>
+    <div id="tabControls" class="tab" style="display:none">
+      <div class="card">
+        <h3>VAD Mode</h3>
+        <div class="row">
+          <button id="vadModeClient" class="toggle" onclick="setVadMode('client')">Client VAD (Manual)</button>
+          <button id="vadModeServer" onclick="setVadMode('server')">Server VAD (OpenAI)</button>
+        </div>
+        <div id="vadModeInfo" style="margin-top: 8px; padding: 8px; background: #f0f0f0; border-radius: 4px;">
+          <strong>Client VAD:</strong> Manual control of speech detection using sliders below. More reliable timing control.<br>
+          <strong>Server VAD:</strong> OpenAI handles speech detection automatically. Faster response, less control.
+        </div>
+      </div>
+      <br />
+      <div class="card">
+        <h3>Audio Parameters</h3>
+        <div id="clientVadParams">
+          <div class="param-grid">
+            <div class="param-box">
+              <label>Hangover (ms): <span id="hangoverVal">500</span></label>
+              <input type="range" min="0" max="2000" step="50" value="500" 
+                     oninput="document.getElementById('hangoverVal').textContent=this.value; setParam('hangover', this.value)" />
+              <small>How long mic stays muted after speaker stops</small>
+            </div>
+            <div class="param-box">
+              <label>VAD Start Gate: <span id="vadStartVal">0.010</span></label>
+              <input type="range" min="0.005" max="0.050" step="0.001" value="0.010" 
+                     oninput="document.getElementById('vadStartVal').textContent=this.value; setParam('vad_start_gate', this.value)" />
+              <small>Mic level threshold to start detecting speech</small>
+            </div>
+            <div class="param-box">
+              <label>VAD Silence (ms): <span id="vadSilenceVal">2000</span></label>
+              <input type="range" min="500" max="5000" step="100" value="2000" 
+                     oninput="document.getElementById('vadSilenceVal').textContent=this.value; setParam('vad_silence', this.value)" />
+              <small>How long to wait for silence before ending speech</small>
+            </div>
+          </div>
+        </div>
+        <div id="serverVadInfo" style="display:none; padding: 12px; background: #e8f5e8; border-radius: 4px;">
+          Server VAD mode: OpenAI automatically detects when you start and stop speaking. Manual parameters above are ignored.
+        </div>
+      </div>
+      <br />
+      <div class="card">
+        <h3>Live Audio Visualization</h3>
+        <div class="spectro-container">
+          <div class="spectro-box">
+            <h4>Microphone Input</h4>
+            <canvas id="micSpectro" class="spectro-canvas" width="400" height="200"></canvas>
+          </div>
+        </div>
+        <small>Live microphone visualization via WebSocket (port 9001). Waterfall shows frequency content over time.</small>
       </div>
     </div>
   </body>
