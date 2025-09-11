@@ -42,8 +42,8 @@ export HANGOVER_MS="${HANGOVER_MS:-500}"
 # Default to server VAD (OpenAI handles speech detection)
 export VAD_MODE="${VAD_MODE:-server}"
 
-# VAD timeout to prevent getting stuck
-export VAD_TIMEOUT_MS="${VAD_TIMEOUT_MS:-10000}"
+# Force 48kHz to avoid ALSA sample rate issues
+export AUDIO_SAMPLE_RATE="${AUDIO_SAMPLE_RATE:-48000}"
 
 exec python3 realtime_client.py
 

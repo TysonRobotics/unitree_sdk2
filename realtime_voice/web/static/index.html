@@ -267,45 +267,119 @@
       // Set default VAD mode UI (server is default)
       setVadModeUI('server');
       
-      // Initialize spectrogram canvases
-      const micCanvas = document.getElementById('micSpectro');
-      if (micCanvas) {
-        startVizConnection();
-        // Start animation loop
+      // Start polling for audio data and drawing spectrogram
+      const canvas = document.getElementById('micSpectro');
+      if (canvas) {
+        startAudioPolling();
         setInterval(() => {
-          drawSpectrogram(micCanvas, micData, 'Microphone', '#0f0');
-        }, 50); // 20 FPS
+          drawMicSpectrogram(canvas);
+        }, 100); // 10 FPS
       }
     }
 
-    function startVizConnection() {
-      try {
-        const host = window.location.hostname;
-        const port = 9001; // AUDIO_VIZ_PORT
-        vizSocket = new WebSocket(`ws://${host}:${port}`);
-        
-        vizSocket.onmessage = (event) => {
-          try {
-            const data = JSON.parse(event.data);
-            if (data.source === 'mic') {
-              micData = data;
-              micHistory.push(data.spectrum || []);
+    function startAudioPolling() {
+      setInterval(async () => {
+        try {
+          const res = await fetch('/api/audio_viz');
+          const data = await res.json();
+          if (data.ok && data.data) {
+            micData = data.data;
+            // Add to history for waterfall
+            if (micData.mic_spectrum && micData.mic_spectrum.length > 0) {
+              micHistory.push(micData.mic_spectrum);
               if (micHistory.length > maxHistoryFrames) micHistory.shift();
-            } else if (data.source === 'speaker') {
-              spkData = data;
-              spkHistory.push(data.spectrum || []);
-              if (spkHistory.length > maxHistoryFrames) spkHistory.shift();
             }
-          } catch (e) {}
-        };
+          }
+        } catch (e) {}
+      }, 100); // 10 Hz polling
+    }
 
-        vizSocket.onclose = () => {
-          // Reconnect after 2s
-          setTimeout(startVizConnection, 2000);
-        };
-      } catch (e) {
-        setTimeout(startVizConnection, 2000);
+    function drawMicSpectrogram(canvas) {
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+      
+      // Clear
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, w, h);
+      
+      if (!micData || !micData.mic_spectrum) return;
+      
+      const spectrum = micData.mic_spectrum;
+      const level = micData.mic_level || 0;
+      const speaking = micData.vad_speaking || false;
+      const startGate = micData.start_gate || 0.01;
+      const stopGate = micData.stop_gate || 0.01;
+      const sampleRate = micData.sample_rate || 48000;
+      
+      // Layout: left = freq labels, center = waterfall, right = current spectrum + level
+      const labelWidth = 60;
+      const spectroWidth = w - 140;
+      const barWidth = 60;
+      const spectroHeight = h - 40;
+      
+      // Draw waterfall (time history)
+      micHistory.forEach((frame, timeIdx) => {
+        const x = labelWidth + (timeIdx / maxHistoryFrames) * spectroWidth;
+        const timeWidth = Math.max(1, spectroWidth / maxHistoryFrames);
+        frame.forEach((val, freqIdx) => {
+          if (val > 0.05) {
+            const y = spectroHeight - (freqIdx / frame.length) * spectroHeight;
+            const freqHeight = Math.max(1, spectroHeight / frame.length);
+            const intensity = Math.min(255, val * 255);
+            ctx.fillStyle = `rgba(0, ${intensity}, 0, 0.8)`;
+            ctx.fillRect(x, y, timeWidth, freqHeight);
+          }
+        });
+      });
+      
+      // Draw current spectrum bars
+      const barX = labelWidth + spectroWidth + 10;
+      spectrum.forEach((val, i) => {
+        const barY = spectroHeight - (i / spectrum.length) * spectroHeight;
+        const barHeight = Math.max(1, spectroHeight / spectrum.length);
+        const intensity = Math.min(255, val * 255);
+        ctx.fillStyle = `rgba(0, ${intensity}, 0, 0.9)`;
+        ctx.fillRect(barX, barY, 40, barHeight);
+      });
+      
+      // Draw level meter
+      ctx.fillStyle = speaking ? '#0f0' : '#080';
+      const levelHeight = Math.min(spectroHeight, level * spectroHeight * 20);
+      ctx.fillRect(barX + 45, spectroHeight - levelHeight, 10, levelHeight);
+      
+      // Draw VAD thresholds
+      ctx.strokeStyle = '#f00';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([3, 3]);
+      const startY = spectroHeight - (startGate * spectroHeight * 20);
+      const stopY = spectroHeight - (stopGate * spectroHeight * 20);
+      ctx.beginPath();
+      ctx.moveTo(labelWidth, startY); ctx.lineTo(barX + 55, startY);
+      ctx.moveTo(labelWidth, stopY); ctx.lineTo(barX + 55, stopY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      
+      // Frequency labels
+      ctx.fillStyle = '#ccc';
+      ctx.font = '10px monospace';
+      const freqStep = Math.max(1, Math.floor(spectrum.length / 6));
+      for (let i = 0; i < spectrum.length; i += freqStep) {
+        const freq = (i + 1) * (sampleRate / 2) / spectrum.length;
+        const y = spectroHeight - (i / spectrum.length) * spectroHeight;
+        const label = freq < 1000 ? `${freq.toFixed(0)}Hz` : `${(freq/1000).toFixed(1)}k`;
+        ctx.fillText(label, 5, y + 5);
       }
+      
+      // Labels and status
+      ctx.fillStyle = '#fff';
+      ctx.font = '12px monospace';
+      ctx.fillText('Microphone Input', 5, 15);
+      ctx.fillText(`Level: ${level.toFixed(4)}`, 5, h - 25);
+      ctx.fillText(`Speaking: ${speaking ? 'YES' : 'NO'}`, 120, h - 25);
+      ctx.fillText(`Mode: ${micData.vad_mode || 'server'}`, 250, h - 25);
+      ctx.fillText('Time →', spectroWidth / 2, h - 5);
+      ctx.fillText('Now', barX + 15, h - 5);
     }
 
     function drawSpectrogram(canvas, data, label, color) {
@@ -378,17 +452,20 @@
       const serverBtn = document.getElementById('vadModeServer');
       const clientParams = document.getElementById('clientVadParams');
       const serverInfo = document.getElementById('serverVadInfo');
+      const currentMode = document.getElementById('currentVadMode');
       
       if (mode === 'server') {
         clientBtn.className = 'toggle';
         serverBtn.className = 'toggle ok';
         clientParams.style.display = 'none';
         serverInfo.style.display = 'block';
+        if (currentMode) currentMode.textContent = 'Server VAD (OpenAI automatic)';
       } else {
         clientBtn.className = 'toggle ok';
         serverBtn.className = 'toggle';
         clientParams.style.display = 'block';
         serverInfo.style.display = 'none';
+        if (currentMode) currentMode.textContent = 'Client VAD (Manual control)';
       }
     }
 
@@ -556,14 +633,13 @@
       </div>
       <br />
       <div class="card">
-        <h3>Live Audio Visualization</h3>
+        <h3>Live Microphone Visualization</h3>
         <div class="spectro-container">
           <div class="spectro-box">
-            <h4>Microphone Input</h4>
-            <canvas id="micSpectro" class="spectro-canvas" width="400" height="200"></canvas>
+            <canvas id="micSpectro" class="spectro-canvas" width="500" height="250"></canvas>
           </div>
         </div>
-        <small>Live microphone visualization via WebSocket (port 9001). Waterfall shows frequency content over time.</small>
+        <small>Real-time spectrogram: waterfall shows frequency over time, right bars show current spectrum, red lines show VAD thresholds.</small>
       </div>
     </div>
   </body>

@@ -361,10 +361,13 @@ def api_audio_reset():
 def api_set_param():
     body = request.get_json(silent=True) or {}
     param = str(body.get("param") or "").strip()
-    try:
-        value = float(body.get("value", 0))
-    except Exception:
-        return jsonify({"ok": False, "error": "invalid value"}), 400
+    if param == "vad_mode":
+        value = str(body.get("value", "")).strip()
+    else:
+        try:
+            value = float(body.get("value", 0))
+        except Exception:
+            return jsonify({"ok": False, "error": "invalid value"}), 400
     if not param:
         return jsonify({"ok": False, "error": "missing param"}), 400
     
@@ -381,6 +384,20 @@ def api_set_param():
     
     ok = send_cmd({"cmd": cmd, "value": value})
     return jsonify({"ok": ok})
+
+
+@app.route("/api/audio_viz", methods=["GET"])
+def api_audio_viz():
+    """Get current audio visualization data via file polling."""
+    try:
+        viz_file = os.path.join(os.path.dirname(__file__), os.pardir, "audio_viz.json")
+        if os.path.exists(viz_file):
+            with open(viz_file, 'r') as f:
+                data = json.load(f)
+                return jsonify({"ok": True, "data": data})
+        return jsonify({"ok": True, "data": {"mic_level": 0.0, "mic_spectrum": [], "vad_speaking": False}})
+    except Exception:
+        return jsonify({"ok": True, "data": {"mic_level": 0.0, "mic_spectrum": [], "vad_speaking": False}})
 
 
 

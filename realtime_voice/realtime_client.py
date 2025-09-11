@@ -24,7 +24,6 @@ except Exception as exc:  # pragma: no cover
 	print(str(exc), file=sys.stderr)
 
 import websockets
-import websockets.server
 
 try:
 	import soundfile as sf
@@ -201,9 +200,6 @@ class RealtimeVoiceClient:
 		self._cancel_cooldown_ms: float = float(os.environ.get("BARGE_CANCEL_COOLDOWN_MS", "250"))
 		# VAD mode: "client" (manual control) or "server" (OpenAI handles ASR)
 		self._vad_mode: str = os.environ.get("VAD_MODE", "server")
-		# VAD timeout to prevent getting stuck
-		self._vad_last_activity_ms: float = 0.0
-		self._vad_timeout_ms: float = float(os.environ.get("VAD_TIMEOUT_MS", "10000"))
 		# Interactive mic mute toggle
 		self._muted: bool = False
 		# Conversation logging
@@ -211,10 +207,12 @@ class RealtimeVoiceClient:
 		self._conversation_log: List[dict] = []
 		self._conversation_session_id: str = f"session_{int(time.time())}"
 		self._log_dir: str = os.path.join(os.path.dirname(__file__), "logs")
-		# Audio visualization WebSocket
-		self._viz_clients: set = set()
-		self._viz_server = None
-		self._viz_port: int = int(os.environ.get("AUDIO_VIZ_PORT", "9001"))
+		# Audio visualization data (thread-safe file-based sharing)
+		self._current_mic_level: float = 0.0
+		self._mic_level_history: List[float] = []
+		self._mic_spectrum: List[float] = []
+		self._viz_file: str = os.path.join(os.path.dirname(__file__), "audio_viz.json")
+		self._last_viz_write: float = 0.0
 		# Recording state
 		self._recording: bool = False
 		self._record_buffer: List[np.ndarray] = []
@@ -310,9 +308,6 @@ class RealtimeVoiceClient:
 
 		# Install FIFO control reader (for web UI commands)
 		self._install_fifo_reader()
-		
-		# Start audio visualization WebSocket server
-		self._start_viz_server()
 
 		# Determine output channels; prefer 2 if available
 		try:
@@ -405,25 +400,46 @@ class RealtimeVoiceClient:
 				# Compute RMS on device-rate audio
 				lvl_dev = float(np.sqrt(np.mean(np.square(data)))) if data.size else 0.0
 				frame_ms = 1000.0 * frames / float(self.sample_rate_hz)
-				# Send mic level to visualization clients
-				self._send_viz_data("mic", lvl_dev, data)
+				# Track mic level and compute spectrum for visualization
+				self._current_mic_level = lvl_dev
+				self._mic_level_history.append(lvl_dev)
+				if len(self._mic_level_history) > 100:
+					self._mic_level_history.pop(0)
 				
-				# Update activity timestamp
-				now_ms = time.monotonic() * 1000.0
-				if lvl_dev > 0.001:  # Any significant audio activity
-					self._vad_last_activity_ms = now_ms
-				
-				# Auto-reset if VAD gets stuck (no activity for timeout period)
-				if (self._vad_speaking and 
-					now_ms - self._vad_last_activity_ms > self._vad_timeout_ms and
-					not self._assistant_active):
-					if DEBUG:
-						print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} VAD timeout - auto-reset")
-					self._vad_speaking = False
-					self._speech_accum_ms = 0.0
-					self._silence_accum_ms = 0.0
-					self._awaiting_response = False
-					return
+				# Compute spectrum for visualization (every 100ms to avoid overhead)
+				now = time.time()
+				if now - self._last_viz_write > 0.1 and len(data) > 0:
+					try:
+						# Simple FFT for spectrum
+						windowed = data[:, 0] * np.hanning(len(data))
+						fft = np.abs(np.fft.rfft(windowed))
+						# Convert to dB and normalize
+						fft_db = 20 * np.log10(np.maximum(fft, 1e-10))
+						fft_norm = np.maximum(0, (fft_db + 60) / 60)  # -60dB to 0dB range
+						# 16 frequency bins for display
+						if len(fft_norm) >= 16:
+							bin_size = len(fft_norm) // 16
+							self._mic_spectrum = [float(np.max(fft_norm[i*bin_size:(i+1)*bin_size])) for i in range(16)]
+						else:
+							self._mic_spectrum = fft_norm.tolist()
+						
+						# Write to file for HTTP polling (thread-safe)
+						viz_data = {
+							"mic_level": self._current_mic_level,
+							"mic_history": self._mic_level_history[-50:],
+							"mic_spectrum": self._mic_spectrum,
+							"vad_speaking": self._vad_speaking,
+							"vad_mode": self._vad_mode,
+							"start_gate": self._rms_start_gate,
+							"stop_gate": self._rms_stop_gate,
+							"sample_rate": self.sample_rate_hz,
+							"timestamp": now
+						}
+						with open(self._viz_file, 'w') as f:
+							json.dump(viz_data, f)
+						self._last_viz_write = now
+					except Exception:
+						pass
 				# Hysteresis: start/continue speaking on higher threshold; stop on lower
 				if lvl_dev >= self._rms_start_gate:
 					if not self._vad_speaking:
@@ -1020,96 +1036,6 @@ class RealtimeVoiceClient:
 		except Exception:
 			return self.sample_rate_hz
 
-	def _start_viz_server(self) -> None:
-		"""Start WebSocket server for audio visualization data."""
-		try:
-			async def handle_viz_client(websocket, path):
-				self._viz_clients.add(websocket)
-				if DEBUG:
-					print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Viz client connected")
-				try:
-					await websocket.wait_closed()
-				finally:
-					self._viz_clients.discard(websocket)
-					if DEBUG:
-						print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Viz client disconnected")
-
-			# Start server in a separate thread
-			def run_viz_server():
-				try:
-					loop = asyncio.new_event_loop()
-					asyncio.set_event_loop(loop)
-					start_server = websockets.server.serve(handle_viz_client, "0.0.0.0", self._viz_port)
-					loop.run_until_complete(start_server)
-					loop.run_forever()
-				except Exception as exc:
-					if DEBUG:
-						print(f"[DEBUG] Viz server error: {exc}")
-
-			import threading
-			viz_thread = threading.Thread(target=run_viz_server, daemon=True)
-			viz_thread.start()
-			if DEBUG:
-				print(f"[DEBUG] {time.strftime('%Y-%m-%d %H:%M:%S')} Audio viz server started on port {self._viz_port}")
-		except Exception as exc:
-			if DEBUG:
-				print(f"[DEBUG] Failed to start viz server: {exc}")
-
-	def _send_viz_data(self, source: str, level: float, audio_data: Optional[np.ndarray]) -> None:
-		"""Send audio level and detailed spectrum data to visualization clients."""
-		if not self._viz_clients:
-			return
-		try:
-			# Compute detailed frequency spectrum if audio data available
-			spectrum = []
-			if audio_data is not None and len(audio_data) > 0:
-				# Apply window and compute FFT
-				windowed = audio_data[:, 0] * np.hanning(len(audio_data))
-				fft = np.abs(np.fft.rfft(windowed))
-				# Convert to dB and normalize
-				fft_db = 20 * np.log10(np.maximum(fft, 1e-10))
-				fft_norm = np.maximum(0, (fft_db + 60) / 60)  # Normalize -60dB to 0dB range
-				# Create 32 frequency bins for better resolution
-				freq_bins = 32
-				if len(fft_norm) >= freq_bins:
-					bin_size = len(fft_norm) // freq_bins
-					spectrum = [float(np.max(fft_norm[i*bin_size:(i+1)*bin_size])) 
-							   for i in range(freq_bins)]
-				else:
-					spectrum = fft_norm.tolist()
-			
-			# Frequency labels (approximate for 48kHz sample rate)
-			sample_rate = self.sample_rate_hz
-			freq_labels = []
-			if len(spectrum) > 0:
-				for i in range(len(spectrum)):
-					freq = (i + 1) * (sample_rate / 2) / len(spectrum)
-					if freq < 1000:
-						freq_labels.append(f"{freq:.0f}Hz")
-					else:
-						freq_labels.append(f"{freq/1000:.1f}kHz")
-			
-			msg = {
-				"source": source,
-				"level": level,
-				"spectrum": spectrum,
-				"freq_labels": freq_labels,
-				"sample_rate": sample_rate,
-				"timestamp": time.time()
-			}
-			
-			# Send to all connected clients (non-blocking)
-			if self._loop:
-				for client in list(self._viz_clients):
-					try:
-						self._loop.call_soon_threadsafe(
-							asyncio.create_task,
-							client.send(json.dumps(msg))
-						)
-					except Exception:
-						self._viz_clients.discard(client)
-		except Exception:
-			pass
 
 
 def main() -> int:
