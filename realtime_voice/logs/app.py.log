@@ -642,3 +642,500 @@ Terminated
 172.20.10.1 - - [07/Sep/2025 13:46:40] "POST /api/play HTTP/1.1" 200 -
 172.20.10.1 - - [07/Sep/2025 13:47:21] "GET /api/voice HTTP/1.1" 200 -
 172.20.10.1 - - [07/Sep/2025 13:47:26] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:50:47] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.6 - - [07/Sep/2025 13:53:23] "GET / HTTP/1.1" 200 -
+172.20.10.6 - - [07/Sep/2025 13:53:23] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.6 - - [07/Sep/2025 13:53:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+172.20.10.6 - - [07/Sep/2025 13:53:23] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.6 - - [07/Sep/2025 13:53:23] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.6 - - [07/Sep/2025 13:53:25] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:55:08] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:08] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:09] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:09] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:11] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:12] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:17] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:17] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:17] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:17] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:17] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:18] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:22] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:28] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:28] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:29] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:29] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 13:58:32] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:00:07] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:00:17] "POST /api/voice/preset HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:00:17] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:00:17] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:01:41] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:02:44] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:02:52] "POST /api/voice/preset HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:02:52] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:02:52] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:03:54] "POST /api/voice/preset HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:03:54] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:03:54] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:04:58] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:05:03] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:05:05] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:05:44] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:07:10] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:07:15] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:07:16] "POST /api/voice/preset HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:07:16] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:07:16] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:07:19] "POST /api/voice/preset HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:07:19] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:07:19] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:09:09] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:09:11] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:19:21] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:19:26] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 14:19:29] "POST /api/soundboard/play HTTP/1.1" 200 -
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://192.168.123.164:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [07/Sep/2025 15:01:43] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:01:45] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:04:37] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:04:37] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:04:42] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:04:42] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:04:48] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:04:48] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:04:57] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:04:57] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:06] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:06] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:13] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:13] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:24] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:24] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:29] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:29] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:35] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:35] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:43] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:43] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:49] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:49] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:51] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:53] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:54] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:55] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:55] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:55] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:05:56] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:06:07] "POST /api/soundboard/profile HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:06:07] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:06:27] "[31m[1mPOST /api/soundboard/play HTTP/1.1[0m" 400 -
+172.20.10.1 - - [07/Sep/2025 15:06:37] "[31m[1mPOST /api/soundboard/play HTTP/1.1[0m" 400 -
+172.20.10.1 - - [07/Sep/2025 15:06:41] "[31m[1mPOST /api/soundboard/play HTTP/1.1[0m" 400 -
+172.20.10.1 - - [07/Sep/2025 15:06:42] "[31m[1mPOST /api/soundboard/play HTTP/1.1[0m" 400 -
+172.20.10.1 - - [07/Sep/2025 15:06:44] "[31m[1mPOST /api/soundboard/play HTTP/1.1[0m" 400 -
+172.20.10.1 - - [07/Sep/2025 15:06:44] "POST /api/soundboard/save HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:06:46] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:06:51] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:07:14] "[31m[1mPOST /api/soundboard/play HTTP/1.1[0m" 400 -
+172.20.10.1 - - [07/Sep/2025 15:08:55] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:09:14] "POST /api/upload HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:09:14] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:09:31] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:09:35] "[31m[1mPOST /api/soundboard/play HTTP/1.1[0m" 400 -
+172.20.10.1 - - [07/Sep/2025 15:09:46] "POST /api/soundboard/save HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:09:47] "[31m[1mPOST /api/soundboard/play HTTP/1.1[0m" 400 -
+172.20.10.1 - - [07/Sep/2025 15:09:53] "POST /api/soundboard/save HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:10:30] "POST /api/soundboard/save HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:11:07] "POST /api/soundboard/save HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:11:08] "POST /api/soundboard/save HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:11:55] "POST /api/soundboard/save HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:12:14] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:12:20] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:12:25] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:13:42] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:14:06] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:14:11] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:14:15] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:14:33] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:15:01] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:15:48] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:16:29] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:16:33] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:18:02] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:18:42] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:20:52] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:21:13] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:21:16] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:21:30] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:21:47] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:22:04] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:22:56] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:23:29] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:23:56] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:24:02] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:24:18] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:24:22] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:25:45] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:26:35] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:26:40] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:26:55] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:27:01] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:27:42] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:30:28] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:38:46] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:38:49] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:38:50] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:38:52] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:40:15] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:40:33] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:40:37] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:40:43] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:42:05] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:42:17] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:51:21] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:51:30] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:51:55] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:53:19] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:53:47] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:54:12] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:54:18] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:54:21] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:54:23] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:54:26] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:54:33] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:54:42] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:55:03] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:55:30] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:55:41] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:55:45] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:55:49] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:55:55] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:55:59] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:56:00] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:56:12] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:56:25] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:56:30] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:56:34] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:56:39] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:56:55] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:57:00] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:57:03] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:57:08] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:57:12] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:57:21] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:57:39] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:58:50] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:58:59] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:59:12] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:59:19] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:59:23] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:59:39] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:59:51] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [07/Sep/2025 15:59:55] "POST /api/soundboard/play HTTP/1.1" 200 -
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://192.168.123.164:9000
+[33mPress CTRL+C to quit[0m
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://192.168.123.164:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [09/Sep/2025 12:20:28] "[36mGET / HTTP/1.1[0m" 304 -
+172.20.10.1 - - [09/Sep/2025 12:20:28] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 12:20:28] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 12:20:28] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 12:20:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+172.20.10.1 - - [09/Sep/2025 12:20:34] "POST /api/mute HTTP/1.1" 200 -
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://192.168.123.164:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [09/Sep/2025 13:54:03] "[36mGET / HTTP/1.1[0m" 304 -
+172.20.10.1 - - [09/Sep/2025 13:54:03] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 13:54:03] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 13:54:03] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 13:54:07] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 13:54:12] "POST /api/mute HTTP/1.1" 200 -
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://192.168.123.164:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [09/Sep/2025 15:09:44] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:10:01] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:10:01] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:10:01] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:10:01] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:10:46] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:33:37] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:33:41] "GET /api/voice HTTP/1.1" 200 -
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://192.168.123.164:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [09/Sep/2025 15:41:19] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:41:20] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:41:22] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:41:27] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:41:28] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:42:09] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:42:09] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:42:09] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:42:09] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:42:54] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:43:06] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:43:22] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:44:38] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:44:52] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:45:20] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:45:33] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:45:43] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:46:27] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:46:29] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:46:34] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:46:36] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:46:37] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:46:40] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:59:56] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 15:59:57] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:00:03] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:00:24] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:00:28] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:01:23] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:01:33] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:01:33] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:01:33] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:01:33] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:01:35] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:01:41] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:02:14] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:02:14] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:02:14] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:02:14] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:02:23] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:02:31] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:02:35] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:04:17] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:04:29] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:05:50] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:05:58] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:05:59] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:05:59] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:05:59] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:05:59] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:06:03] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:06:05] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:06:07] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:08:14] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:08:55] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:10:04] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:10:09] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:10:25] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:10:26] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:10:30] "POST /api/voice/preset HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:10:30] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:10:30] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:10:31] "POST /api/voice/save HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:10:37] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:10:37] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:11:24] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:22:42] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:22:44] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:22:51] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:22:58] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:24:10] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:24:10] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:06] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:10] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:14] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:15] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:15] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:15] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:16] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:16] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:19] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:23] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:23] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:28] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:34] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:35] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:36] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:38] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:39] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:42] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:52] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:54] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:56] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:25:58] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:26:25] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:26:26] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:27:01] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:27:02] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:27:05] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:27:09] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:28:17] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:28:27] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:28:38] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:28:38] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:28:38] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:28:38] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:28:40] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:28:52] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:28:53] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:28:56] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:03] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:03] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:03] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:03] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:06] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:10] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:10] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:10] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:10] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:10] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:10] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [09/Sep/2025 16:29:11] "POST /api/mute HTTP/1.1" 200 -
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://192.168.123.164:9000
+[33mPress CTRL+C to quit[0m
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+[WEB] Starting on 0.0.0.0:9000, FIFO at /home/unitree/unitree_sdk2/realtime_voice/control.fifo
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9000
+ * Running on http://192.168.123.164:9000
+[33mPress CTRL+C to quit[0m
+172.20.10.1 - - [15/Jan/1970 19:58:23] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [15/Jan/1970 19:58:23] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [15/Jan/1970 19:58:23] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [15/Jan/1970 19:58:23] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [15/Jan/1970 19:58:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+172.20.10.1 - - [11/Sep/2025 15:26:34] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:26:37] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:26:37] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:26:38] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:26:40] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:26:45] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:26:48] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:26:50] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:26:51] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:26:52] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:26:52] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:26:53] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:27:10] "POST /api/soundboard/profile HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:27:10] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:27:12] "[31m[1mPOST /api/soundboard/play HTTP/1.1[0m" 400 -
+172.20.10.1 - - [11/Sep/2025 15:28:57] "[31m[1mPOST /api/soundboard/play HTTP/1.1[0m" 400 -
+172.20.10.1 - - [11/Sep/2025 15:29:09] "POST /api/soundboard/save HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:11] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:12] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:16] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:19] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:23] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:26] "POST /api/soundboard/save HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:29] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:34] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:37] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:38] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:40] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:44] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:29:54] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:08] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:17] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:18] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:23] "POST /api/reload HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:42] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:44] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:45] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:46] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:47] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:48] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:50] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:53] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:54] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:31:56] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:34:29] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:34:31] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:34:33] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:07] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:17] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:19] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:24] "POST /api/stop HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:26] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:26] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:27] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:27] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:28] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:29] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:35] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:36:39] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:37:14] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:40:03] "POST /api/record_start HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:40:26] "POST /api/record_stop HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:40:26] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:40:36] "GET / HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:40:36] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:40:36] "GET /api/voice HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:40:36] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:40:47] "POST /api/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:41:16] "POST /api/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:41:52] "POST /api/record_start HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:42:04] "POST /api/record_stop HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:42:04] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:42:08] "POST /api/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:42:26] "POST /api/record_start HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:42:35] "POST /api/record_stop HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:42:35] "GET /api/recordings HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:42:41] "POST /api/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:47:19] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:47:40] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:47:42] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:48:46] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:48:46] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:48:49] "GET /api/soundboard HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:48:50] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:48:54] "POST /api/soundboard/play HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:49:15] "POST /api/mute HTTP/1.1" 200 -
+172.20.10.1 - - [11/Sep/2025 15:49:56] "POST /api/reload HTTP/1.1" 200 -

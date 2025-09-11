@@ -72,6 +72,42 @@
       null,
       null,
       null
+    ],
+    "Forces": [
+      "I_need_black_airforces_right_now.wav",
+      "can_you_help_me_buy_shoes.wav",
+      "this_shoe_is_perfect.wav",
+      "no_the_shoe_is_to_small.wav",
+      "yeah_the_shoe_feels_good.wav",
+      "no_the_shoe_is_to_big.wav",
+      "i_need_some_black_airforces_right_now.wav",
+      "arnold-ill-be-back-8276.wav",
+      "follow_me_on_instagram_at_tyson_robotics.wav",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "General": [
+      "hello-there-meme-voice-jam-fx-1-00-01.wav",
+      "arnold-ill-be-back-8276.wav",
+      "follow_me_on_instagram_at_tyson_robotics.wav",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
     ]
   }
 }
